@@ -188,11 +188,11 @@ country_event = {
 # All countries hear about Syria's outreach, without presuming an agreement.
 news_event = {
     id = CWICR_SYR_REG.7
+    major = yes
     title = CWICR_SYR_REG.7.t
     desc = CWICR_SYR_REG.7.d
     picture = GFX_SYR_SOV
     is_triggered_only = yes
-    fire_only_once = yes
     option = { name = CWICR_SYR_REG.7.a }
 }
 
@@ -237,21 +237,21 @@ country_event = {
 
 news_event = {
     id = CWICR_SYR_REG.9
+    major = yes
     title = CWICR_SYR_REG.9.t
     desc = CWICR_SYR_REG.9.d
     picture = GFX_Syrian_parliament
     is_triggered_only = yes
-    fire_only_once = yes
     option = { name = CWICR_SYR_REG.9.a }
 }
 
 news_event = {
     id = CWICR_SYR_REG.10
+    major = yes
     title = CWICR_SYR_REG.10.t
     desc = CWICR_SYR_REG.10.d
     picture = GFX_Syrian_parliament
     is_triggered_only = yes
-    fire_only_once = yes
     option = { name = CWICR_SYR_REG.10.a }
 }
 
@@ -352,20 +352,20 @@ country_event = {
 
 news_event = {
     id = CWICR_SYR_REG.14
+    major = yes
     title = CWICR_SYR_REG.14.t
     desc = CWICR_SYR_REG.14.d
     picture = GFX_Syrian_parliament
     is_triggered_only = yes
-    fire_only_once = yes
     option = { name = CWICR_SYR_REG.14.a }
 }
 
 news_event = {
     id = CWICR_SYR_REG.15
+    major = yes
     title = CWICR_SYR_REG.15.t
     desc = CWICR_SYR_REG.15.d
     picture = GFX_Syrian_parliament
     is_triggered_only = yes
-    fire_only_once = yes
     option = { name = CWICR_SYR_REG.15.a }
 }
