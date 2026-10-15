@@ -1,0 +1,28 @@
+name: CWIC Reworked source validation
+
+on:
+  push:
+    branches: [cwic-reworked]
+  pull_request:
+    branches: [cwic-reworked]
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  static-checks:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Check out source
+        uses: actions/checkout@v4
+      - name: Configure Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+      - name: Compile validation scripts
+        run: python -m py_compile CWIC_Reworked_Validate.py CWIC_Reworked_Research_Audit.py
+      - name: Validate mod source and Syrian systems
+        run: python CWIC_Reworked_Validate.py
+      - name: Research folder and graphics preflight
+        run: python CWIC_Reworked_Research_Audit.py
