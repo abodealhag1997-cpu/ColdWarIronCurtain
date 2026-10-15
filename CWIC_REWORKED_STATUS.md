@@ -74,11 +74,49 @@ the category names cited in that log; these were not changed speculatively.
 Run `python CWIC_Reworked_Validate.py` from the repository root after
 downloading a full checkout. The Python script inspects balanced Clausewitz
 braces, five Syrian recruited advisors, Syrian focus references, espionage
-defines, old doctrine override files, and the newly corrected error patterns.
+defines, old doctrine override files, the new Syria reform decisions,
+period-specific focus-tree loads, and the corrected error patterns.
 **The validator file has been added to GitHub, but it has not yet been
 executed in Python in this ChatGPT environment due to the unavailable
 local execution environment.** Equivalent spot checks of edited text
 and source references were performed.
+
+## Syria state-capacity expansion (new work)
+
+- The Syrian history file now explicitly loads `50s_SYR` at the
+  1949 starting position and loads `60s_SYR` in the historical
+  `1960.1.1` block. The previously commented-out 1960 switch is
+  active in `history/countries/SYR - Syria.txt`. These are explicit
+  historical start-date selections, not a full dynamic mid-game
+  scenario system.
+- Added two unique decision categories and four one-time Syrian
+  decisions: national budget commission; irrigation cooperatives;
+  professional officer education; and intelligence coordination.
+  The latter three require historically relevant Syrian focus
+  completions, recognised in either the 1950s or 1960s tree.
+- New national spirits balance small benefits (administration,
+  construction, organisation, planning, decryption) against consumer
+  goods or political-power costs. No extra factories, equipment,
+  invented historical personalities or free stockpiles were added.
+- Added 20 English localisation keys for the new Syria projects.
+- All new policy category IDs, decision IDs, idea IDs, source focus
+  prerequisites and localisation keys were checked against their
+  definitions by source inspection, with balanced Clausewitz braces.
+
+### Remaining technology bonus fixes
+
+The old runtime log listed several missing research bonus categories,
+but some were **already repaired on the GitHub development branch**
+and therefore should not be modified again. We changed only those
+still reproducible in this source tree:
+
+- `BRA_50s.txt`: `radio` -> `radio_tech`
+- `DOM_49.txt`: `screen_hull_light` -> `screen_tech_hull`
+- `HUN_60s_Kadar.txt`: `electronic_mechanical_engineering` -> `electronics`
+- `HUN_60s_Kadar.txt`: `air_techs` -> `air_equipment`
+
+The replacements are defined in `common/technology_tags/00_technology.txt`.
+They are conservative technical mappings, not a balance test.
 
 ## Static checks done
 
@@ -108,7 +146,8 @@ is still required before release.
 - Audit military design interfaces, tanks, templates, aircraft, espionage
   portraits and other `error.log` warnings.
 - Expand Syria's political, economic, military, diplomatic and historical
-  systems after the engine-level bugs are stable.
+  systems beyond the first four optional reform decisions, after the
+  engine-level bugs are stable.
 - Do a **single comprehensive** new-campaign run after integration.
 
 ## Installing *later* from a complete checkout
