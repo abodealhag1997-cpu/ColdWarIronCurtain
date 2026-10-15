@@ -1,0 +1,19 @@
+# CWIC Reworked: limited and temporary diplomatic signals.
+opinion_modifiers = {
+    CWICR_SYR_regional_consultation = {
+        value = 12
+        months = 24
+    }
+    CWICR_SYR_un_dialogue = {
+        value = 8
+        months = 24
+    }
+    CWICR_SYR_open_safeguards = {
+        value = 10
+        months = 60
+    }
+    CWICR_SYR_opaque_programme = {
+        value = -30
+        months = 60
+    }
+}
