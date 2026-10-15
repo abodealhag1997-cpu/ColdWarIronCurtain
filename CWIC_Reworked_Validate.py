@@ -103,6 +103,9 @@ CHECK_BRACES = [
     "common/ideas/CWICR_SYR_Institutions_and_Policies.txt",
     "common/opinion_modifiers/CWICR_SYR_Diplomatic_Reactions.txt",
     "events/CWICR_SYR_Institutional_Choices.txt",
+    "common/decisions/CWICR_SYR_Satellite_Weather_Diplomacy.txt",
+    "events/CWICR_SYR_Satellite_Weather_Diplomacy.txt",
+    "common/ideas/CWICR_SYR_Satellite_Weather.txt",
     "common/technologies/CWICR_SYR_Research.txt",
     "common/special_projects/projects/cwic_space_special_projects.txt",
     "common/national_focus/50s_SYR.txt",
@@ -291,6 +294,30 @@ for label in ("CWICR_SYR_RESEARCH_TITLE", "CWICR_SYR_HYDRO_HEADING",
               "CWICR_SYR_TECH_TAB"):
     if not re.search(r"(?m)^\s*" + label + r":0\s+\"", technology_loc):
         fail("Syrian research interface localization missing: " + label)
+
+# A Syrian exclusive satellite network requires meteorology research.
+# Recipient replies are in the invited country's scope; effects are
+# conditional on the country's own option, not on a forced treaty.
+sat_decisions = masked["common/decisions/CWICR_SYR_Satellite_Weather_Diplomacy.txt"]
+sat_events = masked["events/CWICR_SYR_Satellite_Weather_Diplomacy.txt"]
+sat_ideas = masked["common/ideas/CWICR_SYR_Satellite_Weather.txt"]
+sat_loc = read("localisation/english/CWICR_SYR_Satellite_Weather_l_english.yml")
+if not re.search(r"\bhas_tech\s*=\s*CWICR_SYR_meteorology_1978\b", sat_decisions):
+    fail("Satellite diplomacy must require Syrian meteorological technology")
+for partner, num in (("IRQ", 1), ("JOR", 2), ("LEB", 3)):
+    if not re.search(r"\b" + partner + r"\s*=\s*\{\s*country_event\s*=\s*\{\s*id\s*=\s*CWICR_SYR_SAT\." + str(num), sat_decisions):
+        fail(f"Syrian satellite invitation has no event for {partner}")
+    if not re.search(r"\bid\s*=\s*CWICR_SYR_SAT\." + str(num) + r"\b", sat_events):
+        fail(f"Satellite event missing for {partner}")
+for num in (1, 2, 3, 4):
+    for suffix in ("t", "d", "a"):
+        key = f"CWICR_SYR_SAT.{num}.{suffix}"
+        if not re.search(r"(?m)^\s*" + re.escape(key) + r":0\s+", sat_loc):
+            fail("Satellite diplomatic event localisation missing: " + key)
+if not re.search(r"\bCWICR_SYR_satellite_weather_cooperation_idea\s*=\s*\{", sat_ideas):
+    fail("Shared satellite weather cooperation idea missing")
+if re.search(r"\b(add_nukes|annex_country|puppet|add_equipment_to_stockpile)\s*=", sat_decisions + sat_events):
+    fail("Satellite cooperation should not grant weapons or annex countries")
 
 # New doctrine focus rewards are XP, not removed legacy doctrine tech discounts.
 expected_doctrine_xp = (
