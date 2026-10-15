@@ -95,6 +95,7 @@ CHECK_BRACES = [
     "common/decisions/categories/CWICR_SYR_Categories.txt",
     "common/decisions/CWICR_SYR_State_Reforms.txt",
     "common/ideas/CWICR_SYR_State_Reforms.txt",
+    "common/special_projects/projects/cwic_space_special_projects.txt",
     "common/national_focus/50s_SYR.txt",
     "common/national_focus/60s_SYR.txt",
     "history/countries/SYR - Syria.txt",
@@ -170,6 +171,27 @@ for decision in ("CWICR_SYR_budget_commission", "CWICR_SYR_irrigation_cooperativ
         fail("Syrian decision localisation missing: " + decision)
     if not re.search(r"(?m)^\s*" + re.escape(spirit) + r":0", policy_l10n):
         fail("Syrian idea localisation missing: " + spirit)
+
+# New doctrine focus rewards are XP, not removed legacy doctrine tech discounts.
+expected_doctrine_xp = (
+    ("common/national_focus/50s_SYR.txt", "add_air_experience", 10),
+    ("common/national_focus/50s_SYR.txt", "add_army_experience", 10),
+    ("common/national_focus/50s_SYR.txt", "add_navy_experience", 10),
+    ("common/national_focus/60s_SYR.txt", "add_army_experience", 20),
+)
+for file, effect, amount in expected_doctrine_xp:
+    if not re.search(r"(?m)^\s*" + effect + r"\s*=\s*" + str(amount) + r"\s*$", masked[file]):
+        fail(f"Expected Syrian doctrine reward missing: {file} {effect}={amount}")
+for file in ("common/national_focus/50s_SYR.txt", "common/national_focus/60s_SYR.txt"):
+    if "add_doctrine_cost_reduction" in masked[file]:
+        fail(f"Legacy Syrian doctrine reward remains in {file}")
+
+# The Buran launcher-project typo must not recur.
+project_source = masked["common/special_projects/projects/cwic_space_special_projects.txt"]
+if "sp_orbiter_sov_buran" not in project_source:
+    fail("Soviet Buran special project is missing.")
+if "sp_lv_sov_zenit" in project_source:
+    fail("Undefined Soviet Zenit launcher parent still referenced.")
 
 focus_ids: dict[str, str] = {}
 focus_refs: list[tuple[str, str]] = []
