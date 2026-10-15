@@ -1,0 +1,104 @@
+# CWIC Reworked: entirely optional regional weather-data initiative.
+# No state changes, nuclear research, satellite launches or imposed contracts.
+add_namespace = CWICR_SYR_SAT
+
+# IRQ: independent response to Syrian satellite weather-data sharing.
+country_event = {
+    id = CWICR_SYR_SAT.1
+    title = CWICR_SYR_SAT.1.t
+    desc = CWICR_SYR_SAT.1.d
+    picture = GFX_Syrian_parliament
+    is_triggered_only = yes
+    fire_only_once = yes
+    option = {
+        name = CWICR_SYR_SAT.1.a
+        ai_chance = { factor = 60 }
+        add_political_power = -15
+        add_ideas = CWICR_SYR_satellite_weather_cooperation_idea
+        add_opinion_modifier = { target = SYR modifier = CWICR_SYR_science_partners }
+        SYR = {
+            add_ideas = CWICR_SYR_satellite_weather_cooperation_idea
+            add_opinion_modifier = { target = IRQ modifier = CWICR_SYR_science_partners }
+            set_country_flag = CWICR_SYR_satellite_IRQ_agreed
+        }
+    }
+    option = {
+        name = CWICR_SYR_SAT.1.b
+        ai_chance = { factor = 40 }
+        add_opinion_modifier = { target = SYR modifier = CWICR_SYR_diplomatic_refusal }
+        SYR = {
+            set_country_flag = CWICR_SYR_satellite_IRQ_declined
+        }
+    }
+}
+
+# JOR: independent response to Syrian satellite weather-data sharing.
+country_event = {
+    id = CWICR_SYR_SAT.2
+    title = CWICR_SYR_SAT.2.t
+    desc = CWICR_SYR_SAT.2.d
+    picture = GFX_Syrian_parliament
+    is_triggered_only = yes
+    fire_only_once = yes
+    option = {
+        name = CWICR_SYR_SAT.2.a
+        ai_chance = { factor = 65 }
+        add_political_power = -15
+        add_ideas = CWICR_SYR_satellite_weather_cooperation_idea
+        add_opinion_modifier = { target = SYR modifier = CWICR_SYR_science_partners }
+        SYR = {
+            add_ideas = CWICR_SYR_satellite_weather_cooperation_idea
+            add_opinion_modifier = { target = JOR modifier = CWICR_SYR_science_partners }
+            set_country_flag = CWICR_SYR_satellite_JOR_agreed
+        }
+    }
+    option = {
+        name = CWICR_SYR_SAT.2.b
+        ai_chance = { factor = 35 }
+        add_opinion_modifier = { target = SYR modifier = CWICR_SYR_diplomatic_refusal }
+        SYR = {
+            set_country_flag = CWICR_SYR_satellite_JOR_declined
+        }
+    }
+}
+
+# LEB: independent response to Syrian satellite weather-data sharing.
+country_event = {
+    id = CWICR_SYR_SAT.3
+    title = CWICR_SYR_SAT.3.t
+    desc = CWICR_SYR_SAT.3.d
+    picture = GFX_Syrian_parliament
+    is_triggered_only = yes
+    fire_only_once = yes
+    option = {
+        name = CWICR_SYR_SAT.3.a
+        ai_chance = { factor = 60 }
+        add_political_power = -15
+        add_ideas = CWICR_SYR_satellite_weather_cooperation_idea
+        add_opinion_modifier = { target = SYR modifier = CWICR_SYR_science_partners }
+        SYR = {
+            add_ideas = CWICR_SYR_satellite_weather_cooperation_idea
+            add_opinion_modifier = { target = LEB modifier = CWICR_SYR_science_partners }
+            set_country_flag = CWICR_SYR_satellite_LEB_agreed
+        }
+    }
+    option = {
+        name = CWICR_SYR_SAT.3.b
+        ai_chance = { factor = 40 }
+        add_opinion_modifier = { target = SYR modifier = CWICR_SYR_diplomatic_refusal }
+        SYR = {
+            set_country_flag = CWICR_SYR_satellite_LEB_declined
+        }
+    }
+}
+
+# World news describes the invitation, not a fabricated multilateral agreement.
+news_event = {
+    id = CWICR_SYR_SAT.4
+    major = yes
+    title = CWICR_SYR_SAT.4.t
+    desc = CWICR_SYR_SAT.4.d
+    picture = GFX_Syrian_parliament
+    is_triggered_only = yes
+    option = { name = CWICR_SYR_SAT.4.a }
+}
