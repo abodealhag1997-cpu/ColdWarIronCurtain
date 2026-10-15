@@ -86,6 +86,14 @@ guiTypes = {
 				maxWidth = 300
 				maxHeight = 28
 			}
+			instantTextboxType = {
+				name = "cwicr_syr_space_services_heading"
+				position = { x=1350 y=77 }
+				text = "CWICR_SYR_SPACE_SERVICES_HEADING"
+				font = "hoi_18mbs"
+				maxWidth = 340
+				maxHeight = 28
+			}
 			gridboxtype = {
 				name = "CWICR_SYR_hydrology_1949_tree"
 				position = { x=190 y=120 }
@@ -103,6 +111,13 @@ guiTypes = {
 			gridboxtype = {
 				name = "CWICR_SYR_signal_corps_1950_tree"
 				position = { x=990 y=120 }
+				size = { width = 310 height = 1050 }
+				slotsize = { width = 182 height = 84 }
+				format = "UP"
+			}
+			gridboxtype = {
+				name = "CWICR_SYR_satellite_reception_1968_tree"
+				position = { x=1390 y=120 }
 				size = { width = 310 height = 1050 }
 				slotsize = { width = 182 height = 84 }
 				format = "UP"
