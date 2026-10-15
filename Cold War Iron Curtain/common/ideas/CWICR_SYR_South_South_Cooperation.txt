@@ -1,0 +1,14 @@
+# Three-way opt-in scientific institute, not a grant of industrial assets.
+ideas = {
+    country = {
+        CWICR_SYR_SSC_joint_training_idea = {
+            allowed = { always = no }
+            removal_cost = -1
+            picture = generic_research_bonus
+            modifier = {
+                research_speed_factor = 0.008
+                consumer_goods_factor = 0.012
+            }
+        }
+    }
+}
