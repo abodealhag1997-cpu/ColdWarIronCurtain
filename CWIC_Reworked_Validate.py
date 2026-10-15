@@ -309,7 +309,7 @@ portraits = read("portraits/00_portraits.txt")
 default_portrait = portraits.split("continent = {", 1)[0]
 if not re.search(r"\boperative\s*=\s*\{", default_portrait):
     fail("Default operative portrait pool is missing.")
-if "gfx/leaders/operative_unknown.dds" not in default_portrait:
+if "gfx/leaders/leader_unknown.dds" not in default_portrait:
     fail("Default operative portrait fallback sprite is missing.")
 
 # The Buran launcher-project typo must not recur.
