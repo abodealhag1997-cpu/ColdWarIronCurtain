@@ -1,0 +1,90 @@
+# CWIC Reworked - independent recipient replies, then an automatic Syrian
+# assessment. No military alliance, treaty membership or free technology.
+add_namespace = CWICR_SYR_SSC
+
+country_event = {
+    id = CWICR_SYR_SSC.1
+    title = CWICR_SYR_SSC.1.t
+    desc = CWICR_SYR_SSC.1.d
+    picture = GFX_Syrian_parliament
+    is_triggered_only = yes
+    fire_only_once = yes
+    option = {
+        name = CWICR_SYR_SSC.1.a
+        ai_chance = { factor = 60 }
+        add_political_power = -20
+        add_opinion_modifier = { target = SYR modifier = CWICR_SYR_science_partners }
+        SYR = { set_country_flag = CWICR_SYR_SSC_YUG_accepted }
+    }
+    option = {
+        name = CWICR_SYR_SSC.1.b
+        ai_chance = { factor = 40 }
+        add_opinion_modifier = { target = SYR modifier = CWICR_SYR_diplomatic_refusal }
+        SYR = { set_country_flag = CWICR_SYR_SSC_YUG_refused }
+    }
+}
+
+country_event = {
+    id = CWICR_SYR_SSC.2
+    title = CWICR_SYR_SSC.2.t
+    desc = CWICR_SYR_SSC.2.d
+    picture = GFX_Syrian_parliament
+    is_triggered_only = yes
+    fire_only_once = yes
+    option = {
+        name = CWICR_SYR_SSC.2.a
+        ai_chance = { factor = 55 }
+        add_political_power = -20
+        add_opinion_modifier = { target = SYR modifier = CWICR_SYR_science_partners }
+        SYR = { set_country_flag = CWICR_SYR_SSC_RAJ_accepted }
+    }
+    option = {
+        name = CWICR_SYR_SSC.2.b
+        ai_chance = { factor = 45 }
+        add_opinion_modifier = { target = SYR modifier = CWICR_SYR_diplomatic_refusal }
+        SYR = { set_country_flag = CWICR_SYR_SSC_RAJ_refused }
+    }
+}
+
+# Triggered for Syria nine days after invitations; recipient replies are
+# scheduled after two days. Without both acceptances the initiative fails.
+country_event = {
+    id = CWICR_SYR_SSC.3
+    title = CWICR_SYR_SSC.3.t
+    desc = CWICR_SYR_SSC.3.d
+    picture = GFX_Syrian_parliament
+    is_triggered_only = yes
+    fire_only_once = yes
+    option = {
+        name = CWICR_SYR_SSC.3.a
+        if = {
+            limit = {
+                has_country_flag = CWICR_SYR_SSC_YUG_accepted
+                has_country_flag = CWICR_SYR_SSC_RAJ_accepted
+                exists = YUG
+                exists = RAJ
+            }
+            add_ideas = CWICR_SYR_SSC_joint_training_idea
+            add_opinion_modifier = { target = YUG modifier = CWICR_SYR_science_partners }
+            add_opinion_modifier = { target = RAJ modifier = CWICR_SYR_science_partners }
+            YUG = { add_ideas = CWICR_SYR_SSC_joint_training_idea }
+            RAJ = { add_ideas = CWICR_SYR_SSC_joint_training_idea }
+            set_country_flag = CWICR_SYR_SSC_agreed
+            news_event = { id = CWICR_SYR_SSC.4 days = 1 }
+        }
+        else = {
+            set_country_flag = CWICR_SYR_SSC_failed
+            add_stability = -0.005
+        }
+    }
+}
+
+news_event = {
+    id = CWICR_SYR_SSC.4
+    title = CWICR_SYR_SSC.4.t
+    desc = CWICR_SYR_SSC.4.d
+    picture = GFX_Syrian_parliament
+    is_triggered_only = yes
+    fire_only_once = yes
+    option = { name = CWICR_SYR_SSC.4.a }
+}
