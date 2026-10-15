@@ -20,5 +20,36 @@ ideas = {
                 consumer_goods_factor = 0.01
             }
         }
+
+        CWICR_SYR_observation_liaison_idea = {
+            allowed = { always = no }
+            removal_cost = -1
+            picture = generic_research_bonus
+            modifier = {
+                stability_factor = 0.005
+                consumer_goods_factor = 0.005
+            }
+        }
+
+        CWICR_SYR_tripartite_water_idea = {
+            allowed = { always = no }
+            removal_cost = -1
+            picture = generic_research_bonus
+            modifier = {
+                production_speed_infrastructure_factor = 0.015
+                consumer_goods_factor = 0.01
+            }
+        }
+
+        CWICR_SYR_regional_relief_idea = {
+            allowed = { always = no }
+            removal_cost = -1
+            picture = generic_research_bonus
+            modifier = {
+                stability_factor = 0.01
+                consumer_goods_factor = 0.015
+            }
+        }
+
     }
 }
