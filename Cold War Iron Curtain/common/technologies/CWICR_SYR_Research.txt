@@ -128,4 +128,48 @@ technologies = {
 		ai_will_do = { factor = 4 }
 	}
 
+	# Applied satellite services are access/receiver capabilities, not an
+	# independent Syrian launch vehicle or a free orbital program.
+	CWICR_SYR_satellite_reception_1968 = {
+		allow_branch = { original_tag = SYR }
+		allow = { original_tag = SYR }
+		path = { leads_to_tech = CWICR_SYR_meteorology_1978 research_cost_coeff = 1 }
+		research_speed_factor = 0.005
+		start_year = 1968
+		research_cost = 2
+		folder = {
+			name = cwicr_syr_research_folder
+			position = { x = 0 y = 0 }
+		}
+		categories = { electronics coms_tech }
+		ai_will_do = { factor = 3 }
+	}
+
+	CWICR_SYR_meteorology_1978 = {
+		allow = { original_tag = SYR }
+		path = { leads_to_tech = CWICR_SYR_earth_observation_1988 research_cost_coeff = 1 }
+		production_speed_infrastructure_factor = 0.01
+		start_year = 1978
+		research_cost = 2.5
+		folder = {
+			name = cwicr_syr_research_folder
+			position = { x = 0 y = 2 }
+		}
+		categories = { electronics water }
+		ai_will_do = { factor = 3 }
+	}
+
+	CWICR_SYR_earth_observation_1988 = {
+		allow = { original_tag = SYR }
+		industry_repair_factor = 0.01
+		start_year = 1988
+		research_cost = 3
+		folder = {
+			name = cwicr_syr_research_folder
+			position = { x = 0 y = 4 }
+		}
+		categories = { electronics agriculture }
+		ai_will_do = { factor = 2 }
+	}
+
 }
