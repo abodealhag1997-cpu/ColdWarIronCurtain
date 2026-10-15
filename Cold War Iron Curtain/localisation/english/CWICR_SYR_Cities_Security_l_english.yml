@@ -65,3 +65,5 @@
  CWICR_SYR_SEC.5.d:0 "The Syrian government proposes a time-limited training arrangement. Iraq may accept the civilian-military costs or reject the proposal."
  CWICR_SYR_SEC.5.a:0 "Accept the advisory mission"
  CWICR_SYR_SEC.5.b:0 "Decline the Syrian contract"
+ CWICR_SYR_PMC_recruit_home_brigade:0 "Recruit a Syrian Contract Security Brigade"
+ CWICR_SYR_PMC_recruit_home_brigade_desc:0 "Pay for one small Syrian contractor formation. It must draw equipment from normal national stocks and deploys with only partial manpower; no foreign unit or free weapon stockpile is created."
