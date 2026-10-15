@@ -1,0 +1,131 @@
+# CWIC Reworked — country-exclusive Syrian applied science (1949–1972).
+# Three linked branches visible and researchable only by the original Syrian tag.
+# Small cumulative country modifiers: no free equipment, factories or nukes.
+technologies = {
+	CWICR_SYR_hydrology_1949 = {
+		allow_branch = { original_tag = SYR }
+		allow = { original_tag = SYR }
+		path = { leads_to_tech = CWICR_SYR_irrigation_1957 research_cost_coeff = 1 }
+		production_speed_infrastructure_factor = 0.01
+		start_year = 1949
+		research_cost = 1.5
+		folder = {
+			name = cwicr_syr_research_folder
+			position = { x = 0 y = 0 }
+		}
+		categories = { agriculture water }
+		ai_will_do = { factor = 4 }
+	}
+
+	CWICR_SYR_irrigation_1957 = {
+		allow = { original_tag = SYR }
+		path = { leads_to_tech = CWICR_SYR_euphrates_1970 research_cost_coeff = 1 }
+		production_speed_infrastructure_factor = 0.02
+		start_year = 1957
+		research_cost = 2
+		folder = {
+			name = cwicr_syr_research_folder
+			position = { x = 0 y = 2 }
+		}
+		categories = { agriculture water }
+		ai_will_do = { factor = 4 }
+	}
+
+	CWICR_SYR_euphrates_1970 = {
+		allow = { original_tag = SYR }
+		industry_repair_factor = 0.02
+		start_year = 1970
+		research_cost = 2.5
+		folder = {
+			name = cwicr_syr_research_folder
+			position = { x = 0 y = 4 }
+		}
+		categories = { water infrastructure }
+		ai_will_do = { factor = 4 }
+	}
+
+	CWICR_SYR_vocational_1949 = {
+		allow_branch = { original_tag = SYR }
+		allow = { original_tag = SYR }
+		path = { leads_to_tech = CWICR_SYR_industry_1958 research_cost_coeff = 1 }
+		research_speed_factor = 0.005
+		start_year = 1949
+		research_cost = 1.5
+		folder = {
+			name = cwicr_syr_research_folder
+			position = { x = 0 y = 0 }
+		}
+		categories = { industry manufacturing }
+		ai_will_do = { factor = 4 }
+	}
+
+	CWICR_SYR_industry_1958 = {
+		allow = { original_tag = SYR }
+		path = { leads_to_tech = CWICR_SYR_machine_tools_1968 research_cost_coeff = 1 }
+		industrial_capacity_factory = 0.01
+		start_year = 1958
+		research_cost = 2
+		folder = {
+			name = cwicr_syr_research_folder
+			position = { x = 0 y = 2 }
+		}
+		categories = { industry manufacturing }
+		ai_will_do = { factor = 4 }
+	}
+
+	CWICR_SYR_machine_tools_1968 = {
+		allow = { original_tag = SYR }
+		production_speed_arms_factory_factor = 0.01
+		start_year = 1968
+		research_cost = 2.5
+		folder = {
+			name = cwicr_syr_research_folder
+			position = { x = 0 y = 4 }
+		}
+		categories = { production manufacturing }
+		ai_will_do = { factor = 4 }
+	}
+
+	CWICR_SYR_signal_corps_1950 = {
+		allow_branch = { original_tag = SYR }
+		allow = { original_tag = SYR }
+		path = { leads_to_tech = CWICR_SYR_staff_college_1962 research_cost_coeff = 1 }
+		supply_consumption_factor = -0.01
+		start_year = 1950
+		research_cost = 1.5
+		folder = {
+			name = cwicr_syr_research_folder
+			position = { x = 0 y = 0 }
+		}
+		categories = { coms_tech electronics }
+		ai_will_do = { factor = 4 }
+	}
+
+	CWICR_SYR_staff_college_1962 = {
+		allow = { original_tag = SYR }
+		path = { leads_to_tech = CWICR_SYR_air_defence_network_1972 research_cost_coeff = 1 }
+		supply_consumption_factor = -0.01
+		start_year = 1962
+		research_cost = 2
+		folder = {
+			name = cwicr_syr_research_folder
+			position = { x = 0 y = 2 }
+		}
+		categories = { coms_tech electronics }
+		ai_will_do = { factor = 4 }
+	}
+
+	CWICR_SYR_air_defence_network_1972 = {
+		allow = { original_tag = SYR }
+		research_speed_factor = 0.005
+		start_year = 1972
+		research_cost = 2.5
+		folder = {
+			name = cwicr_syr_research_folder
+			position = { x = 0 y = 4 }
+		}
+		categories = { electronics radar_tech }
+		ai_will_do = { factor = 4 }
+	}
+
+}
