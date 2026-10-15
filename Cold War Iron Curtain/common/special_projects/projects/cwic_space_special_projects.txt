@@ -4391,9 +4391,9 @@ sp_orbiter_sov_buran = {
 	icon = GFX_soviet_space_program
 	project_tags = sp_tag_space
 
-	special_project_parent = {
-		sp_lv_sov_zenit
-	}
+	# CWIC Reworked: the Zenit parent project is not defined in this database.
+	# Buran historically used the Energia launcher (not implemented here).
+	# Keep the tech prerequisites, without pointing at a nonexistent parent.
 
 	prototype_time = sp_time.prototype.very_long
 	complexity = sp_complexity.insane
