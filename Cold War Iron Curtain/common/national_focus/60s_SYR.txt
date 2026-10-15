@@ -2838,12 +2838,8 @@ focus_tree = {
 			focus = SYR_sovietmilitaryoverhaul
 		}
 		completion_reward = {
-			add_doctrine_cost_reduction = {
-				name = land_doc_bonus
-				cost_reduction = 0.1
-				uses = 2
-				category = land_doctrine
-			}
+			# Reworked grand doctrines use XP rather than legacy doctrine tech discounts.
+			add_army_experience = 20
 		}
 	}
 	#Focus for New Syrian Army
