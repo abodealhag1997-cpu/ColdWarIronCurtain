@@ -403,3 +403,21 @@ countries' ability to respond, and the absence of instant annexations
 or free weapons. Runtime event routing and UI behaviour are **not yet
 verified**. The pre-existing global Economic Decisions text overlap
 shown in the user's screenshot is a separate unresolved UI issue.
+
+## Economic decisions category visual cleanup (source fix)
+
+The earlier user screenshot showed the full-width Economic Decisions
+and Economic Investments background banners interfering with text.
+On branch `cwic-reworked` we disabled the `picture` attribute in
+`common/decisions/categories/00_decision_categories.txt` for:
+
+- `economy_decisions`
+- `economy_decisions_reenable`
+- `economic_investments`
+
+The category headings and icons remain, as do all economic decisions,
+prices and game rules. This is a conservative source-level legibility
+fix; exact layout must be checked during the final in-game test.
+The Python source checker now warns if those large category banners
+are inadvertently restored.
+
