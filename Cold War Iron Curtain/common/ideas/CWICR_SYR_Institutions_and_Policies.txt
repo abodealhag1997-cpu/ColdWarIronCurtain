@@ -1,0 +1,87 @@
+# CWIC Reworked - institutions, alternative development choices and safeguards.
+# No national idea creates equipment, weapons, synthetic resources, or factories.
+ideas = {
+    country = {
+        CWICR_SYR_civilian_compact_idea = {
+            allowed = { always = no }
+            removal_cost = -1
+            picture = generic_research_bonus
+            modifier = {
+                political_power_factor = 0.02
+                army_org_factor = -0.01
+                consumer_goods_factor = 0.01
+            }
+        }
+        CWICR_SYR_army_guardianship_idea = {
+            allowed = { always = no }
+            removal_cost = -1
+            picture = generic_manpower_bonus
+            modifier = {
+                army_org_factor = 0.025
+                political_power_factor = -0.03
+                stability_factor = -0.01
+            }
+        }
+        CWICR_SYR_public_development_idea = {
+            allowed = { always = no }
+            removal_cost = -1
+            picture = generic_research_bonus
+            modifier = {
+                production_speed_industrial_complex_factor = 0.04
+                consumer_goods_factor = 0.025
+                political_power_factor = -0.02
+            }
+        }
+        CWICR_SYR_regulated_enterprise_idea = {
+            allowed = { always = no }
+            removal_cost = -1
+            picture = generic_research_bonus
+            modifier = {
+                production_speed_industrial_complex_factor = 0.02
+                political_power_factor = 0.015
+                stability_factor = -0.02
+            }
+        }
+        CWICR_SYR_rural_credit_idea = {
+            allowed = { always = no }
+            removal_cost = -1
+            picture = generic_research_bonus
+            modifier = {
+                production_speed_infrastructure_factor = 0.035
+                consumer_goods_factor = 0.015
+                research_speed_factor = -0.01
+            }
+        }
+        CWICR_SYR_displaced_families_idea = {
+            allowed = { always = no }
+            removal_cost = -1
+            picture = generic_research_bonus
+            modifier = {
+                stability_factor = 0.015
+                consumer_goods_factor = 0.015
+                political_power_factor = -0.01
+            }
+        }
+        CWICR_SYR_nuclear_safeguards_idea = {
+            allowed = { always = no }
+            removal_cost = -1
+            picture = generic_research_bonus
+            modifier = {
+                research_speed_factor = -0.015
+                consumer_goods_factor = 0.02
+                political_power_factor = -0.025
+            }
+        }
+        CWICR_SYR_nuclear_opaque_idea = {
+            allowed = { always = no }
+            removal_cost = -1
+            picture = generic_research_bonus
+            modifier = {
+                research_speed_factor = -0.025
+                consumer_goods_factor = 0.025
+                stability_factor = -0.025
+                political_power_factor = -0.035
+            }
+        }
+    }
+}
