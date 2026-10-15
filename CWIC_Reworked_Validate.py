@@ -92,6 +92,7 @@ CHECK_BRACES = [
     "common/characters/SYR.txt",
     "common/country_leader/zzz_cwic_reworked_syr_military_staff.txt",
     "common/scripted_triggers/zzz_cwic_reworked_sf_doctrine_trigger.txt",
+    "common/decisions/categories/00_decision_categories.txt",
     "common/decisions/categories/CWICR_SYR_Categories.txt",
     "common/decisions/CWICR_SYR_State_Reforms.txt",
     "common/ideas/CWICR_SYR_State_Reforms.txt",
@@ -404,6 +405,19 @@ for category, filename in (
 trigger = masked["common/scripted_triggers/zzz_cwic_reworked_sf_doctrine_trigger.txt"]
 if not re.search(r"\bcan_unlock_second_track_of_sf_doctrine\s*=\s*\{", trigger):
     fail("Special forces second-track scripted trigger missing.")
+
+# The two full-width economic banners in older CWIC were obscuring
+# instructional and financial text in the user's Decisions screenshot.
+# Preserve legibility: category icons stay, banner images are disabled.
+econ_source = read("common/decisions/categories/00_decision_categories.txt")
+for cat in ("economy_decisions", "economy_decisions_reenable", "economic_investments"):
+    start = re.search(r"(?m)^" + cat + r"\s*=\s*\{", econ_source)
+    if not start:
+        fail("Economy decision category missing: " + cat)
+        continue
+    preview = econ_source[start.end(): start.end() + 230]
+    if re.search(r"(?m)^\s*picture\s*=", preview):
+        fail("Economic decision image overlay regression: " + cat)
 
 # Syria's bilateral and global decisions must be exclusive to Syria.
 regional_decisions = masked["common/decisions/CWICR_SYR_Regional_Initiatives.txt"]
