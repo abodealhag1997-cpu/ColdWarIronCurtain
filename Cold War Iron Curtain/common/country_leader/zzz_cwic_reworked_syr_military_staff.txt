@@ -1,0 +1,27 @@
+# CWIC Reworked - small, historically grounded Syrian military staff bonuses.
+# Only traits that are defined here or already present in the mod are used.
+leader_traits = {
+    cwic_syr_defensive_staff = {
+        random = no
+        army_defence_factor = 0.04
+        ai_will_do = { factor = 1 }
+    }
+
+    cwic_syr_reform_staff = {
+        random = no
+        army_org_factor = 0.03
+        ai_will_do = { factor = 1 }
+    }
+
+    cwic_syr_organisation_staff = {
+        random = no
+        planning_speed = 0.04
+        ai_will_do = { factor = 1 }
+    }
+
+    cwic_syr_offensive_staff = {
+        random = no
+        army_attack_factor = 0.04
+        ai_will_do = { factor = 1 }
+    }
+}
