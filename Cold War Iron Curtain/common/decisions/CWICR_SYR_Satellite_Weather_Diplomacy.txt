@@ -1,0 +1,34 @@
+# CWIC Reworked: Syrian regional satellite weather-data invitation.
+# The player must actually research the civilian satellite meteorology
+# technology. Countries respond independently; no forced treaties or land.
+CWICR_SYR_regional_initiatives_category = {
+    CWICR_SYR_satellite_weather_network = {
+        icon = generic_industry
+        allowed = { original_tag = SYR }
+        visible = {
+            tag = SYR
+            NOT = { has_country_flag = CWICR_SYR_satellite_network_proposed }
+        }
+        available = {
+            date > 1978.12.31
+            has_tech = CWICR_SYR_meteorology_1978
+            exists = IRQ
+            exists = JOR
+            exists = LEB
+            NOT = { has_war_with = IRQ }
+            NOT = { has_war_with = JOR }
+            NOT = { has_war_with = LEB }
+        }
+        cost = 125
+        fire_only_once = yes
+        complete_effect = {
+            set_country_flag = CWICR_SYR_satellite_network_proposed
+            add_political_power = -10
+            IRQ = { country_event = { id = CWICR_SYR_SAT.1 days = 2 } }
+            JOR = { country_event = { id = CWICR_SYR_SAT.2 days = 2 } }
+            LEB = { country_event = { id = CWICR_SYR_SAT.3 days = 2 } }
+            news_event = { id = CWICR_SYR_SAT.4 days = 1 }
+        }
+        ai_will_do = { factor = 0.4 }
+    }
+}
