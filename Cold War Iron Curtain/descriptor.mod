@@ -1,4 +1,4 @@
-﻿name="Cold War Iron Curtain Dev Build"
+﻿name="CWIC Reworked (HOI4 1.19)"
 picture="preview.jpg"
 tags={
 	"Gameplay"
@@ -6,7 +6,8 @@ tags={
 	"Historical"
 	"Map"
 }
-version="1.19"
+version="0.4-reworked.1"
+supported_version="1.19.*"
 replace_path="events"
 replace_path="common/decisions"
 replace_path="common/national_focus"
@@ -30,4 +31,3 @@ replace_path="common/ai_focuses"
 replace_path="common/ai_strategy_plans"
 replace_path="common/military_industrial_organization"
 replace_path="gfx/loadingscreens"
-path="D:/Github/ColdWarIronCurtain/Cold War Iron Curtain"
