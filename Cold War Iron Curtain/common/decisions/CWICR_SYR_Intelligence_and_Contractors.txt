@@ -1,0 +1,151 @@
+# CWIC Reworked: Syrian-only alternate-history intelligence and contractors.
+# A CIA-sized capability is NOT granted instantly. Three expensive cumulative
+# tiers compete for treasury resources and political legitimacy.
+# Contractors are an accountable security service, not free spawned divisions.
+CWICR_SYR_security_directorate_category = {
+    CWICR_SYR_INT_build_central_directorate = {
+        icon = generic_political_reform
+        allowed = { original_tag = SYR }
+        visible = { tag = SYR }
+        available = {
+            date > 1963.1.1
+            has_idea = CWICR_SYR_budget_commission_idea
+            has_idea = CWICR_SYR_intelligence_review_idea
+            has_tech = CWICR_SYR_signal_corps_1950
+            NOT = { has_idea = CWICR_SYR_INT_directorate_idea }
+            check_variable = { var = currentMoney value = 18 compare = greater_than_or_equals }
+        }
+        cost = 160
+        days_remove = 180
+        fire_only_once = yes
+        complete_effect = {
+            subtract_from_variable = { currentMoney = 18 }
+        }
+        remove_effect = {
+            add_ideas = CWICR_SYR_INT_directorate_idea
+            set_country_flag = CWICR_SYR_INT_directorate_built
+        }
+        ai_will_do = { factor = 0.5 }
+    }
+
+    CWICR_SYR_INT_expand_foreign_stations = {
+        icon = generic_political_reform
+        allowed = { original_tag = SYR }
+        visible = { tag = SYR }
+        available = {
+            date > 1978.1.1
+            has_idea = CWICR_SYR_INT_directorate_idea
+            has_tech = CWICR_SYR_air_defence_network_1972
+            check_variable = { var = currentMoney value = 40 compare = greater_than_or_equals }
+        }
+        cost = 225
+        days_remove = 240
+        fire_only_once = yes
+        complete_effect = {
+            subtract_from_variable = { currentMoney = 40 }
+        }
+        remove_effect = {
+            add_ideas = CWICR_SYR_INT_regional_network_idea
+            set_country_flag = CWICR_SYR_INT_foreign_stations_built
+            if = {
+                limit = { exists = USA }
+                USA = { country_event = { id = CWICR_SYR_SEC.1 days = 2 } }
+            }
+            if = {
+                limit = { exists = SOV }
+                SOV = { country_event = { id = CWICR_SYR_SEC.2 days = 2 } }
+            }
+            news_event = { id = CWICR_SYR_SEC.3 days = 3 }
+        }
+        ai_will_do = { factor = 0.25 }
+    }
+
+    CWICR_SYR_INT_satellite_analysis_network = {
+        icon = generic_political_reform
+        allowed = { original_tag = SYR }
+        visible = { tag = SYR }
+        available = {
+            date > 1988.1.1
+            has_idea = CWICR_SYR_INT_regional_network_idea
+            has_tech = CWICR_SYR_earth_observation_1988
+            check_variable = { var = currentMoney value = 55 compare = greater_than_or_equals }
+        }
+        cost = 260
+        days_remove = 300
+        fire_only_once = yes
+        complete_effect = {
+            subtract_from_variable = { currentMoney = 55 }
+        }
+        remove_effect = {
+            add_ideas = CWICR_SYR_INT_advanced_analysis_idea
+            add_stability = -0.01
+        }
+        ai_will_do = { factor = 0.10 }
+    }
+}
+
+CWICR_SYR_private_contractors_category = {
+    CWICR_SYR_PMC_regulation = {
+        icon = generic_political_reform
+        allowed = { original_tag = SYR }
+        visible = { tag = SYR }
+        available = {
+            date > 1974.1.1
+            has_idea = CWICR_SYR_budget_commission_idea
+            has_idea = CWICR_SYR_officer_training_idea
+            check_variable = { var = currentMoney value = 14 compare = greater_than_or_equals }
+        }
+        cost = 120
+        days_remove = 120
+        fire_only_once = yes
+        complete_effect = {
+            subtract_from_variable = { currentMoney = 14 }
+        }
+        remove_effect = {
+            add_ideas = CWICR_SYR_PMC_regulated_idea
+            set_country_flag = CWICR_SYR_PMC_legal_framework
+        }
+        ai_will_do = { factor = 0.35 }
+    }
+
+    # Requires host-country CONSENT; financial cost paid even if rejected.
+    CWICR_SYR_PMC_lebanese_security_contract = {
+        icon = generic_political_reform
+        allowed = { original_tag = SYR }
+        visible = { tag = SYR }
+        available = {
+            date > 1975.1.1
+            exists = LEB
+            has_country_flag = CWICR_SYR_PMC_legal_framework
+            NOT = { has_war_with = LEB }
+            check_variable = { var = currentMoney value = 16 compare = greater_than_or_equals }
+        }
+        cost = 125
+        fire_only_once = yes
+        complete_effect = {
+            subtract_from_variable = { currentMoney = 16 }
+            LEB = { country_event = { id = CWICR_SYR_SEC.4 days = 2 } }
+        }
+        ai_will_do = { factor = 0.3 }
+    }
+
+    CWICR_SYR_PMC_iraqi_training_contract = {
+        icon = generic_political_reform
+        allowed = { original_tag = SYR }
+        visible = { tag = SYR }
+        available = {
+            date > 1980.1.1
+            exists = IRQ
+            has_country_flag = CWICR_SYR_PMC_legal_framework
+            NOT = { has_war_with = IRQ }
+            check_variable = { var = currentMoney value = 20 compare = greater_than_or_equals }
+        }
+        cost = 150
+        fire_only_once = yes
+        complete_effect = {
+            subtract_from_variable = { currentMoney = 20 }
+            IRQ = { country_event = { id = CWICR_SYR_SEC.5 days = 2 } }
+        }
+        ai_will_do = { factor = 0.2 }
+    }
+}
