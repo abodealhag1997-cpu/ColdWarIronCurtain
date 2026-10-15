@@ -1,7 +1,6 @@
 # CWIC Reworked: Syrian state-capacity projects. Separate from original focus-tree rewards.
 CWICR_SYR_state_reform_category = {
     icon = generic
-    picture = GFX_decision_cat_generic_mefo_bills
     priority = 220
     allowed = { original_tag = SYR }
     visible = { tag = SYR }
@@ -10,7 +9,6 @@ CWICR_SYR_state_reform_category = {
 
 CWICR_SYR_defence_reform_category = {
     icon = generic
-    picture = GFX_decision_cat_generic_mefo_bills
     priority = 230
     allowed = { original_tag = SYR }
     visible = { tag = SYR }
@@ -19,7 +17,6 @@ CWICR_SYR_defence_reform_category = {
 
 CWICR_SYR_institutions_category = {
     icon = generic
-    picture = GFX_decision_cat_generic_mefo_bills
     priority = 235
     allowed = { original_tag = SYR }
     visible = { tag = SYR }
@@ -28,7 +25,6 @@ CWICR_SYR_institutions_category = {
 
 CWICR_SYR_economic_paths_category = {
     icon = generic
-    picture = GFX_decision_cat_generic_mefo_bills
     priority = 240
     allowed = { original_tag = SYR }
     visible = { tag = SYR }
@@ -37,7 +33,6 @@ CWICR_SYR_economic_paths_category = {
 
 CWICR_SYR_diplomacy_category = {
     icon = generic
-    picture = GFX_decision_cat_generic_mefo_bills
     priority = 245
     allowed = { original_tag = SYR }
     visible = { tag = SYR }
@@ -46,7 +41,6 @@ CWICR_SYR_diplomacy_category = {
 
 CWICR_SYR_strategic_programme_category = {
     icon = generic
-    picture = GFX_decision_cat_generic_mefo_bills
     priority = 250
     allowed = { original_tag = SYR }
     visible = { tag = SYR }
