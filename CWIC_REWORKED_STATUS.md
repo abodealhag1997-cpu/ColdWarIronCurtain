@@ -149,6 +149,36 @@ They are conservative technical mappings, not a balance test.
 - Added a source preflight check; exact rendering and DLC behavior
   still need in-game verification.
 
+## Research tree / blank tab investigation
+
+The user reported blank research tabs, including space, in several countries.
+An audit of `common/technologies`, `common/technology_tags`,
+`interface/countrytechtreeview.gui` and three interface GFX sources found:
+
+- The upstream 53-technology space research tree was deliberately
+  deleted on **5 July 2026**, being replaced by the special-project
+  system. The live project source currently lists **92 projects**.
+  Do not resurrect an empty space tab without actually porting its
+  underlying technology system and dependencies.
+- Sixteen research folders are registered with at least 36 matching
+  technology placements each, including industry, engineering,
+  military equipment, rocketry and WMD. All have content panels,
+  tabs and declared tab sprite identifiers in the current mod source.
+- Removed the four legacy technology-era doctrine folder registrations
+  still present after the 1.19 doctrine integration.
+- Removed the second `techtree_rocket_folder_item` GUI definition,
+  which duplicated a more complete three-subtechnology-slot widget
+  and contained just one subslot itself. Retained the complete version.
+- Updated the old space source comment to point at its actual
+  `cwic_space_special_projects.txt` replacement file.
+- Added the standalone `CWIC_Reworked_Research_Audit.py` verifier.
+  The detailed tab inventory is in `CWIC_REWORKED_RESEARCH_AUDIT.md`.
+
+**Open question:** the user's screenshots and testing were from the
+earlier locally patched Workshop build. We have *not yet established*
+whether the GitHub branch still displays the same empty panes. This
+requires one integrated runtime test at the end, not repetitive launches.
+
 ## Static checks done
 
 - Balanced `{}` checked in the modified `idea_tags`, character,
