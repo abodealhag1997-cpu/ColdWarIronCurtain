@@ -92,4 +92,70 @@ CWICR_SYR_regional_initiatives_category = {
         }
         ai_will_do = { factor = 0.35 }
     }
+    # 1967 onward: Syria may seek third-party observation, but cannot impose it
+    # on Israel. Requiring the earlier UN dossier prevents free world events.
+    CWICR_SYR_golan_observation_request = {
+        icon = generic_political_reform
+        allowed = { original_tag = SYR }
+        visible = { tag = SYR }
+        available = {
+            exists = ISR
+            date > 1967.6.10
+            has_country_flag = CWICR_SYR_UN_petition_submitted
+            NOT = { has_war_with = ISR }
+        }
+        cost = 120
+        fire_only_once = yes
+        complete_effect = {
+            add_political_power = -15
+            ISR = { country_event = { id = CWICR_SYR_REG.8 days = 2 } }
+        }
+        ai_will_do = { factor = 0.25 }
+    }
+
+    # 1960s onward: only after Iraq has actually accepted bilateral dialogue.
+    # Turkey can still decline; no water or territory changes are scripted.
+    CWICR_SYR_tripartite_euphrates_conference = {
+        icon = generic_construction
+        allowed = { original_tag = SYR }
+        visible = { tag = SYR }
+        available = {
+            exists = TUR
+            exists = IRQ
+            date > 1964.12.31
+            has_country_flag = CWICR_SYR_IRQ_water_accepted
+            NOT = { has_war_with = TUR }
+        }
+        cost = 110
+        fire_only_once = yes
+        complete_effect = {
+            TUR = { country_event = { id = CWICR_SYR_REG.11 days = 2 } }
+        }
+        ai_will_do = { factor = 0.4 }
+    }
+
+    # From 1975: coordination with Lebanon and Jordan, no forced resettlement.
+    CWICR_SYR_regional_relief_conference = {
+        icon = generic_construction
+        allowed = { original_tag = SYR }
+        visible = { tag = SYR }
+        available = {
+            date > 1974.12.31
+            exists = LEB
+            exists = JOR
+            has_idea = CWICR_SYR_displaced_families_idea
+            NOT = { has_war_with = LEB }
+            NOT = { has_war_with = JOR }
+        }
+        cost = 125
+        fire_only_once = yes
+        complete_effect = {
+            add_stability = -0.005
+            LEB = { country_event = { id = CWICR_SYR_REG.12 days = 2 } }
+            JOR = { country_event = { id = CWICR_SYR_REG.13 days = 2 } }
+            news_event = { id = CWICR_SYR_REG.14 days = 3 }
+        }
+        ai_will_do = { factor = 0.6 }
+    }
+
 }
