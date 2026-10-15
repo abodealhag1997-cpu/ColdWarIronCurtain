@@ -1,0 +1,15 @@
+# CWIC Reworked: a voluntary, modest, shared scientific agreement.
+# Applies only after one of the invited countries explicitly accepts.
+ideas = {
+    country = {
+        CWICR_SYR_satellite_weather_cooperation_idea = {
+            allowed = { always = no }
+            removal_cost = -1
+            picture = generic_research_bonus
+            modifier = {
+                research_speed_factor = 0.005
+                consumer_goods_factor = 0.005
+            }
+        }
+    }
+}
