@@ -179,6 +179,13 @@ earlier locally patched Workshop build. We have *not yet established*
 whether the GitHub branch still displays the same empty panes. This
 requires one integrated runtime test at the end, not repetitive launches.
 
+For the full tree-by-tree source audit, see
+[`CWIC_RESEARCH_AUDIT.md`](CWIC_RESEARCH_AUDIT.md).
+A source scan found matching GUI folder containers and tabs for
+all 16 pre-existing non-Syrian research folders. These checks
+cannot diagnose a specific blank tile seen on the local Steam
+Workshop version until that build is compared at runtime.
+
 ## New Syrian-only applied science research tab
 
 **Source-level implementation committed, runtime UI test pending.**
