@@ -1,0 +1,73 @@
+# CWIC Reworked: optional, one-time historically themed Syrian reforms.
+# Modest permanent benefits are offset by administrative or economic costs.
+# Conditions reference Syrian national focuses that exist in the 1950s/1960s trees.
+CWICR_SYR_state_reform_category = {
+    CWICR_SYR_budget_commission = {
+        icon = generic_industry
+        allowed = { original_tag = SYR }
+        visible = { NOT = { has_idea = CWICR_SYR_budget_commission_idea } }
+        available = { tag = SYR }
+        cost = 75
+        fire_only_once = yes
+        complete_effect = {
+            add_ideas = CWICR_SYR_budget_commission_idea
+        }
+        ai_will_do = { factor = 1 }
+    }
+
+    CWICR_SYR_irrigation_cooperatives = {
+        icon = generic_construction
+        allowed = { original_tag = SYR }
+        visible = { NOT = { has_idea = CWICR_SYR_irrigation_cooperatives_idea } }
+        available = {
+            OR = {
+                has_completed_focus = SYR_postwaragriculturalboom
+                has_completed_focus = SYR_stateoftheeconomy
+            }
+        }
+        cost = 80
+        fire_only_once = yes
+        complete_effect = {
+            add_ideas = CWICR_SYR_irrigation_cooperatives_idea
+        }
+        ai_will_do = { factor = 1 }
+    }
+}
+
+CWICR_SYR_defence_reform_category = {
+    CWICR_SYR_officer_training = {
+        icon = generic_political_reform
+        allowed = { original_tag = SYR }
+        visible = { NOT = { has_idea = CWICR_SYR_officer_training_idea } }
+        available = {
+            OR = {
+                has_completed_focus = SYR_growingmilitaryindustryi
+                has_completed_focus = SYR_reviewingthearmedforces
+            }
+        }
+        cost = 85
+        fire_only_once = yes
+        complete_effect = {
+            add_ideas = CWICR_SYR_officer_training_idea
+        }
+        ai_will_do = { factor = 1 }
+    }
+
+    CWICR_SYR_intelligence_review = {
+        icon = generic_political_reform
+        allowed = { original_tag = SYR }
+        visible = { NOT = { has_idea = CWICR_SYR_intelligence_review_idea } }
+        available = {
+            OR = {
+                has_completed_focus = SYR_foilthecia
+                has_completed_focus = SYR_rootoutzionistspies
+            }
+        }
+        cost = 85
+        fire_only_once = yes
+        complete_effect = {
+            add_ideas = CWICR_SYR_intelligence_review_idea
+        }
+        ai_will_do = { factor = 1 }
+    }
+}
