@@ -34,9 +34,12 @@ influence systems, historical character roster, and existing Syria events.
 - [x] Three mutually exclusive national development choices: public
   industry, regulated private business or rural credit; annual
   procurement audit with political-power cost.
-- [ ] Integrate with the mod's existing `currentMoney`, industry,
-  economic-axis and influence calculations rather than inventing a
-  second disconnected treasury.
+- [x] Start treasury integration: three distinct Syrian capital
+  investment decisions now spend `currentMoney` as well as political
+  power, and give finite-time cost-bearing national ideas.
+- [ ] Broader integration with existing industrial production,
+  budget revenue, economic-axis policy, debt servicing, and
+  international influence calculations remains incomplete.
 - [ ] Tax base, inflation, unemployment, debt-service costs, shortages,
   oil-sector development, rural output and public-sector growth; make
   effects measurable and capped; follow actual historic timing.
@@ -72,6 +75,11 @@ influence systems, historical character roster, and existing Syria events.
 - [x] Regional consultations, UN representation dossier and temporary
   diplomatic-opinion effects. **These are diplomatic signals only;
   no real UN voting or international resolution system yet.**
+- [x] Additional alternate-history outreach after 1961 to India
+  and Yugoslavia, each with an independent diplomatic response;
+  a three-country research partnership requires both acceptances,
+  imposes ongoing economic costs, and broadcasts an international
+  news item on success.
 - [x] Limited response-driven foreign-policy initiatives involving
   Egypt, Iraq, Jordan, Lebanon, Israel, Turkey, USSR and the USA.
   Eight Syria-exclusive decisions now allow partners to accept or
