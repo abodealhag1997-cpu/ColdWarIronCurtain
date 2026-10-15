@@ -186,6 +186,15 @@ for file in ("common/national_focus/50s_SYR.txt", "common/national_focus/60s_SYR
     if "add_doctrine_cost_reduction" in masked[file]:
         fail(f"Legacy Syrian doctrine reward remains in {file}")
 
+# The La Resistance operative portrait pool was intentionally emptied
+# upstream. Ensure the independent deterministic fallback still exists.
+portraits = read("portraits/00_portraits.txt")
+default_portrait = portraits.split("continent = {", 1)[0]
+if not re.search(r"\boperative\s*=\s*\{", default_portrait):
+    fail("Default operative portrait pool is missing.")
+if "gfx/leaders/operative_unknown.dds" not in default_portrait:
+    fail("Default operative portrait fallback sprite is missing.")
+
 # The Buran launcher-project typo must not recur.
 project_source = masked["common/special_projects/projects/cwic_space_special_projects.txt"]
 if "sp_orbiter_sov_buran" not in project_source:
