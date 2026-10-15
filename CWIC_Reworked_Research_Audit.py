@@ -53,7 +53,7 @@ expected_folders = {
     "industry_folder",
     "rocket_folder",
     "wmd_folder",
-    # CWIC Reworked: Syrian-only research tab, nine technology placements.
+    # CWIC Reworked: Syrian-only research tab, twelve placements across four branches.
     "cwicr_syr_research_folder",
 }
 
@@ -83,6 +83,8 @@ for folder in sorted(expected_folders):
           f"panel={bool(has_panel)} tab={bool(has_tab)}")
     if count <= 0:
         errors.append(f"Research folder has no tech placements: {folder}")
+    if folder == "cwicr_syr_research_folder" and count != 12:
+        errors.append(f"Expected twelve Syrian technologies; found {count}")
     if not has_tag:
         errors.append(f"Research folder tag missing: {folder}")
     if not has_panel:
