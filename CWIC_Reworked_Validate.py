@@ -1,0 +1,219 @@
+#!/usr/bin/env python3
+"""CWIC Reworked static preflight. No HOI4 installation or extra packages required.
+
+Run from a repository checkout:
+    python CWIC_Reworked_Validate.py
+
+This checks a deliberately limited set of mechanical invariants. A clean
+result does NOT mean that the mod will run without errors in HOI4 1.19.
+"""
+from __future__ import annotations
+
+import re
+import sys
+from pathlib import Path
+
+REPO = Path(__file__).resolve().parent
+MOD = REPO / "Cold War Iron Curtain"
+errors: list[str] = []
+warnings: list[str] = []
+
+
+def fail(message: str) -> None:
+    errors.append(message)
+
+
+def warn(message: str) -> None:
+    warnings.append(message)
+
+
+def read(relative: str) -> str:
+    path = MOD / relative
+    if not path.is_file():
+        fail(f"Missing: {relative}")
+        return ""
+    return path.read_text(encoding="utf-8-sig")
+
+
+def strip_strings_and_comments(source: str) -> str:
+    """Mask quotes/comments while retaining actual brace and line positions."""
+    masked = []
+    in_string = False
+    in_comment = False
+    escaping = False
+    for ch in source:
+        if in_comment:
+            if ch == "\n":
+                in_comment = False
+                masked.append("\n")
+            else:
+                masked.append(" ")
+            continue
+        if in_string:
+            if escaping:
+                escaping = False
+            elif ch == "\\":
+                escaping = True
+            elif ch == '"':
+                in_string = False
+            masked.append("\n" if ch == "\n" else " ")
+            continue
+        if ch == "#":
+            in_comment = True
+            masked.append(" ")
+        elif ch == '"':
+            in_string = True
+            masked.append(" ")
+        else:
+            masked.append(ch)
+    return "".join(masked)
+
+
+def balanced(relative: str) -> str:
+    source = read(relative)
+    masked = strip_strings_and_comments(source)
+    depth = 0
+    for line_number, line in enumerate(masked.splitlines(), start=1):
+        for ch in line:
+            if ch == "{":
+                depth += 1
+            elif ch == "}":
+                depth -= 1
+                if depth < 0:
+                    fail(f"Extra closing brace in {relative} line {line_number}")
+                    return masked
+    if depth:
+        fail(f"Unclosed braces in {relative}: {depth}")
+    return masked
+
+
+CHECK_BRACES = [
+    "common/idea_tags/00_idea.txt",
+    "common/characters/SYR.txt",
+    "common/country_leader/zzz_cwic_reworked_syr_military_staff.txt",
+    "common/scripted_triggers/zzz_cwic_reworked_sf_doctrine_trigger.txt",
+    "common/national_focus/50s_SYR.txt",
+    "common/national_focus/60s_SYR.txt",
+    "history/countries/SYR - Syria.txt",
+    "interface/topbar.gui",
+]
+
+masked = {name: balanced(name) for name in CHECK_BRACES}
+idea = masked[CHECK_BRACES[0]]
+characters = masked[CHECK_BRACES[1]]
+history = masked[CHECK_BRACES[6]]
+traits = masked[CHECK_BRACES[2]]
+
+for required in (
+    "character_slot = army_chief",
+    "character_slot = navy_chief",
+    "character_slot = air_chief",
+    "character_slot = high_command",
+    "character_slot = theorist",
+):
+    if required not in idea:
+        fail(f"Missing advisor-slot assignment: {required}")
+if idea.count("character_slot = high_command") != 3:
+    fail("Expected exactly three high-command slots.")
+
+roster = [
+    "SYR_aram_karamanoukian",
+    "SYR_fawzi_selu",
+    "SYR_sami_alhinnawi",
+    "SYR_adib_shishakli",
+    "SYR_afif_albizri",
+]
+for token in roster:
+    if not re.search(r"(?m)^\s*" + re.escape(token) + r"\s*=\s*\{", characters):
+        fail(f"Missing Syrian character definition: {token}")
+    if not re.search(r"\brecruit_character\s*=\s*" + re.escape(token) + r"\b", history):
+        fail(f"Syrian character not recruited in history: {token}")
+
+advisor_tokens = re.findall(r"\bidea_token\s*=\s*(CWIC_SYR_\w+)", characters)
+if len(advisor_tokens) != 5 or len(set(advisor_tokens)) != 5:
+    fail("Expected five unique CWIC Syrian advisor idea_token values.")
+
+for trait in (
+    "cwic_syr_defensive_staff",
+    "cwic_syr_reform_staff",
+    "cwic_syr_organisation_staff",
+    "cwic_syr_offensive_staff",
+):
+    if not re.search(r"\b" + re.escape(trait) + r"\s*=\s*\{", traits):
+        fail(f"Custom staff trait missing: {trait}")
+
+focus_ids: dict[str, str] = {}
+focus_refs: list[tuple[str, str]] = []
+for relative in ("common/national_focus/50s_SYR.txt", "common/national_focus/60s_SYR.txt"):
+    source = masked[relative]
+    if not re.search(r"(?m)^\s*focus_tree\s*=\s*\{", source):
+        fail(f"No focus_tree declaration: {relative}")
+    # The national focus entries have 'focus = {' followed by 'id ='.
+    for match in re.finditer(r"(?m)^\s*focus\s*=\s*\{\s*\n\s*id\s*=\s*(SYR_[A-Za-z0-9_]+)", source):
+        focus_id = match.group(1)
+        if focus_id in focus_ids:
+            fail(f"Duplicate Syrian focus {focus_id} ({focus_ids[focus_id]} and {relative})")
+        focus_ids[focus_id] = relative
+    for match in re.finditer(r"(?m)^\s*focus\s*=\s*(SYR_[A-Za-z0-9_]+)\b", source):
+        focus_refs.append((relative, match.group(1)))
+for relative, focus_id in focus_refs:
+    if focus_id not in focus_ids:
+        fail(f"Unknown Syrian prerequisite or exclusion in {relative}: {focus_id}")
+if len(focus_ids) < 175:
+    fail(f"Unexpectedly few restored Syrian focus entries: {len(focus_ids)}")
+
+defines = read("common/defines/IC_Defines.lua")
+for field in ("AGENCY_CREATION_DAYS", "AGENCY_UPGRADE_DAYS"):
+    if not re.search(r"(?m)^NDefines\.NOperatives\." + field + r"\s*=\s*30\s*$", defines):
+        fail(f"Agency timing override not 30: {field}")
+if re.search(r"(?m)^NDefines\.NOperatives\.(?:MAX_RECRUITED_OPERATIVES|AGENCY_CREATION_FACTORIES)\s*=", defines):
+    fail("Espionage-disabling override was reintroduced.")
+
+topbar = masked["interface/topbar.gui"]
+if not re.search(r'intel_agency_button', topbar):
+    fail("Missing intelligence agency button.")
+# Verify in unmasked text since UI identifiers can appear in quoted values.
+topbar_original = read("interface/topbar.gui")
+btn = re.search(r'name\s*=\s*"intel_agency_button".{0,350}', topbar_original, re.S)
+if not btn or not re.search(r'position\s*=\s*\{\s*x\s*=\s*-49\s+y\s*=\s*0\s*\}', btn.group(0)):
+    fail("Intel agency button was hidden again.")
+
+for removed in ("interface/countryofficercorpview.gui",
+                "interface/countrydoctrinetreeview.gui"):
+    if (MOD / removed).exists():
+        fail(f"Obsolete custom GUI override is active: {removed}")
+
+for category, filename in (
+    ("grand_doctrines", "land_grand_doctrines.txt"),
+    ("grand_doctrines", "air_grand_doctrines.txt"),
+    ("grand_doctrines", "sea_grand_doctrines.txt"),
+    ("tracks", "land_doctrine_tracks.txt"),
+    ("tracks", "air_doctrine_track.txt"),
+    ("tracks", "sea_doctrine_tracks.txt"),
+    ("tracks", "special_forces_tracks.txt"),
+):
+    path = MOD / "common" / "doctrines" / category / filename
+    if path.exists() and path.stat().st_size == 0:
+        fail(f"Empty doctrine override suppresses vanilla content: {path.relative_to(MOD)}")
+
+trigger = masked["common/scripted_triggers/zzz_cwic_reworked_sf_doctrine_trigger.txt"]
+if not re.search(r"\bcan_unlock_second_track_of_sf_doctrine\s*=\s*\{", trigger):
+    fail("Special forces second-track scripted trigger missing.")
+
+descriptor = read("descriptor.mod")
+if re.search(r'(?m)^\s*path\s*=', descriptor):
+    fail("descriptor.mod includes a machine-specific absolute path.")
+if "supported_version=\"1.19.*\"" not in descriptor:
+    warn("Check HOI4 1.19 target in descriptor.mod.")
+
+print(f"Syrian focus definitions: {len(focus_ids)}")
+print(f"Syrian focus references: {len(focus_refs)}")
+print(f"Syrian advisor tokens: {len(advisor_tokens)}")
+for issue in warnings:
+    print("WARNING:", issue)
+for issue in errors:
+    print("ERROR:", issue)
+if errors:
+    print(f"FAIL: {len(errors)} static issue(s).")
+    sys.exit(1)
+print("PASS: selected static checks. HOI4 runtime test still required.")
