@@ -25,10 +25,12 @@ jobs:
         with:
           python-version: '3.12'
       - name: Compile validation scripts
-        run: python -m py_compile CWIC_Reworked_Validate.py CWIC_Reworked_Research_Audit.py CWIC_Reworked_World_Audit.py
+        run: python -m py_compile CWIC_Reworked_Validate.py CWIC_Reworked_Research_Audit.py CWIC_Reworked_World_Audit.py CWIC_Reworked_Security_Cities_Audit.py
       - name: Validate mod source and Syrian systems
         run: python CWIC_Reworked_Validate.py
       - name: Research folder and graphics preflight
         run: python CWIC_Reworked_Research_Audit.py
       - name: Syrian international news and bilateral-response audit
         run: python CWIC_Reworked_World_Audit.py
+      - name: Syrian city and intelligence/contractor source audit
+        run: python CWIC_Reworked_Security_Cities_Audit.py
