@@ -1,0 +1,94 @@
+# CWIC Reworked - Syrian institutional crossroads.
+# Separate namespace: existing Syria coups and focus events are untouched.
+add_namespace = CWICR_SYR
+
+country_event = {
+    id = CWICR_SYR.1
+    title = CWICR_SYR.1.t
+    desc = CWICR_SYR.1.d
+    picture = GFX_report_event_generic_political_reform
+    is_triggered_only = yes
+    fire_only_once = yes
+
+    option = {
+        name = CWICR_SYR.1.a
+        ai_chance = { factor = 65 }
+        set_country_flag = CWICR_SYR_institutional_choice
+        set_country_flag = CWICR_SYR_civilian_covenant
+        add_ideas = CWICR_SYR_civilian_compact_idea
+        add_stability = 0.04
+        add_war_support = -0.02
+    }
+    option = {
+        name = CWICR_SYR.1.b
+        ai_chance = { factor = 35 }
+        set_country_flag = CWICR_SYR_institutional_choice
+        set_country_flag = CWICR_SYR_army_covenant
+        add_ideas = CWICR_SYR_army_guardianship_idea
+        add_army_experience = 8
+        add_stability = -0.035
+    }
+}
+
+country_event = {
+    id = CWICR_SYR.2
+    title = CWICR_SYR.2.t
+    desc = CWICR_SYR.2.d
+    picture = GFX_report_event_generic_economy
+    is_triggered_only = yes
+    fire_only_once = yes
+
+    option = {
+        name = CWICR_SYR.2.a
+        ai_chance = { factor = 45 }
+        set_country_flag = CWICR_SYR_economic_choice
+        set_country_flag = CWICR_SYR_economy_stateled
+        add_ideas = CWICR_SYR_public_development_idea
+        add_stability = -0.01
+    }
+    option = {
+        name = CWICR_SYR.2.b
+        ai_chance = { factor = 30 }
+        set_country_flag = CWICR_SYR_economic_choice
+        set_country_flag = CWICR_SYR_economy_regulated
+        add_ideas = CWICR_SYR_regulated_enterprise_idea
+        add_stability = -0.01
+    }
+    option = {
+        name = CWICR_SYR.2.c
+        ai_chance = { factor = 25 }
+        set_country_flag = CWICR_SYR_economic_choice
+        set_country_flag = CWICR_SYR_economy_rural
+        add_ideas = CWICR_SYR_rural_credit_idea
+        add_stability = 0.005
+    }
+}
+
+country_event = {
+    id = CWICR_SYR.3
+    title = CWICR_SYR.3.t
+    desc = CWICR_SYR.3.d
+    picture = GFX_report_event_generic_nuclear
+    is_triggered_only = yes
+    fire_only_once = yes
+
+    option = {
+        name = CWICR_SYR.3.a
+        ai_chance = { factor = 90 }
+        set_country_flag = CWICR_SYR_nuclear_policy_chosen
+        set_country_flag = CWICR_SYR_nuclear_safeguards
+        add_ideas = CWICR_SYR_nuclear_safeguards_idea
+        add_opinion_modifier = { target = USA modifier = CWICR_SYR_open_safeguards }
+        add_opinion_modifier = { target = SOV modifier = CWICR_SYR_open_safeguards }
+    }
+    option = {
+        name = CWICR_SYR.3.b
+        ai_chance = { factor = 10 }
+        set_country_flag = CWICR_SYR_nuclear_policy_chosen
+        set_country_flag = CWICR_SYR_nuclear_opaque
+        add_ideas = CWICR_SYR_nuclear_opaque_idea
+        add_stability = -0.02
+        add_opinion_modifier = { target = USA modifier = CWICR_SYR_opaque_programme }
+        add_opinion_modifier = { target = EGY modifier = CWICR_SYR_opaque_programme }
+    }
+}
