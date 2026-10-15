@@ -62,9 +62,13 @@ CWICR_SYR_diplomacy_category = {
         cost = 65
         days_re_enable = 730
         complete_effect = {
+            # Bilateral dialogue, not a binding agreement.
             add_opinion_modifier = { target = EGY modifier = CWICR_SYR_regional_consultation }
             add_opinion_modifier = { target = IRQ modifier = CWICR_SYR_regional_consultation }
             add_opinion_modifier = { target = JOR modifier = CWICR_SYR_regional_consultation }
+            EGY = { add_opinion_modifier = { target = SYR modifier = CWICR_SYR_regional_consultation } }
+            IRQ = { add_opinion_modifier = { target = SYR modifier = CWICR_SYR_regional_consultation } }
+            JOR = { add_opinion_modifier = { target = SYR modifier = CWICR_SYR_regional_consultation } }
             add_political_power = -10
         }
         ai_will_do = { factor = 0.7 }
@@ -81,8 +85,9 @@ CWICR_SYR_diplomacy_category = {
             set_country_flag = CWICR_SYR_UN_petition_submitted
             add_stability = 0.01
             add_war_support = -0.01
-            add_opinion_modifier = { target = USA modifier = CWICR_SYR_un_dialogue }
-            add_opinion_modifier = { target = SOV modifier = CWICR_SYR_un_dialogue }
+            # Other powers receive the diplomatic signal; this does not pass a UN resolution.
+            USA = { add_opinion_modifier = { target = SYR modifier = CWICR_SYR_un_dialogue } }
+            SOV = { add_opinion_modifier = { target = SYR modifier = CWICR_SYR_un_dialogue } }
         }
         ai_will_do = { factor = 0.6 }
     }
