@@ -96,6 +96,9 @@ CHECK_BRACES = [
     "common/decisions/CWICR_SYR_State_Reforms.txt",
     "common/ideas/CWICR_SYR_State_Reforms.txt",
     "common/decisions/CWICR_SYR_Political_Economy_Diplomacy.txt",
+    "common/decisions/CWICR_SYR_Regional_Initiatives.txt",
+    "common/ideas/CWICR_SYR_Regional_Agreements.txt",
+    "events/CWICR_SYR_Regional_Initiatives.txt",
     "common/ideas/CWICR_SYR_Institutions_and_Policies.txt",
     "common/opinion_modifiers/CWICR_SYR_Diplomatic_Reactions.txt",
     "events/CWICR_SYR_Institutional_Choices.txt",
@@ -401,6 +404,62 @@ for category, filename in (
 trigger = masked["common/scripted_triggers/zzz_cwic_reworked_sf_doctrine_trigger.txt"]
 if not re.search(r"\bcan_unlock_second_track_of_sf_doctrine\s*=\s*\{", trigger):
     fail("Special forces second-track scripted trigger missing.")
+
+# Syria's bilateral and global decisions must be exclusive to Syria.
+regional_decisions = masked["common/decisions/CWICR_SYR_Regional_Initiatives.txt"]
+regional_events = masked["events/CWICR_SYR_Regional_Initiatives.txt"]
+regional_ideas = masked["common/ideas/CWICR_SYR_Regional_Agreements.txt"]
+regional_modifiers = masked["common/opinion_modifiers/CWICR_SYR_Diplomatic_Reactions.txt"]
+regional_categories = masked["common/decisions/categories/CWICR_SYR_Categories.txt"]
+regional_loc = read("localisation/english/CWICR_SYR_Regional_Initiatives_l_english.yml")
+
+regional_decision_ids = (
+    "CWICR_SYR_levante_trade_corridor",
+    "CWICR_SYR_euphrates_water_dialogue",
+    "CWICR_SYR_jordan_border_commission",
+    "CWICR_SYR_egypt_technical_exchange",
+    "CWICR_SYR_two_bloc_non_alignment_dialogue",
+)
+if not re.search(r"\bCWICR_SYR_regional_initiatives_category\s*=\s*\{", regional_categories):
+    fail("Syria-exclusive regional initiatives category missing.")
+for decision in regional_decision_ids:
+    if not re.search(r"(?m)^\s*" + decision + r"\s*=\s*\{", regional_decisions):
+        fail("Missing international Syrian decision: " + decision)
+    if not re.search(r"(?m)^\s*" + decision + r":0\s+", regional_loc):
+        fail("Missing Syrian international decision translation: " + decision)
+if len(re.findall(r"\ballowed\s*=\s*\{\s*original_tag\s*=\s*SYR\s*\}", regional_decisions)) != 5:
+    fail("Exactly five Syria-exclusive decision allowance checks expected.")
+if "CWICR_SYR_regional_initiatives_category" not in regional_decisions:
+    fail("Syria regional decision category is not linked to the decisions.")
+
+for event_number in range(1, 8):
+    event = f"CWICR_SYR_REG.{event_number}"
+    if not re.search(r"(?m)^\s*id\s*=\s*" + re.escape(event) + r"\s*$", regional_events):
+        fail("Syrian international event not defined: " + event)
+    if not re.search(r"\bid\s*=\s*" + re.escape(event) + r"\b", regional_decisions):
+        fail("Syrian international event not called by decisions: " + event)
+    for key in (event + ".t", event + ".d", event + ".a"):
+        if not re.search(r"(?m)^\s*" + re.escape(key) + r":0\s+", regional_loc):
+            fail("Missing international event text: " + key)
+    if event_number < 7:
+        key = event + ".b"
+        if not re.search(r"(?m)^\s*" + re.escape(key) + r":0\s+", regional_loc):
+            fail("Missing international event choice: " + key)
+for idea_name in ("CWICR_SYR_transit_agreement_idea", "CWICR_SYR_water_commission_idea"):
+    if not re.search(r"\b" + idea_name + r"\s*=\s*\{", regional_ideas):
+        fail("Missing regional cooperation idea: " + idea_name)
+    if not re.search(r"(?m)^\s*" + idea_name + r":0\s+", regional_loc):
+        fail("Missing regional idea description: " + idea_name)
+for modifier in (
+    "CWICR_SYR_transit_partners", "CWICR_SYR_diplomatic_refusal",
+    "CWICR_SYR_water_partners", "CWICR_SYR_water_dispute",
+    "CWICR_SYR_border_partners", "CWICR_SYR_science_partners",
+    "CWICR_SYR_balanced_outreach", "CWICR_SYR_bloc_suspicion",
+):
+    if not re.search(r"\b" + modifier + r"\s*=\s*\{", regional_modifiers):
+        fail("Missing Syrian international opinion modifier: " + modifier)
+    if not re.search(r"(?m)^\s*" + modifier + r":0\s+", regional_loc):
+        fail("Missing international opinion modifier translation: " + modifier)
 
 descriptor = read("descriptor.mod")
 if re.search(r'(?m)^\s*path\s*=', descriptor):
