@@ -1,5 +1,5 @@
 # 2026-07-05: Space tech tree removed — replaced by the special projects
-# system (common/special_projects/space_projects.txt). The 53 techs, the
+# system (common/special_projects/projects/cwic_space_special_projects.txt). The 53 techs, the
 # space_folder research tab, starting grants in 9 country history files and
 # all remaining references were deleted in the same change.
 # Full tree recoverable from git history.
