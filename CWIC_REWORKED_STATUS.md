@@ -118,6 +118,18 @@ still reproducible in this source tree:
 The replacements are defined in `common/technology_tags/00_technology.txt`.
 They are conservative technical mappings, not a balance test.
 
+### Soviet special projects: orphaned Buran parent
+
+- `common/special_projects/projects/cwic_space_special_projects.txt`
+  named `sp_lv_sov_zenit` as the parent of `sp_orbiter_sov_buran`,
+  but never defined that parent project. The previously supplied
+  `error.log` explicitly reports this mismatch.
+- Removed the nonexistent parent reference, retaining Buran's existing
+  technology prerequisites, cost, rewards and AI parameters.
+- This removes one invalid project-tree reference; it does **not**
+  model the Energia launcher historically used by Buran. A full Energia
+  launcher project is still future work.
+
 ## Static checks done
 
 - Balanced `{}` checked in the modified `idea_tags`, character,
