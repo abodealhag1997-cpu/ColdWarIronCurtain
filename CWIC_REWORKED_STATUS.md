@@ -408,6 +408,52 @@ the suitability of all doctrine/focus rewards or absence of error.log
 warnings.** An interactive run on HOI4 1.19.3 with the enabled DLCs
 is still required before release.
 
+## Syrian applied space services and regional weather diplomacy
+
+**Research tree expansion:** added a fourth Syrian-only research column
+to `common/technologies/CWICR_SYR_Research.txt` and the matching
+`countrytechtreeview.gui` panel. The new chain is:
+
+- 1968: `CWICR_SYR_satellite_reception_1968`, basic reception of
+  foreign satellite broadcasts and signals.
+- 1978: `CWICR_SYR_meteorology_1978`, weather and drought
+  interpretation using available satellite information.
+- 1988: `CWICR_SYR_earth_observation_1988`, remote sensing for
+  agriculture and irrigation planning.
+
+These represent **access to foreign space data**, not a fabricated
+Syrian satellite launch programme. The technologies require research
+slots and normal research time, with low country-modifier benefits.
+All twelve Syrian exclusive technologies remain restricted by
+`original_tag = SYR`, and the four starting research branches
+have matching gridboxes, icons and English localisation.
+
+**Syria-only global diplomatic action:** added the
+`CWICR_SYR_satellite_weather_network` decision (1979 onward).
+It requires that Syria first research satellite-assisted meteorology,
+spends political capital, and invites Iraq, Jordan and Lebanon
+separately. Each partner can accept or reject; acceptance applies
+a small *shared* research/civil-administration cost idea and improves
+bilateral relations. An international news event reports the
+**invitations**, not an agreement that may never materialise.
+Four new events, one idea and nineteen English localisation keys
+are present.
+
+**Research tree emptiness distinction:** the public development
+source intentionally removed the old 53-node `space_folder`
+technology tree in July 2026 and transferred that area of gameplay
+to the special-project system. Restoring a button without technology
+nodes would only create an empty tab again; the Syrian applied
+space-services column is separate from that removed global tree.
+Other missing/empty global research sections still need individual
+data/GUI investigation and in-game checking.
+
+**Validation:** static checks confirmed paired research IDs,
+their icons/localisation, four UI branches, all independent recipient
+event IDs, balanced braces and absence of fabricated equipment or
+territorial grants. GitHub Actions should be consulted for results;
+no live HOI4 1.19.3 runtime verification has been performed.
+
 ## Remaining work / ما زال يحتاج عمل
 
 - Determine why the Officer Corps screen still has overlapping
