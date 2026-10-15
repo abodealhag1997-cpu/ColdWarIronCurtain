@@ -5,6 +5,9 @@ set_variable = { currentMoney = 6 }
 oob = "SYR_1949"
 set_air_oob = SYR_1949_air
 
+# CWIC Reworked: consistently load the historical 1950s Syria tree at game start.
+load_focus_tree = 50s_SYR
+
 set_research_slots = 2
 
 set_country_flag = weapon_purchasing_CUM_permit
@@ -629,7 +632,7 @@ if = {
 }
 
 1960.1.1 = {
-	#load_focus_tree = 60s_SYR
+	load_focus_tree = 60s_SYR
 	oob = "SYR_1960"
 	set_air_oob = SYR_1960_air
 }
