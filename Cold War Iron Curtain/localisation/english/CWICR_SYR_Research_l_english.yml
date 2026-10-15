@@ -22,3 +22,11 @@
  CWICR_SYR_staff_college_1962_desc:0 "Professionalise staff-level communications and logistics coordination without granting equipment or battlefield dominance."
  CWICR_SYR_air_defence_network_1972:0 "Air Defence Coordination Studies"
  CWICR_SYR_air_defence_network_1972_desc:0 "Improve technical training for radar reporting and air-defence communications using the resources already available to the state."
+ CWICR_SYR_SPACE_SERVICES_HEADING:0 "Satellite Services and Applied Observation"
+ CWICR_SYR_satellite_reception_1968:0 "Satellite Signals Reception"
+ CWICR_SYR_satellite_reception_1968_desc:0 "Train civilian technicians to receive satellite broadcasts and coordinate access to foreign communications networks. This does not grant a national launch capability."
+ CWICR_SYR_meteorology_1978:0 "Satellite-Assisted Weather Analysis"
+ CWICR_SYR_meteorology_1978_desc:0 "Combine imported satellite weather observations with domestic meteorological stations to inform infrastructure planning and drought preparedness."
+ CWICR_SYR_earth_observation_1988:0 "Remote Sensing for Agriculture and Water"
+ CWICR_SYR_earth_observation_1988_desc:0 "Learn to interpret externally supplied Earth-observation images to assess irrigation and land use. This is applied data analysis, not a Syrian satellite or orbital program."
+
