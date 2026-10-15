@@ -29,6 +29,9 @@ idea_categories = {
 		slot = economy
 		slot = nuclear_mobilization_laws
 		slot = international_status
+		character_slot = political_advisor
+		character_slot = political_advisor
+		character_slot = political_advisor
 		# slot = ecology
 		cost = 150
 		removal_cost = 0
@@ -71,6 +74,7 @@ idea_categories = {
 		slot = aircraft_manufacturer
 		slot = materiel_manufacturer
 		slot = industrial_concern
+		character_slot = theorist
 		
 		ledger = civilian
 
@@ -187,24 +191,19 @@ idea_categories = {
 		slot = air_force_command_spirit
 	}
 	
-	#military_staff = {
-		#slot = army_chief 
-		#slot = navy_chief 
-		#slot = air_chief
+	military_staff = {
+		character_slot = army_chief
+		character_slot = navy_chief
+		character_slot = air_chief
+		character_slot = high_command
+		character_slot = high_command
+		character_slot = high_command
 
-		#ledger = invalid # must be overridden
-		
-		#cost = 150
-		#removal_cost = 0
-	#}
-	#mil_staff = {
-		#slot = theorist
-		#slot = high_command
-		#slot = high_command
-		#slot = high_command	
-		
-		#ledger = invalid # must be overridden
-	#}
+		ledger = invalid
+		cost = 150
+		removal_cost = 0
+	}
+
 	#military = {
 	#	slot = At_ammo 
 	#	slot = Art_ammo
@@ -218,16 +217,16 @@ idea_categories = {
 	#}
 }
 slot_ledgers = {
-	#army_chief = army
-	#navy_chief = navy
-	#air_chief = air
+	army_chief = army
+	navy_chief = navy
+	air_chief = air
 	
 	tank_manufacturer = army
 	naval_manufacturer = navy
 	aircraft_manufacturer = air
 	
-	#theorist = army # must be overridden
-	#high_command = army # must be overridden
+	theorist = invalid # set by advisor ledger
+	high_command = invalid # set by advisor ledger
 	
 	
 	mobilization_laws = civilian
