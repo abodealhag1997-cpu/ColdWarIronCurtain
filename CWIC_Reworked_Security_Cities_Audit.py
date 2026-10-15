@@ -129,6 +129,7 @@ decision_names = (
     "CWICR_SYR_INT_expand_foreign_stations",
     "CWICR_SYR_INT_satellite_analysis_network",
     "CWICR_SYR_PMC_regulation",
+    "CWICR_SYR_PMC_recruit_home_brigade",
     "CWICR_SYR_PMC_lebanese_security_contract",
     "CWICR_SYR_PMC_iraqi_training_contract",
 )
@@ -184,9 +185,20 @@ for mod in (
 # Security and contractor modifiers must not simply spawn foreign units, transfer
 # provinces, or grant strategic weapons; foreign partners have a decline option.
 for forbidden in ("annex_country =", "transfer_state =", "add_nukes =",
-                  "add_equipment_to_stockpile =", "create_unit ="):
+                  "add_equipment_to_stockpile ="):
     if forbidden in src["security"] + src["events"]:
         failures.append("Unsafe unpriced security effect: " + forbidden)
+# A single domestically recruited, PAID brigade may be spawned only after
+# the licencing decision has created its dedicated small infantry template.
+if src["security"].count("create_unit = {") != 1:
+    failures.append("Expected exactly one paid Syrian contractor-unit recruitment.")
+if "division_template = \"Syrian Contract Security Brigade\"" not in src["security"]:
+    failures.append("Contract security brigade template is not defined.")
+if 'start_equipment_factor = 0.0' not in src["security"]:
+    failures.append("Contractor brigade incorrectly receives free equipment.")
+if "CWICR_SYR_PMC_legal_framework" not in src["security"]:
+    failures.append("Contractor brigade lacks legal-framework gating.")
+
 if len(re.findall(r"\boperative_slot\s*=\s*1\b", src["ideas"])) != 3:
     failures.append("Intelligence progression does not define exactly three upgrades.")
 
@@ -194,6 +206,6 @@ for err in failures:
     print("ERROR:", err)
 if failures:
     sys.exit(1)
-print("PASS: 8 map-grounded Syrian construction projects, 6 security/PMC decisions,")
+print("PASS: 8 map-grounded Syrian construction projects, 7 security/PMC decisions,")
 print("      6 national spirits, 5 international events, and localisation cross-references.")
 print("NOTE: Source checks are NOT gameplay/HOI4 UI validation.")
