@@ -1,0 +1,124 @@
+# CWIC Reworked - Syria, 1949-1991 institutional choices.
+# All choices are deliberately low magnitude; historic focus/event timelines remain intact.
+CWICR_SYR_institutions_category = {
+    CWICR_SYR_constitutional_bargain = {
+        icon = generic_political_reform
+        allowed = { original_tag = SYR }
+        visible = { NOT = { has_country_flag = CWICR_SYR_institutional_choice } }
+        available = {
+            tag = SYR
+            date > 1949.1.1
+            date < 1963.3.8
+        }
+        cost = 90
+        fire_only_once = yes
+        complete_effect = {
+            country_event = { id = CWICR_SYR.1 days = 1 }
+        }
+        ai_will_do = { factor = 1 }
+    }
+}
+
+CWICR_SYR_economic_paths_category = {
+    CWICR_SYR_development_model = {
+        icon = generic_industry
+        allowed = { original_tag = SYR }
+        visible = { NOT = { has_country_flag = CWICR_SYR_economic_choice } }
+        available = {
+            tag = SYR
+            has_idea = CWICR_SYR_budget_commission_idea
+        }
+        cost = 110
+        fire_only_once = yes
+        complete_effect = {
+            country_event = { id = CWICR_SYR.2 days = 1 }
+        }
+        ai_will_do = { factor = 1 }
+    }
+
+    # An audit requires sustained political capital; annual, not a free buff.
+    CWICR_SYR_anti_corruption_audit = {
+        icon = generic_political_reform
+        allowed = { original_tag = SYR }
+        visible = { has_country_flag = CWICR_SYR_economic_choice }
+        available = { tag = SYR }
+        cost = 70
+        days_re_enable = 365
+        complete_effect = {
+            add_stability = 0.01
+        }
+        ai_will_do = { factor = 0.5 }
+    }
+}
+
+CWICR_SYR_diplomacy_category = {
+    CWICR_SYR_arab_consultations = {
+        icon = generic_political_reform
+        allowed = { original_tag = SYR }
+        visible = { tag = SYR }
+        available = {
+            date > 1949.1.1
+        }
+        cost = 65
+        days_re_enable = 730
+        complete_effect = {
+            add_opinion_modifier = { target = EGY modifier = CWICR_SYR_regional_consultation }
+            add_opinion_modifier = { target = IRQ modifier = CWICR_SYR_regional_consultation }
+            add_opinion_modifier = { target = JOR modifier = CWICR_SYR_regional_consultation }
+            add_political_power = -10
+        }
+        ai_will_do = { factor = 0.7 }
+    }
+
+    CWICR_SYR_un_mediation_dossier = {
+        icon = generic_political_reform
+        allowed = { original_tag = SYR }
+        visible = { NOT = { has_country_flag = CWICR_SYR_UN_petition_submitted } }
+        available = { tag = SYR }
+        cost = 85
+        fire_only_once = yes
+        complete_effect = {
+            set_country_flag = CWICR_SYR_UN_petition_submitted
+            add_stability = 0.01
+            add_war_support = -0.01
+            add_opinion_modifier = { target = USA modifier = CWICR_SYR_un_dialogue }
+            add_opinion_modifier = { target = SOV modifier = CWICR_SYR_un_dialogue }
+        }
+        ai_will_do = { factor = 0.6 }
+    }
+
+    CWICR_SYR_displaced_families_services = {
+        icon = generic_construction
+        allowed = { original_tag = SYR }
+        visible = { NOT = { has_idea = CWICR_SYR_displaced_families_idea } }
+        available = { tag = SYR }
+        cost = 105
+        fire_only_once = yes
+        complete_effect = {
+            add_ideas = CWICR_SYR_displaced_families_idea
+        }
+        ai_will_do = { factor = 0.8 }
+    }
+}
+
+CWICR_SYR_strategic_programme_category = {
+    # A feasibility study requires existing basic atomic knowledge.
+    # Does not create a weapon, grant nuclear technology or bypass special projects.
+    CWICR_SYR_nuclear_feasibility = {
+        icon = generic_industry
+        allowed = { original_tag = SYR }
+        visible = { NOT = { has_country_flag = CWICR_SYR_nuclear_policy_chosen } }
+        available = {
+            tag = SYR
+            date > 1969.12.31
+            has_tech = atomic_research
+            has_idea = CWICR_SYR_budget_commission_idea
+        }
+        cost = 180
+        fire_only_once = yes
+        complete_effect = {
+            country_event = { id = CWICR_SYR.3 days = 1 }
+        }
+        ai_will_do = { factor = 0 }
+    }
+}
