@@ -1,0 +1,197 @@
+# CWIC Reworked - recipients, not Syria, choose whether to accept the proposals.
+# Events are explicitly triggered only by the five Syria-exclusive decisions.
+add_namespace = CWICR_SYR_REG
+
+# Lebanon: negotiated trade transit arrangements
+country_event = {
+    id = CWICR_SYR_REG.1
+    title = CWICR_SYR_REG.1.t
+    desc = CWICR_SYR_REG.1.d
+    picture = GFX_Syrian_parliament
+    is_triggered_only = yes
+    fire_only_once = yes
+
+    option = {
+        name = CWICR_SYR_REG.1.a
+        ai_chance = { factor = 65 }
+        add_political_power = -20
+        add_ideas = CWICR_SYR_transit_agreement_idea
+        add_opinion_modifier = { target = SYR modifier = CWICR_SYR_transit_partners }
+        SYR = {
+            add_ideas = CWICR_SYR_transit_agreement_idea
+            add_opinion_modifier = { target = LEB modifier = CWICR_SYR_transit_partners }
+            set_country_flag = CWICR_SYR_LEB_corridor_accepted
+        }
+    }
+    option = {
+        name = CWICR_SYR_REG.1.b
+        ai_chance = { factor = 35 }
+        add_opinion_modifier = { target = SYR modifier = CWICR_SYR_diplomatic_refusal }
+        SYR = {
+            add_opinion_modifier = { target = LEB modifier = CWICR_SYR_diplomatic_refusal }
+            set_country_flag = CWICR_SYR_LEB_corridor_refused
+        }
+    }
+}
+
+# Iraq: Tigris-Euphrates water dialogue. No automatic change in water resources.
+country_event = {
+    id = CWICR_SYR_REG.2
+    title = CWICR_SYR_REG.2.t
+    desc = CWICR_SYR_REG.2.d
+    picture = GFX_Syrian_parliament
+    is_triggered_only = yes
+    fire_only_once = yes
+
+    option = {
+        name = CWICR_SYR_REG.2.a
+        ai_chance = { factor = 55 }
+        add_political_power = -20
+        add_ideas = CWICR_SYR_water_commission_idea
+        add_opinion_modifier = { target = SYR modifier = CWICR_SYR_water_partners }
+        SYR = {
+            add_ideas = CWICR_SYR_water_commission_idea
+            add_opinion_modifier = { target = IRQ modifier = CWICR_SYR_water_partners }
+            set_country_flag = CWICR_SYR_IRQ_water_accepted
+        }
+    }
+    option = {
+        name = CWICR_SYR_REG.2.b
+        ai_chance = { factor = 45 }
+        add_opinion_modifier = { target = SYR modifier = CWICR_SYR_water_dispute }
+        SYR = {
+            add_stability = -0.005
+            add_opinion_modifier = { target = IRQ modifier = CWICR_SYR_water_dispute }
+            set_country_flag = CWICR_SYR_IRQ_water_refused
+        }
+    }
+}
+
+# Jordan: joint security consultations, not a forced alliance or border transfer.
+country_event = {
+    id = CWICR_SYR_REG.3
+    title = CWICR_SYR_REG.3.t
+    desc = CWICR_SYR_REG.3.d
+    picture = GFX_Syrian_parliament
+    is_triggered_only = yes
+    fire_only_once = yes
+
+    option = {
+        name = CWICR_SYR_REG.3.a
+        ai_chance = { factor = 55 }
+        add_political_power = -10
+        add_stability = 0.005
+        add_opinion_modifier = { target = SYR modifier = CWICR_SYR_border_partners }
+        SYR = {
+            add_stability = 0.005
+            add_opinion_modifier = { target = JOR modifier = CWICR_SYR_border_partners }
+            set_country_flag = CWICR_SYR_JOR_border_accepted
+        }
+    }
+    option = {
+        name = CWICR_SYR_REG.3.b
+        ai_chance = { factor = 45 }
+        add_opinion_modifier = { target = SYR modifier = CWICR_SYR_diplomatic_refusal }
+        SYR = {
+            add_opinion_modifier = { target = JOR modifier = CWICR_SYR_diplomatic_refusal }
+            set_country_flag = CWICR_SYR_JOR_border_refused
+        }
+    }
+}
+
+# Egypt: modest reciprocal scientific exchange, never a free technology unlock.
+country_event = {
+    id = CWICR_SYR_REG.4
+    title = CWICR_SYR_REG.4.t
+    desc = CWICR_SYR_REG.4.d
+    picture = GFX_Syrian_parliament
+    is_triggered_only = yes
+    fire_only_once = yes
+
+    option = {
+        name = CWICR_SYR_REG.4.a
+        ai_chance = { factor = 65 }
+        add_political_power = -15
+        add_opinion_modifier = { target = SYR modifier = CWICR_SYR_science_partners }
+        add_tech_bonus = { bonus = 0.15 uses = 1 category = radio_tech }
+        SYR = {
+            add_tech_bonus = { bonus = 0.15 uses = 1 category = radio_tech }
+            add_opinion_modifier = { target = EGY modifier = CWICR_SYR_science_partners }
+            set_country_flag = CWICR_SYR_EGY_exchange_accepted
+        }
+    }
+    option = {
+        name = CWICR_SYR_REG.4.b
+        ai_chance = { factor = 35 }
+        add_opinion_modifier = { target = SYR modifier = CWICR_SYR_diplomatic_refusal }
+        SYR = {
+            add_opinion_modifier = { target = EGY modifier = CWICR_SYR_diplomatic_refusal }
+            set_country_flag = CWICR_SYR_EGY_exchange_refused
+        }
+    }
+}
+
+# United States replies independently; Soviet officials may regard US outreach warily.
+country_event = {
+    id = CWICR_SYR_REG.5
+    title = CWICR_SYR_REG.5.t
+    desc = CWICR_SYR_REG.5.d
+    picture = GFX_SYR_SOV
+    is_triggered_only = yes
+    fire_only_once = yes
+
+    option = {
+        name = CWICR_SYR_REG.5.a
+        ai_chance = { factor = 55 }
+        add_opinion_modifier = { target = SYR modifier = CWICR_SYR_balanced_outreach }
+        SYR = {
+            add_opinion_modifier = { target = USA modifier = CWICR_SYR_balanced_outreach }
+            set_country_flag = CWICR_SYR_USA_dialogue_accepted
+        }
+        SOV = { add_opinion_modifier = { target = SYR modifier = CWICR_SYR_bloc_suspicion } }
+    }
+    option = {
+        name = CWICR_SYR_REG.5.b
+        ai_chance = { factor = 45 }
+        add_opinion_modifier = { target = SYR modifier = CWICR_SYR_diplomatic_refusal }
+        SYR = { set_country_flag = CWICR_SYR_USA_dialogue_refused }
+    }
+}
+
+# Soviet Union replies independently; US officials may regard Soviet outreach warily.
+country_event = {
+    id = CWICR_SYR_REG.6
+    title = CWICR_SYR_REG.6.t
+    desc = CWICR_SYR_REG.6.d
+    picture = GFX_SYR_SOV
+    is_triggered_only = yes
+    fire_only_once = yes
+
+    option = {
+        name = CWICR_SYR_REG.6.a
+        ai_chance = { factor = 60 }
+        add_opinion_modifier = { target = SYR modifier = CWICR_SYR_balanced_outreach }
+        SYR = {
+            add_opinion_modifier = { target = SOV modifier = CWICR_SYR_balanced_outreach }
+            set_country_flag = CWICR_SYR_SOV_dialogue_accepted
+        }
+        USA = { add_opinion_modifier = { target = SYR modifier = CWICR_SYR_bloc_suspicion } }
+    }
+    option = {
+        name = CWICR_SYR_REG.6.b
+        ai_chance = { factor = 40 }
+        add_opinion_modifier = { target = SYR modifier = CWICR_SYR_diplomatic_refusal }
+        SYR = { set_country_flag = CWICR_SYR_SOV_dialogue_refused }
+    }
+}
+
+# All countries hear about Syria's outreach, without presuming an agreement.
+news_event = {
+    id = CWICR_SYR_REG.7
+    title = CWICR_SYR_REG.7.t
+    desc = CWICR_SYR_REG.7.d
+    picture = GFX_SYR_SOV
+    is_triggered_only = yes
+    fire_only_once = yes
+    option = { name = CWICR_SYR_REG.7.a }
+}
