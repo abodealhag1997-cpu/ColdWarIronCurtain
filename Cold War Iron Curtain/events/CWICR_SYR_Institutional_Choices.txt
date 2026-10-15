@@ -6,7 +6,7 @@ country_event = {
     id = CWICR_SYR.1
     title = CWICR_SYR.1.t
     desc = CWICR_SYR.1.d
-    picture = GFX_report_event_generic_political_reform
+    picture = GFX_Syrian_parliament
     is_triggered_only = yes
     fire_only_once = yes
 
@@ -34,7 +34,7 @@ country_event = {
     id = CWICR_SYR.2
     title = CWICR_SYR.2.t
     desc = CWICR_SYR.2.d
-    picture = GFX_report_event_generic_economy
+    picture = GFX_Quwatli
     is_triggered_only = yes
     fire_only_once = yes
 
@@ -68,7 +68,7 @@ country_event = {
     id = CWICR_SYR.3
     title = CWICR_SYR.3.t
     desc = CWICR_SYR.3.d
-    picture = GFX_report_event_generic_nuclear
+    picture = GFX_SYR_SOV
     is_triggered_only = yes
     fire_only_once = yes
 
