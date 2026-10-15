@@ -179,6 +179,56 @@ earlier locally patched Workshop build. We have *not yet established*
 whether the GitHub branch still displays the same empty panes. This
 requires one integrated runtime test at the end, not repetitive launches.
 
+## New Syrian-only applied science research tab
+
+**Source-level implementation committed, runtime UI test pending.**
+The user's symptom is global: a few other research windows and the
+space category had blank/missing content in the installed Steam version.
+The GitHub development branch **deliberately retired** the old
+53-technology space tree on 2026-07-05. It left an empty
+`common/technologies/space.txt` and migrated intended space progression
+to special projects. We must not re-create an empty `space_folder`
+button and call that a fix.
+
+Separate from the global empty-tab audit, a new Syria-specific applied
+science tab has been built:
+
+- `common/technology_tags/00_technology.txt` — the
+  `cwicr_syr_research_folder` is gated by `original_tag = SYR`.
+- `common/technologies/CWICR_SYR_Research.txt` — nine linked
+  technologies in three branches, with `allow_branch` on each
+  first technology and `allow` on each technology.
+- `interface/countrytechtreeview.gui` — Syrian folder, matching tab,
+  three root gridboxes, and one dedicated research-item UI template.
+- `interface/CWICR_SYR_Research.gfx` — nine sprite aliases referring
+  only to existing technology textures.
+- `localisation/english/CWICR_SYR_Research_l_english.yml` —
+  23 English keys, including technology names and descriptions.
+
+The branches develop water surveys and irrigation (1949/1957/1970),
+technical education and industrial maintenance (1949/1958/1968),
+and military communication / staff coordination (1950/1962/1972).
+Cumulative bonuses are deliberately small, and none grants free
+equipment, infrastructure, nuclear weapons, or fictional historic
+personnel. These are plausible tech pathways, not assertions that
+every programme actually existed as named.
+
+Source inspection confirmed:
+- All 9 technology IDs and all 6 dependency paths are defined.
+- All 9 medium-icon sprite names and textures are mapped to asset
+  references already used in `Technologies.gfx`.
+- All technology category IDs exist and all 23 localisation keys exist.
+- Three root gridboxes, the folder tab, and the research item template
+  match the tech root IDs.
+- Synergy with other countries remains intentionally limited: this
+  tab **does not fix empty global tabs or disabled space research**.
+- Balanced Clausewitz braces on newly edited technology, GUI and sprite files.
+
+**Unverified:** actual tab visibility at the user's UI scale,
+whether all nine icons display, in-game research/AI behaviour,
+and interactions with the 1.19.3 research UI. Do not ship as finished
+until these have been checked in one comprehensive test.
+
 ## Static checks done
 
 - Balanced `{}` checked in the modified `idea_tags`, character,
