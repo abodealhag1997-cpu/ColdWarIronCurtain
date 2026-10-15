@@ -1,4 +1,11 @@
 default = {
+	# CWIC Reworked: provide a deterministic default operative portrait pool.
+	# The DLC operative pool file was intentionally emptied for MP consistency.
+	# Without an operative pool, recruited agents can fail portrait generation.
+	operative = {
+		male = { "gfx/leaders/operative_unknown.dds" }
+		female = { "gfx/leaders/operative_unknown.dds" }
+	}
 	#navy = {
 		#male = {
 		#}
