@@ -72,8 +72,16 @@ influence systems, historical character roster, and existing Syria events.
 - [x] Regional consultations, UN representation dossier and temporary
   diplomatic-opinion effects. **These are diplomatic signals only;
   no real UN voting or international resolution system yet.**
-- [ ] Diplomatic relation calculations with Egypt, Iraq, Jordan,
-  Lebanon, Israel, Turkey, USSR, United States and French/British policy.
+- [x] Limited response-driven foreign-policy initiatives involving
+  Egypt, Iraq, Jordan, Lebanon, Israel, Turkey, USSR and the USA.
+  Eight Syria-exclusive decisions now allow partners to accept or
+  refuse, with temporary opinion and small economic costs.
+  **These are not comprehensive bilateral influence calculations.**
+- [ ] Deep diplomatic alignment and bilateral influence calculations,
+  including French/British policy and treaty obligations.
+- [x] Limited bilateral observation proposal and global news of
+  acceptance/refusal following a Syrian UN mediation dossier.
+  This is **not** a UN-authorised mission or Security Council ballot.
 - [ ] UN proposal/response system: mediation, observation missions,
   sanctions proposals, Security Council votes and vetoes, aid
   requests, recognition, compliance and implementation costs.
