@@ -78,8 +78,8 @@ country_event = {
         set_country_flag = CWICR_SYR_nuclear_policy_chosen
         set_country_flag = CWICR_SYR_nuclear_safeguards
         add_ideas = CWICR_SYR_nuclear_safeguards_idea
-        add_opinion_modifier = { target = USA modifier = CWICR_SYR_open_safeguards }
-        add_opinion_modifier = { target = SOV modifier = CWICR_SYR_open_safeguards }
+        USA = { add_opinion_modifier = { target = SYR modifier = CWICR_SYR_open_safeguards } }
+        SOV = { add_opinion_modifier = { target = SYR modifier = CWICR_SYR_open_safeguards } }
     }
     option = {
         name = CWICR_SYR.3.b
@@ -88,7 +88,7 @@ country_event = {
         set_country_flag = CWICR_SYR_nuclear_opaque
         add_ideas = CWICR_SYR_nuclear_opaque_idea
         add_stability = -0.02
-        add_opinion_modifier = { target = USA modifier = CWICR_SYR_opaque_programme }
-        add_opinion_modifier = { target = EGY modifier = CWICR_SYR_opaque_programme }
+        USA = { add_opinion_modifier = { target = SYR modifier = CWICR_SYR_opaque_programme } }
+        EGY = { add_opinion_modifier = { target = SYR modifier = CWICR_SYR_opaque_programme } }
     }
 }
