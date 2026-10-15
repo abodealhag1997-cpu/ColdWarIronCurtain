@@ -38,6 +38,77 @@ guiTypes = {
 			quadTextureSprite ="GFX_tiled_plain_bg2"
 		}
 
+		# CWIC Reworked — Syrian Applied Sciences (visible to original-tag SYR only).
+		containerWindowType = {
+			name = "cwicr_syr_research_folder"
+			position = { x=0 y=47 }
+			size = { width = 100%% height = 100%% }
+			margin = { top = 21 left = 23 bottom = 22 right = 25 }
+			clipping = yes
+			drag_scroll = { left middle }
+			verticalScrollbar = "right_vertical_slider"
+			horizontalScrollbar = "bottom_horizontal_slider"
+			scroll_wheel_factor = 40
+			background = {
+				name = "Background"
+				quadTextureSprite = "GFX_tiled_window_2b_border_crt"
+			}
+			instantTextboxType = {
+				name = "cwicr_syr_tech_title"
+				position = { x=110 y=24 }
+				text = "CWICR_SYR_RESEARCH_TITLE"
+				font = "hoi_36header"
+				maxWidth = 1000
+				maxHeight = 36
+				format = center
+			}
+			instantTextboxType = {
+				name = "cwicr_syr_hydrology_heading"
+				position = { x=150 y=77 }
+				text = "CWICR_SYR_HYDRO_HEADING"
+				font = "hoi_18mbs"
+				maxWidth = 290
+				maxHeight = 28
+			}
+			instantTextboxType = {
+				name = "cwicr_syr_industry_heading"
+				position = { x=550 y=77 }
+				text = "CWICR_SYR_INDUSTRY_HEADING"
+				font = "hoi_18mbs"
+				maxWidth = 290
+				maxHeight = 28
+			}
+			instantTextboxType = {
+				name = "cwicr_syr_defence_heading"
+				position = { x=950 y=77 }
+				text = "CWICR_SYR_DEFENCE_HEADING"
+				font = "hoi_18mbs"
+				maxWidth = 300
+				maxHeight = 28
+			}
+			gridboxtype = {
+				name = "CWICR_SYR_hydrology_1949_tree"
+				position = { x=190 y=120 }
+				size = { width = 310 height = 1050 }
+				slotsize = { width = 182 height = 84 }
+				format = "UP"
+			}
+			gridboxtype = {
+				name = "CWICR_SYR_vocational_1949_tree"
+				position = { x=590 y=120 }
+				size = { width = 310 height = 1050 }
+				slotsize = { width = 182 height = 84 }
+				format = "UP"
+			}
+			gridboxtype = {
+				name = "CWICR_SYR_signal_corps_1950_tree"
+				position = { x=990 y=120 }
+				size = { width = 310 height = 1050 }
+				slotsize = { width = 182 height = 84 }
+				format = "UP"
+			}
+		}
+
 		containerWindowType = {
 			name = "helicopter_folder"
 			position = { x=0 y=47 }
@@ -12122,6 +12193,24 @@ guiTypes = {
 			}
 
 
+			# Syrian-only applied research, gated by technology_folders.available.
+			buttonType = {
+				name = "cwicr_syr_research_folder_tab"
+				position = { x = 1290 y = 0 }
+				quadTextureSprite = "GFX_industry_folder_tab"
+				frame = 1
+				pdx_tooltip = "CWICR_SYR_TECH_TAB"
+				clicksound = click_default
+			}
+			instantTextboxType = {
+				name = "cwicr_syr_tab_label"
+				text = "SYR"
+				font = "hoi_16mbs"
+				position = { x=1309 y=4 }
+				maxWidth = 50
+				maxHeight = 22
+			}
+
 			buttonType = {
 				position = { x = 1370 y = 0 }
 				name = "wmd_folder_tab"
@@ -13891,6 +13980,53 @@ guiTypes = {
 
 	containerWindowType = {
 		name = "techtree_industry_folder_item"
+		position = { x=0 y=0 }
+		size = { width = 182 height = 84 }
+		clipping = no
+
+		background = {
+			name = "Background"
+			quadTextureSprite ="GFX_technology_unavailable_item_bg"
+		}
+
+		gridboxtype = {
+			# contains special_project_specialization
+			name = "special_project_specialization_list"
+		}
+
+		iconType = {
+			name = "Icon"
+			position = { x=4 y=4 }
+			spriteType = "GFX_technology_medium"
+			centerposition = no
+			alwaystransparent = yes
+		}
+		iconType = {
+			name = "bonus_icon"
+			position = { x = 0 y = -24 }
+			spriteType = "GFX_tech_bonus"
+		}
+		instantTextBoxType = {
+			name = "bonus"
+			position = { x = 17 y = -22 }
+			textureFile = ""
+			font = "hoi_16mbs"
+			borderSize = {x = 4 y = 4}
+			text = "lol boat"
+			maxWidth = 50
+			maxHeight = 20
+			format = right
+		}
+		iconType = {
+			name = "can_assign_design_team_icon"
+			position = { x=0 y=5000 }
+			spriteType = "GFX_design_team_icon"
+		}
+	}
+
+	# CWIC Reworked: shared-size research item for Syrian applied science.
+	containerWindowType = {
+		name = "techtree_cwicr_syr_research_folder_item"
 		position = { x=0 y=0 }
 		size = { width = 182 height = 84 }
 		clipping = no
