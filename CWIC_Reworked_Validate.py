@@ -419,6 +419,9 @@ regional_decision_ids = (
     "CWICR_SYR_jordan_border_commission",
     "CWICR_SYR_egypt_technical_exchange",
     "CWICR_SYR_two_bloc_non_alignment_dialogue",
+    "CWICR_SYR_golan_observation_request",
+    "CWICR_SYR_tripartite_euphrates_conference",
+    "CWICR_SYR_regional_relief_conference",
 )
 if not re.search(r"\bCWICR_SYR_regional_initiatives_category\s*=\s*\{", regional_categories):
     fail("Syria-exclusive regional initiatives category missing.")
@@ -427,25 +430,30 @@ for decision in regional_decision_ids:
         fail("Missing international Syrian decision: " + decision)
     if not re.search(r"(?m)^\s*" + decision + r":0\s+", regional_loc):
         fail("Missing Syrian international decision translation: " + decision)
-if len(re.findall(r"\ballowed\s*=\s*\{\s*original_tag\s*=\s*SYR\s*\}", regional_decisions)) != 5:
-    fail("Exactly five Syria-exclusive decision allowance checks expected.")
+if len(re.findall(r"\ballowed\s*=\s*\{\s*original_tag\s*=\s*SYR\s*\}", regional_decisions)) != len(regional_decision_ids):
+    fail("Every Syria-exclusive international decision must have an explicit tag restriction.")
 if "CWICR_SYR_regional_initiatives_category" not in regional_decisions:
     fail("Syria regional decision category is not linked to the decisions.")
 
-for event_number in range(1, 8):
+for event_number in range(1, 16):
     event = f"CWICR_SYR_REG.{event_number}"
     if not re.search(r"(?m)^\s*id\s*=\s*" + re.escape(event) + r"\s*$", regional_events):
         fail("Syrian international event not defined: " + event)
-    if not re.search(r"\bid\s*=\s*" + re.escape(event) + r"\b", regional_decisions):
-        fail("Syrian international event not called by decisions: " + event)
+    callsites = regional_decisions + regional_events
+    if len(re.findall(r"\bid\s*=\s*" + re.escape(event) + r"\b", callsites)) < 2:
+        fail("Syrian international event not called by decisions/events: " + event)
     for key in (event + ".t", event + ".d", event + ".a"):
         if not re.search(r"(?m)^\s*" + re.escape(key) + r":0\s+", regional_loc):
             fail("Missing international event text: " + key)
-    if event_number < 7:
+    if event_number in (1, 2, 3, 4, 5, 6, 8, 11, 12, 13):
         key = event + ".b"
         if not re.search(r"(?m)^\s*" + re.escape(key) + r":0\s+", regional_loc):
             fail("Missing international event choice: " + key)
-for idea_name in ("CWICR_SYR_transit_agreement_idea", "CWICR_SYR_water_commission_idea"):
+for idea_name in (
+    "CWICR_SYR_transit_agreement_idea", "CWICR_SYR_water_commission_idea",
+    "CWICR_SYR_observation_liaison_idea", "CWICR_SYR_tripartite_water_idea",
+    "CWICR_SYR_regional_relief_idea",
+):
     if not re.search(r"\b" + idea_name + r"\s*=\s*\{", regional_ideas):
         fail("Missing regional cooperation idea: " + idea_name)
     if not re.search(r"(?m)^\s*" + idea_name + r":0\s+", regional_loc):
@@ -455,11 +463,34 @@ for modifier in (
     "CWICR_SYR_water_partners", "CWICR_SYR_water_dispute",
     "CWICR_SYR_border_partners", "CWICR_SYR_science_partners",
     "CWICR_SYR_balanced_outreach", "CWICR_SYR_bloc_suspicion",
+    "CWICR_SYR_observation_cooperation", "CWICR_SYR_observation_refusal",
+    "CWICR_SYR_tripartite_water_partners", "CWICR_SYR_relief_partners",
 ):
     if not re.search(r"\b" + modifier + r"\s*=\s*\{", regional_modifiers):
         fail("Missing Syrian international opinion modifier: " + modifier)
     if not re.search(r"(?m)^\s*" + modifier + r":0\s+", regional_loc):
         fail("Missing international opinion modifier translation: " + modifier)
+
+# Syria's new world-facing actions must retain foreign consent and no
+# direct territorial, military or nuclear grants. Partners can decline.
+for country, event in (("ISR", "CWICR_SYR_REG.8"),
+                       ("TUR", "CWICR_SYR_REG.11"),
+                       ("LEB", "CWICR_SYR_REG.12"),
+                       ("JOR", "CWICR_SYR_REG.13")):
+    if not re.search(r"\b" + country + r"\s*=\s*\{\s*country_event\s*=\s*\{\s*id\s*=\s*" +
+                     re.escape(event), regional_decisions):
+        fail(f"Required independent recipient response missing: {country} -> {event}")
+for item in ("CWICR_SYR_golan_observation_request",
+             "CWICR_SYR_tripartite_euphrates_conference",
+             "CWICR_SYR_regional_relief_conference"):
+    if not re.search(r"\b" + item + r"\s*=\s*\{", regional_decisions):
+        fail("New Syria-only international initiative missing: " + item)
+if re.search(r"\b(transfer_state|annex_country|add_nukes|add_equipment_to_stockpile)\s*=",
+             regional_decisions + regional_events):
+    fail("International Syria diplomacy must not directly annex land or create weapons.")
+event_ids = re.findall(r"(?m)^\s*id\s*=\s*(CWICR_SYR_REG\.\d+)\s*$", regional_events)
+if len(event_ids) != len(set(event_ids)) or len(event_ids) != 15:
+    fail("Syrian foreign-policy event IDs must be unique and cover 1 through 15.")
 
 descriptor = read("descriptor.mod")
 if re.search(r'(?m)^\s*path\s*=', descriptor):
