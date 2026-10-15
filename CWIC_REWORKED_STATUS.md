@@ -22,7 +22,10 @@ Workshop version together.
    historical candidates and suitable portraits; don't invent names.
 4. **Current doctrines:** removed 21 empty .txt overrides in
    `common/doctrines` that suppressed vanilla 1.19 grand doctrines,
-   tracks and subdoctrines. This is an **integration choice for current
+   tracks and subdoctrines. Also removed the outdated
+   `common/doctrines/folders/doctrine_folders.txt` override which only
+   defined land/naval/air, so that the 1.19 native special-forces
+   doctrine folder can load. This is an **integration choice for current
    grand doctrines**, not a restoration of CWIC's parked 646 legacy
    doctrine technology nodes. The modern doctrine UI and historic focus
    bonuses still need manual compatibility checks.
@@ -30,7 +33,9 @@ Workshop version together.
    `can_unlock_second_track_of_sf_doctrine` scripted trigger.
 6. **Officer Corps GUI:** removed CWIC's obsolete
    `interface/countryofficercorpview.gui` override so that vanilla 1.19
-   draws the window. The old file is preserved in Git history.
+   draws the window. Also removed the legacy
+   `interface/countrydoctrinetreeview.gui` override, which still laid out
+   defunct technology-era doctrine folders. The old file is preserved in Git history.
    The user's local screenshot still showed some UI/layout issues even
    after switching to the native window. Therefore the visual issue is
    **not claimed as fully fixed**.
@@ -41,6 +46,39 @@ Workshop version together.
 8. **Descriptor:** removed a developer's absolute D-drive path and
    declared `supported_version="1.19.*"`. This describes the *target*
    version, not proof of compatibility.
+
+## Additional fixes from the previously supplied error.log
+
+- Corrected the Egyptian focus `EGY_farouk_leads_troops` by replacing
+  invalid general trait `incompetent` with existing
+  `inflexible_strategist` in `common/national_focus/EGY_50s.txt`.
+- Corrected `infant_ryofficer` to the existing
+  `infantry_officer` trait in `GDR_1953_Reimann.txt`.
+- Removed a case-insensitive decision ID collision: `Bomb_insurgents`
+  in Cuba and `bomb_insurgents` in the Dominican Republic are now
+  `CUB_bomb_insurgents` and `DOM_bomb_insurgents`, each with new
+  English text in `CWIC_Reworked_l_english.yml`.
+- Replaced two invalid `excavation_tech` faction-goal technology
+  categories with defined `synth_resources` (oil-supply goal) and
+  `construction_tech` (military-base goal). This is a mechanical
+  fallback and should be reviewed for historical balance.
+
+These address *specific* logged script errors. The user's original
+error.log came from a differently patched local Workshop build, so not
+every logged problem is necessarily reproducible on this GitHub branch.
+Existing Greek and Indonesian decision category files already define
+the category names cited in that log; these were not changed speculatively.
+
+## Automated offline preflight
+
+Run `python CWIC_Reworked_Validate.py` from the repository root after
+downloading a full checkout. The Python script inspects balanced Clausewitz
+braces, five Syrian recruited advisors, Syrian focus references, espionage
+defines, old doctrine override files, and the newly corrected error patterns.
+**The validator file has been added to GitHub, but it has not yet been
+executed in Python in this ChatGPT environment due to the unavailable
+local execution environment.** Equivalent spot checks of edited text
+and source references were performed.
 
 ## Static checks done
 
