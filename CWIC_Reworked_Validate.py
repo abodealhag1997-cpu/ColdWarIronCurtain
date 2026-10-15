@@ -192,14 +192,14 @@ for filename, token in (
     ("common/decisions/DMC_Insurgency.txt", "DOM_bomb_insurgents"),
 ):
     source = strip_strings_and_comments(read(filename))
-    if not re.search(r"(?m)^\\s*" + token + r"\\s*=\\s*\\{", source):
+    if not re.search(r"(?m)^\s*" + token + r"\s*=\s*\{", source):
         fail(f"Unique insurgency decision missing: {token}")
 for filename, obsolete in (
     ("common/national_focus/EGY_50s.txt", "incompetent"),
     ("common/national_focus/GDR_1953_Reimann.txt", "infant_ryofficer"),
 ):
     source = strip_strings_and_comments(read(filename))
-    if re.search(r"\\b" + obsolete + r"\\b", source):
+    if re.search(r"\b" + obsolete + r"\b", source):
         fail(f"Unsupported officer trait remains in {filename}: {obsolete}")
 
 for category, filename in (
