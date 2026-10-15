@@ -1,0 +1,39 @@
+spriteTypes = {
+# CWIC Reworked: reuse textures shipped by CWIC; no external assets required.
+	spriteType = {
+		name = "GFX_CWICR_SYR_hydrology_1949_medium"
+		texturefile = "gfx/interface/technologies/agriculture_i.dds"
+	}
+	spriteType = {
+		name = "GFX_CWICR_SYR_irrigation_1957_medium"
+		texturefile = "gfx/interface/technologies/agriculture_ii.dds"
+	}
+	spriteType = {
+		name = "GFX_CWICR_SYR_euphrates_1970_medium"
+		texturefile = "gfx/interface/technologies/ww_infra.dds"
+	}
+	spriteType = {
+		name = "GFX_CWICR_SYR_vocational_1949_medium"
+		texturefile = "gfx/interface/technologies/ww_production.dds"
+	}
+	spriteType = {
+		name = "GFX_CWICR_SYR_industry_1958_medium"
+		texturefile = "gfx/interface/technologies/production_efficiency_I.dds"
+	}
+	spriteType = {
+		name = "GFX_CWICR_SYR_machine_tools_1968_medium"
+		texturefile = "gfx/interface/technologies/logistics_i.dds"
+	}
+	spriteType = {
+		name = "GFX_CWICR_SYR_signal_corps_1950_medium"
+		texturefile = "gfx/interface/technologies/coms_I.dds"
+	}
+	spriteType = {
+		name = "GFX_CWICR_SYR_staff_college_1962_medium"
+		texturefile = "gfx/interface/technologies/hardware_I.dds"
+	}
+	spriteType = {
+		name = "GFX_CWICR_SYR_air_defence_network_1972_medium"
+		texturefile = "gfx/interface/technologies/radar_II.dds"
+	}
+}
