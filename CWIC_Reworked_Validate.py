@@ -181,6 +181,27 @@ for removed in ("interface/countryofficercorpview.gui",
     if (MOD / removed).exists():
         fail(f"Obsolete custom GUI override is active: {removed}")
 
+# HOI4 1.19 owns the updated doctrine folder map (including special forces).
+# A CWIC-era copy containing only land/naval/air would hide the new SF folder.
+if (MOD / "common/doctrines/folders/doctrine_folders.txt").exists():
+    fail("Outdated doctrine_folders.txt override still hides 1.19 special forces.")
+
+# Resolve a logged duplicate decision and two logged undefined military traits.
+for filename, token in (
+    ("common/decisions/Cuban_Insurgency.txt", "CUB_bomb_insurgents"),
+    ("common/decisions/DMC_Insurgency.txt", "DOM_bomb_insurgents"),
+):
+    source = strip_strings_and_comments(read(filename))
+    if not re.search(r"(?m)^\\s*" + token + r"\\s*=\\s*\\{", source):
+        fail(f"Unique insurgency decision missing: {token}")
+for filename, obsolete in (
+    ("common/national_focus/EGY_50s.txt", "incompetent"),
+    ("common/national_focus/GDR_1953_Reimann.txt", "infant_ryofficer"),
+):
+    source = strip_strings_and_comments(read(filename))
+    if re.search(r"\\b" + obsolete + r"\\b", source):
+        fail(f"Unsupported officer trait remains in {filename}: {obsolete}")
+
 for category, filename in (
     ("grand_doctrines", "land_grand_doctrines.txt"),
     ("grand_doctrines", "air_grand_doctrines.txt"),
