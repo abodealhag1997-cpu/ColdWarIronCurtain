@@ -36,4 +36,18 @@ spriteTypes = {
 		name = "GFX_CWICR_SYR_air_defence_network_1972_medium"
 		texturefile = "gfx/interface/technologies/radar_II.dds"
 	}
+	# These sprites deliberately reuse already configured technology images.
+	spriteType = {
+		name = "GFX_CWICR_SYR_satellite_reception_1968_medium"
+		texturefile = "gfx/interface/technologies/coms_I.dds"
+	}
+	spriteType = {
+		name = "GFX_CWICR_SYR_meteorology_1978_medium"
+		texturefile = "gfx/interface/technologies/radar_II.dds"
+	}
+	spriteType = {
+		name = "GFX_CWICR_SYR_earth_observation_1988_medium"
+		texturefile = "gfx/interface/technologies/hardware_I.dds"
+	}
+
 }
