@@ -236,6 +236,48 @@ whether all nine icons display, in-game research/AI behaviour,
 and interactions with the 1.19.3 research UI. Do not ship as finished
 until these have been checked in one comprehensive test.
 
+## Syria 1949–1991: institutional and geopolitical expansion (new batch)
+
+- Added seven opt-in policy decisions in
+  `common/decisions/CWICR_SYR_Political_Economy_Diplomacy.txt`:
+  constitutional compact, national development choice, annual
+  anti-corruption procurement audit, Arab regional consultation,
+  United Nations mediation dossier, services for displaced families,
+  and a post-1969 nuclear feasibility commission.
+- Added three separate `CWICR_SYR` event choices, without touching
+  the historic 1949–1970 Syria coup event scripts:
+  civilian constitutional safeguards versus military guardianship;
+  state-led industry versus regulated private enterprise versus rural
+  credit; and internationally safeguarded versus opaque preliminary
+  nuclear research. Each choice has nontrivial domestic costs.
+- Added eight state ideas, four **temporary** diplomatic opinion
+  modifiers and 55 English localization keys. The decisions rely
+  on the actual `atomic_research` technology ID, existing budget
+  oversight spirit and historical timing; they never grant equipment,
+  reactor buildings or nuclear weapons.
+- The `CWICR_SYR_un_mediation_dossier` currently has only a
+  limited diplomatic/opinion effect: a genuine United Nations
+  vote/veto/mission system remains **unimplemented**.
+- These are initial systemic hooks for realism, **not** a complete
+  budget, unemployment, corruption, refugee demography or nuclear
+  deterrent simulation. They were checked for basic bracket balance,
+  registration and cross-file references, not runtime outcomes.
+- Corrected an indexing regression in
+  `CWIC_Reworked_Validate.py`: the Syria history file is now
+  addressed by its full pathname rather than the outdated list index.
+- Added `.github/workflows/cwic-reworked-static.yml` to run static
+  and research-file audits on commits. Workflow results still need
+  confirmation before claiming CI success.
+
+**Do not forget remaining approved scope:** historical government
+paths and parties/elections, competing unions and coups, taxation,
+debt, inflation, unemployment, oil/trade/sanctions, oversight and
+military procurement, the United Nations, migration and refugees,
+private military contractors, and a costly optional nuclear
+deterrent over the 1949–1991 time frame. Full engineering order and
+acceptance criteria are recorded in
+[`CWIC_REWORKED_SYRIA_ROADMAP.md`](CWIC_REWORKED_SYRIA_ROADMAP.md).
+
 ## Static checks done
 
 - Balanced `{}` checked in the modified `idea_tags`, character,
