@@ -311,6 +311,8 @@ if not re.search(r"\boperative\s*=\s*\{", default_portrait):
     fail("Default operative portrait pool is missing.")
 if "gfx/leaders/leader_unknown.dds" not in default_portrait:
     fail("Default operative portrait fallback sprite is missing.")
+if not (MOD / "gfx/leaders/leader_unknown.dds").is_file():
+    fail("Operative portrait fallback points to an absent DDS file.")
 
 # The Buran launcher-project typo must not recur.
 project_source = masked["common/special_projects/projects/cwic_space_special_projects.txt"]
