@@ -169,10 +169,8 @@ for field in ("AGENCY_CREATION_DAYS", "AGENCY_UPGRADE_DAYS"):
 if re.search(r"(?m)^NDefines\.NOperatives\.(?:MAX_RECRUITED_OPERATIVES|AGENCY_CREATION_FACTORIES)\s*=", defines):
     fail("Espionage-disabling override was reintroduced.")
 
-topbar = masked["interface/topbar.gui"]
-if not re.search(r'intel_agency_button', topbar):
-    fail("Missing intelligence agency button.")
-# Verify in unmasked text since UI identifiers can appear in quoted values.
+# Use raw topbar content because quoted GUI object names are deliberately
+# erased by the brace scanner.
 topbar_original = read("interface/topbar.gui")
 btn = re.search(r'name\s*=\s*"intel_agency_button".{0,350}', topbar_original, re.S)
 if not btn or not re.search(r'position\s*=\s*\{\s*x\s*=\s*-49\s+y\s*=\s*0\s*\}', btn.group(0)):
