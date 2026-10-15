@@ -1,0 +1,115 @@
+# CWIC Reworked. International reactions, not guaranteed Syrian victories.
+add_namespace = CWICR_SYR_SEC
+
+# Washington weighs the new Syrian foreign intelligence programme.
+country_event = {
+    id = CWICR_SYR_SEC.1
+    title = CWICR_SYR_SEC.1.t
+    desc = CWICR_SYR_SEC.1.d
+    picture = GFX_Syrian_parliament
+    is_triggered_only = yes
+    fire_only_once = yes
+    option = {
+        name = CWICR_SYR_SEC.1.a
+        ai_chance = { factor = 65 }
+        add_opinion_modifier = { target = SYR modifier = CWICR_SYR_SEC_intelligence_concern }
+        SYR = { add_opinion_modifier = { target = USA modifier = CWICR_SYR_SEC_intelligence_concern } }
+    }
+    option = {
+        name = CWICR_SYR_SEC.1.b
+        ai_chance = { factor = 35 }
+        add_political_power = -10
+        add_opinion_modifier = { target = SYR modifier = CWICR_SYR_SEC_security_dialogue }
+        SYR = { add_opinion_modifier = { target = USA modifier = CWICR_SYR_SEC_security_dialogue } }
+    }
+}
+
+# Moscow may offer guarded diplomatic engagement or voice concern.
+country_event = {
+    id = CWICR_SYR_SEC.2
+    title = CWICR_SYR_SEC.2.t
+    desc = CWICR_SYR_SEC.2.d
+    picture = GFX_Syrian_parliament
+    is_triggered_only = yes
+    fire_only_once = yes
+    option = {
+        name = CWICR_SYR_SEC.2.a
+        ai_chance = { factor = 60 }
+        add_political_power = -10
+        add_opinion_modifier = { target = SYR modifier = CWICR_SYR_SEC_security_dialogue }
+        SYR = { add_opinion_modifier = { target = SOV modifier = CWICR_SYR_SEC_security_dialogue } }
+    }
+    option = {
+        name = CWICR_SYR_SEC.2.b
+        ai_chance = { factor = 40 }
+        add_opinion_modifier = { target = SYR modifier = CWICR_SYR_SEC_intelligence_concern }
+        SYR = { add_opinion_modifier = { target = SOV modifier = CWICR_SYR_SEC_intelligence_concern } }
+    }
+}
+
+news_event = {
+    id = CWICR_SYR_SEC.3
+    title = CWICR_SYR_SEC.3.t
+    desc = CWICR_SYR_SEC.3.d
+    picture = GFX_Syrian_parliament
+    is_triggered_only = yes
+    fire_only_once = yes
+    option = {
+        name = CWICR_SYR_SEC.3.a
+    }
+}
+
+# Lebanon retains a genuine right to reject the contract.
+country_event = {
+    id = CWICR_SYR_SEC.4
+    title = CWICR_SYR_SEC.4.t
+    desc = CWICR_SYR_SEC.4.d
+    picture = GFX_Syrian_parliament
+    is_triggered_only = yes
+    fire_only_once = yes
+    option = {
+        name = CWICR_SYR_SEC.4.a
+        ai_chance = { factor = 45 }
+        add_political_power = -15
+        add_timed_idea = { idea = CWICR_SYR_PMC_host_advisers_idea days = 730 }
+        add_opinion_modifier = { target = SYR modifier = CWICR_SYR_SEC_host_contract }
+        SYR = {
+            add_timed_idea = { idea = CWICR_SYR_PMC_export_office_idea days = 730 }
+            set_country_flag = CWICR_SYR_PMC_LEB_contract_accepted
+            add_opinion_modifier = { target = LEB modifier = CWICR_SYR_SEC_host_contract }
+        }
+    }
+    option = {
+        name = CWICR_SYR_SEC.4.b
+        ai_chance = { factor = 55 }
+        add_opinion_modifier = { target = SYR modifier = CWICR_SYR_SEC_contract_refused }
+        SYR = { set_country_flag = CWICR_SYR_PMC_LEB_contract_refused }
+    }
+}
+
+country_event = {
+    id = CWICR_SYR_SEC.5
+    title = CWICR_SYR_SEC.5.t
+    desc = CWICR_SYR_SEC.5.d
+    picture = GFX_Syrian_parliament
+    is_triggered_only = yes
+    fire_only_once = yes
+    option = {
+        name = CWICR_SYR_SEC.5.a
+        ai_chance = { factor = 35 }
+        add_political_power = -15
+        add_timed_idea = { idea = CWICR_SYR_PMC_host_advisers_idea days = 730 }
+        add_opinion_modifier = { target = SYR modifier = CWICR_SYR_SEC_host_contract }
+        SYR = {
+            add_timed_idea = { idea = CWICR_SYR_PMC_export_office_idea days = 730 }
+            set_country_flag = CWICR_SYR_PMC_IRQ_contract_accepted
+            add_opinion_modifier = { target = IRQ modifier = CWICR_SYR_SEC_host_contract }
+        }
+    }
+    option = {
+        name = CWICR_SYR_SEC.5.b
+        ai_chance = { factor = 65 }
+        add_opinion_modifier = { target = SYR modifier = CWICR_SYR_SEC_contract_refused }
+        SYR = { set_country_flag = CWICR_SYR_PMC_IRQ_contract_refused }
+    }
+}
