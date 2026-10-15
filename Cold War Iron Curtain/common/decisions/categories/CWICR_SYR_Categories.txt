@@ -56,3 +56,27 @@ CWICR_SYR_regional_initiatives_category = {
     visible = { tag = SYR }
     visible_when_empty = no
 }
+
+CWICR_SYR_city_construction_category = {
+    icon = generic
+    priority = 260
+    allowed = { original_tag = SYR }
+    visible = { tag = SYR }
+    visible_when_empty = no
+}
+
+CWICR_SYR_security_directorate_category = {
+    icon = generic
+    priority = 265
+    allowed = { original_tag = SYR }
+    visible = { tag = SYR }
+    visible_when_empty = no
+}
+
+CWICR_SYR_private_contractors_category = {
+    icon = generic
+    priority = 270
+    allowed = { original_tag = SYR }
+    visible = { tag = SYR }
+    visible_when_empty = no
+}
