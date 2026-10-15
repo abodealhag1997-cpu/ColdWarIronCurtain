@@ -81,10 +81,10 @@ country_event = {
 
 news_event = {
     id = CWICR_SYR_SSC.4
+    major = yes
     title = CWICR_SYR_SSC.4.t
     desc = CWICR_SYR_SSC.4.d
     picture = GFX_Syrian_parliament
     is_triggered_only = yes
-    fire_only_once = yes
     option = { name = CWICR_SYR_SSC.4.a }
 }
