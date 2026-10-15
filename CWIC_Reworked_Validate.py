@@ -95,6 +95,10 @@ CHECK_BRACES = [
     "common/decisions/categories/CWICR_SYR_Categories.txt",
     "common/decisions/CWICR_SYR_State_Reforms.txt",
     "common/ideas/CWICR_SYR_State_Reforms.txt",
+    "common/decisions/CWICR_SYR_Political_Economy_Diplomacy.txt",
+    "common/ideas/CWICR_SYR_Institutions_and_Policies.txt",
+    "common/opinion_modifiers/CWICR_SYR_Diplomatic_Reactions.txt",
+    "events/CWICR_SYR_Institutional_Choices.txt",
     "common/technologies/CWICR_SYR_Research.txt",
     "common/special_projects/projects/cwic_space_special_projects.txt",
     "common/national_focus/50s_SYR.txt",
@@ -106,7 +110,7 @@ CHECK_BRACES = [
 masked = {name: balanced(name) for name in CHECK_BRACES}
 idea = masked[CHECK_BRACES[0]]
 characters = masked[CHECK_BRACES[1]]
-history = masked[CHECK_BRACES[6]]
+history = masked["history/countries/SYR - Syria.txt"]
 traits = masked[CHECK_BRACES[2]]
 
 for required in (
@@ -172,6 +176,72 @@ for decision in ("CWICR_SYR_budget_commission", "CWICR_SYR_irrigation_cooperativ
         fail("Syrian decision localisation missing: " + decision)
     if not re.search(r"(?m)^\s*" + re.escape(spirit) + r":0", policy_l10n):
         fail("Syrian idea localisation missing: " + spirit)
+
+# Second-stage Syria diplomacy, economy, constitutional institutions and civilian
+# nuclear feasibility: make every referenced idea/event/opinion modifier resolvable.
+new_decisions = masked["common/decisions/CWICR_SYR_Political_Economy_Diplomacy.txt"]
+new_ideas = masked["common/ideas/CWICR_SYR_Institutions_and_Policies.txt"]
+new_events = masked["events/CWICR_SYR_Institutional_Choices.txt"]
+new_diplomacy = masked["common/opinion_modifiers/CWICR_SYR_Diplomatic_Reactions.txt"]
+new_l10n = read("localisation/english/CWICR_SYR_Policy_l_english.yml")
+
+policy_choices = (
+    "CWICR_SYR_constitutional_bargain", "CWICR_SYR_development_model",
+    "CWICR_SYR_anti_corruption_audit", "CWICR_SYR_arab_consultations",
+    "CWICR_SYR_un_mediation_dossier", "CWICR_SYR_displaced_families_services",
+    "CWICR_SYR_nuclear_feasibility",
+)
+new_categories = (
+    "CWICR_SYR_institutions_category", "CWICR_SYR_economic_paths_category",
+    "CWICR_SYR_diplomacy_category", "CWICR_SYR_strategic_programme_category",
+)
+new_spirits = (
+    "CWICR_SYR_civilian_compact_idea", "CWICR_SYR_army_guardianship_idea",
+    "CWICR_SYR_public_development_idea", "CWICR_SYR_regulated_enterprise_idea",
+    "CWICR_SYR_rural_credit_idea", "CWICR_SYR_displaced_families_idea",
+    "CWICR_SYR_nuclear_safeguards_idea", "CWICR_SYR_nuclear_opaque_idea",
+)
+new_opinions = (
+    "CWICR_SYR_regional_consultation", "CWICR_SYR_un_dialogue",
+    "CWICR_SYR_open_safeguards", "CWICR_SYR_opaque_programme",
+)
+
+for category in new_categories:
+    if not re.search(r"(?m)^\s*" + category + r"\s*=\s*\{", policy_categories):
+        fail("Syria category registration missing: " + category)
+    if not re.search(r"(?m)^\s*" + category + r"\s*=\s*\{", new_decisions):
+        fail("Syria decisions category missing: " + category)
+for decision in policy_choices:
+    if not re.search(r"(?m)^\s*" + decision + r"\s*=\s*\{", new_decisions):
+        fail("Syria policy decision missing: " + decision)
+for idea_name in new_spirits:
+    if not re.search(r"(?m)^\s*" + idea_name + r"\s*=\s*\{", new_ideas):
+        fail("Syria policy spirit missing: " + idea_name)
+for modifier in new_opinions:
+    if not re.search(r"(?m)^\s*" + modifier + r"\s*=\s*\{", new_diplomacy):
+        fail("Syria diplomatic opinion missing: " + modifier)
+for event_id, options in ((1, 2), (2, 3), (3, 2)):
+    full = "CWICR_SYR." + str(event_id)
+    if not re.search(r"\bid\s*=\s*" + re.escape(full) + r"\b", new_events):
+        fail("Syria policy event missing: " + full)
+    if not re.search(r"\bid\s*=\s*" + re.escape(full) + r"\b", new_decisions):
+        fail("Syria policy decision does not call event: " + full)
+    for suffix in (".t", ".d", *(f".{chr(ord('a') + n)}" for n in range(options))):
+        key = full + suffix
+        if not re.search(r"(?m)^\s*" + re.escape(key) + r":0", new_l10n):
+            fail("Syria policy event localisation missing: " + key)
+for key in (*new_categories, *policy_choices, *new_spirits, *new_opinions):
+    if not re.search(r"(?m)^\s*" + re.escape(key) + r":0", new_l10n):
+        fail("Syria policy localisation missing: " + key)
+
+# Does not equate a UN mediation dossier with UN Council mechanics,
+# or feasibility with production of a nuclear weapon.
+if not re.search(r"\bhas_tech\s*=\s*atomic_research\b", new_decisions):
+    fail("The Syrian nuclear feasibility decision must require atomic research.")
+if not re.search(r"\bdate\s*>\s*1969\.12\.31", new_decisions):
+    fail("The Syrian nuclear feasibility programme should not start before 1970.")
+if re.search(r"\b(add_nukes|add_equipment_to_stockpile)\s*=", new_decisions + new_events):
+    fail("The Syrian feasibility decision must not grant weapons or stockpiles.")
 
 # Syrian technology tab: unique identifiers, game-defined tech categories,
 # nine sprites, three visible roots, UI templates and localisation.
