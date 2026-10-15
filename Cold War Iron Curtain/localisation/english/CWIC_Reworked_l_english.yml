@@ -7,3 +7,7 @@
  cwic_syr_organisation_staff_desc:0 "Coordinates operational planning across formations."
  cwic_syr_offensive_staff:0 "Mobile Operations"
  cwic_syr_offensive_staff_desc:0 "Favours energetic operational manoeuvre."
+ CUB_bomb_insurgents:0 "Bomb Insurgents"
+ CUB_bomb_insurgents_desc:0 "Order air strikes against Batista loyalist insurgent positions."
+ DOM_bomb_insurgents:0 "Bomb Insurgents"
+ DOM_bomb_insurgents_desc:0 "Order air strikes against pro-Bosch insurgent positions."
