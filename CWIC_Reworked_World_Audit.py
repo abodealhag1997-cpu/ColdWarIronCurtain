@@ -133,6 +133,40 @@ for label, source in (
         require(not re.search(r"(?m)^\s*fire_only_once\s*=\s*yes\s*$", block),
                 f"News broadcast suppressed by fire_only_once: {event_id}")
 
+# Syrian treasury decisions integrate with CWIC's existing currentMoney
+# balance, not a second bespoke currency variable or free political bonuses.
+treasury_decisions = read("common/decisions/CWICR_SYR_Treasury_Projects.txt")
+treasury_ideas = read("common/ideas/CWICR_SYR_Treasury_Projects.txt")
+treasury_loc = read("localisation/english/CWICR_SYR_Treasury_l_english.yml")
+require(balanced(treasury_decisions), "Unbalanced Syrian treasury decisions")
+require(balanced(treasury_ideas), "Unbalanced Syrian treasury ideas")
+treasury = {
+    "CWICR_SYR_treasury_industrial_credit": (12, 1095),
+    "CWICR_SYR_treasury_water_investment": (8, 730),
+    "CWICR_SYR_treasury_defence_procurement": (10, 730),
+}
+for key, (cash, days) in treasury.items():
+    require(bool(re.search(r"\b" + key + r"\s*=\s*\{", treasury_decisions)),
+            f"Missing treasury decision: {key}")
+    require(bool(re.search(r"\b" + key + r"_idea\s*=\s*\{", treasury_ideas)),
+            f"Missing treasury idea: {key}")
+    require(f" {key}:0" in treasury_loc, f"Missing treasury decision localization: {key}")
+    require(f" {key}_idea:0" in treasury_loc, f"Missing treasury spirit localization: {key}")
+    # Only check the current project block: previous and next projects must
+    # not be mistaken for evidence that this project pays its own bill.
+    block = treasury_decisions.split(key + " = {", 1)[-1].split(
+        "\n    CWICR_SYR_", 1
+    )[0]
+    require("allowed = { original_tag = SYR }" in block,
+            f"Treasury decision not restricted to Syria: {key}")
+    require(f"value = {cash} compare = greater_than_or_equals" in block,
+            f"Missing cash threshold: {key}")
+    require(f"subtract_from_variable = {{ currentMoney = {cash} }}" in block,
+            f"Cash was not charged to the existing CWIC treasury: {key}")
+    require(f"idea = {key}_idea days = {days}" in block,
+            f"Missing timed benefit: {key}")
+    require("fire_only_once = yes" in block, f"Repeat-farming risk: {key}")
+
 if errors:
     for item in errors:
         print("ERROR:", item)
