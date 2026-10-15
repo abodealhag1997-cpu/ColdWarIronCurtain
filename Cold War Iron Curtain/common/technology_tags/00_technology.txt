@@ -419,6 +419,11 @@ technology_folders = {
 	rocket_folder = {
 		ledger = air
 	}
+	# CWIC Reworked: country-exclusive Syrian reconstruction/research tab.
+	cwicr_syr_research_folder = {
+		available = { original_tag = SYR }
+		ledger = civilian
+	}
 }
 
  
