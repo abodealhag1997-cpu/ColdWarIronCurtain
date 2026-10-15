@@ -52,3 +52,13 @@ CWICR_SYR_strategic_programme_category = {
     visible = { tag = SYR }
     visible_when_empty = no
 }
+
+# Foreign-policy initiatives below invite other countries to respond.
+# No full-size category picture: the text should remain readable in the decisions list.
+CWICR_SYR_regional_initiatives_category = {
+    icon = generic
+    priority = 255
+    allowed = { original_tag = SYR }
+    visible = { tag = SYR }
+    visible_when_empty = no
+}
