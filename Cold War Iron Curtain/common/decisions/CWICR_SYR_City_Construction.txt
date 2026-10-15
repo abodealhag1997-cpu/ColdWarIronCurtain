@@ -1,0 +1,282 @@
+# CWIC Reworked -- Syria only: gradual public works in ACTUAL map states.
+# 120-day planning stage, then construction is QUEUED (not instantly granted).
+# Cost is paid at decision selection; construction capacity is still required.
+# Any change of control before completion cancels construction, not ownership.
+CWICR_SYR_city_construction_category = {
+    # Damascus (Dimashq): state 554, actual CWIC state file and building type.
+    CWICR_SYR_URB_damascus_administration = {
+        icon = generic_construction
+        allowed = { original_tag = SYR }
+        visible = { tag = SYR }
+        available = {
+            tag = SYR
+            date > 1952.1.1
+            has_idea = CWICR_SYR_budget_commission_idea
+            554 = { is_owned_and_controlled_by = SYR }
+            check_variable = { var = currentMoney value = 12 compare = greater_than_or_equals }
+            has_tech = CWICR_SYR_vocational_1949
+        }
+        cost = 90
+        days_remove = 120
+        fire_only_once = yes
+        complete_effect = {
+            subtract_from_variable = { currentMoney = 12 }
+        }
+        remove_effect = {
+            if = {
+                limit = { 554 = { is_owned_and_controlled_by = SYR } }
+                554 = {
+                add_extra_state_shared_building_slots = 1
+                add_building_construction = {
+                    type = office_park
+                    level = 1
+                    instant_build = no
+                }
+            }
+            }
+        }
+        ai_will_do = { factor = 0.55 }
+    }
+
+    # Aleppo: state 677, actual CWIC state file and building type.
+    CWICR_SYR_URB_aleppo_industrial_estate = {
+        icon = generic_construction
+        allowed = { original_tag = SYR }
+        visible = { tag = SYR }
+        available = {
+            tag = SYR
+            date > 1958.1.1
+            has_idea = CWICR_SYR_budget_commission_idea
+            677 = { is_owned_and_controlled_by = SYR }
+            check_variable = { var = currentMoney value = 18 compare = greater_than_or_equals }
+            has_tech = CWICR_SYR_industry_1958
+        }
+        cost = 105
+        days_remove = 120
+        fire_only_once = yes
+        complete_effect = {
+            subtract_from_variable = { currentMoney = 18 }
+        }
+        remove_effect = {
+            if = {
+                limit = { 677 = { is_owned_and_controlled_by = SYR } }
+                677 = {
+                add_extra_state_shared_building_slots = 1
+                add_building_construction = {
+                    type = industrial_complex
+                    level = 1
+                    instant_build = no
+                }
+            }
+            }
+        }
+        ai_will_do = { factor = 0.55 }
+    }
+
+    # Homs: state 893, actual CWIC state file and building type.
+    CWICR_SYR_URB_homs_defence_workshops = {
+        icon = generic_construction
+        allowed = { original_tag = SYR }
+        visible = { tag = SYR }
+        available = {
+            tag = SYR
+            date > 1963.1.1
+            has_idea = CWICR_SYR_budget_commission_idea
+            893 = { is_owned_and_controlled_by = SYR }
+            check_variable = { var = currentMoney value = 20 compare = greater_than_or_equals }
+            has_tech = CWICR_SYR_machine_tools_1968
+        }
+        cost = 130
+        days_remove = 120
+        fire_only_once = yes
+        complete_effect = {
+            subtract_from_variable = { currentMoney = 20 }
+        }
+        remove_effect = {
+            if = {
+                limit = { 893 = { is_owned_and_controlled_by = SYR } }
+                893 = {
+                add_extra_state_shared_building_slots = 1
+                add_building_construction = {
+                    type = arms_factory
+                    level = 1
+                    instant_build = no
+                }
+            }
+            }
+        }
+        ai_will_do = { factor = 0.55 }
+    }
+
+    # Hama: state 895, actual CWIC state file and building type.
+    CWICR_SYR_URB_hama_agro_processing = {
+        icon = generic_construction
+        allowed = { original_tag = SYR }
+        visible = { tag = SYR }
+        available = {
+            tag = SYR
+            date > 1957.1.1
+            has_idea = CWICR_SYR_budget_commission_idea
+            895 = { is_owned_and_controlled_by = SYR }
+            check_variable = { var = currentMoney value = 10 compare = greater_than_or_equals }
+            has_tech = CWICR_SYR_irrigation_1957
+        }
+        cost = 75
+        days_remove = 120
+        fire_only_once = yes
+        complete_effect = {
+            subtract_from_variable = { currentMoney = 10 }
+        }
+        remove_effect = {
+            if = {
+                limit = { 895 = { is_owned_and_controlled_by = SYR } }
+                895 = {
+                add_extra_state_shared_building_slots = 1
+                add_building_construction = {
+                    type = agri_industrial_complex
+                    level = 1
+                    instant_build = no
+                }
+            }
+            }
+        }
+        ai_will_do = { factor = 0.55 }
+    }
+
+    # Latakia: state 809, actual CWIC state file and building type.
+    CWICR_SYR_URB_latakia_port_modernisation = {
+        icon = generic_construction
+        allowed = { original_tag = SYR }
+        visible = { tag = SYR }
+        available = {
+            tag = SYR
+            date > 1965.1.1
+            has_idea = CWICR_SYR_budget_commission_idea
+            809 = { is_owned_and_controlled_by = SYR }
+            check_variable = { var = currentMoney value = 20 compare = greater_than_or_equals }
+        }
+        cost = 115
+        days_remove = 120
+        fire_only_once = yes
+        complete_effect = {
+            subtract_from_variable = { currentMoney = 20 }
+        }
+        remove_effect = {
+            if = {
+                limit = { 809 = { is_owned_and_controlled_by = SYR } }
+                809 = {
+                add_extra_state_shared_building_slots = 1
+                add_building_construction = {
+                    type = dockyard
+                    level = 1
+                    instant_build = no
+                }
+            }
+            }
+        }
+        ai_will_do = { factor = 0.55 }
+    }
+
+    # Deir ez-Zor: state 680, actual CWIC state file and building type.
+    CWICR_SYR_URB_deir_waterworks = {
+        icon = generic_construction
+        allowed = { original_tag = SYR }
+        visible = { tag = SYR }
+        available = {
+            tag = SYR
+            date > 1970.1.1
+            has_idea = CWICR_SYR_budget_commission_idea
+            680 = { is_owned_and_controlled_by = SYR }
+            check_variable = { var = currentMoney value = 12 compare = greater_than_or_equals }
+            has_tech = CWICR_SYR_euphrates_1970
+        }
+        cost = 85
+        days_remove = 120
+        fire_only_once = yes
+        complete_effect = {
+            subtract_from_variable = { currentMoney = 12 }
+        }
+        remove_effect = {
+            if = {
+                limit = { 680 = { is_owned_and_controlled_by = SYR } }
+                680 = {
+                add_building_construction = {
+                    type = water_infrastructure
+                    level = 1
+                    instant_build = no
+                }
+            }
+            }
+        }
+        ai_will_do = { factor = 0.55 }
+    }
+
+    # Al-Hasakah: state 777, actual CWIC state file and building type.
+    CWICR_SYR_URB_hasakah_rural_cooperatives = {
+        icon = generic_construction
+        allowed = { original_tag = SYR }
+        visible = { tag = SYR }
+        available = {
+            tag = SYR
+            date > 1972.1.1
+            has_idea = CWICR_SYR_budget_commission_idea
+            777 = { is_owned_and_controlled_by = SYR }
+            check_variable = { var = currentMoney value = 14 compare = greater_than_or_equals }
+            has_tech = CWICR_SYR_irrigation_1957
+        }
+        cost = 90
+        days_remove = 120
+        fire_only_once = yes
+        complete_effect = {
+            subtract_from_variable = { currentMoney = 14 }
+        }
+        remove_effect = {
+            if = {
+                limit = { 777 = { is_owned_and_controlled_by = SYR } }
+                777 = {
+                add_extra_state_shared_building_slots = 1
+                add_building_construction = {
+                    type = agri_industrial_complex
+                    level = 1
+                    instant_build = no
+                }
+            }
+            }
+        }
+        ai_will_do = { factor = 0.55 }
+    }
+
+    # Rif Dimashq: state 2046, actual CWIC state file and building type.
+    CWICR_SYR_URB_rif_dimashq_signal_station = {
+        icon = generic_construction
+        allowed = { original_tag = SYR }
+        visible = { tag = SYR }
+        available = {
+            tag = SYR
+            date > 1978.1.1
+            has_idea = CWICR_SYR_budget_commission_idea
+            2046 = { is_owned_and_controlled_by = SYR }
+            check_variable = { var = currentMoney value = 20 compare = greater_than_or_equals }
+            has_tech = CWICR_SYR_air_defence_network_1972
+        }
+        cost = 120
+        days_remove = 120
+        fire_only_once = yes
+        complete_effect = {
+            subtract_from_variable = { currentMoney = 20 }
+        }
+        remove_effect = {
+            if = {
+                limit = { 2046 = { is_owned_and_controlled_by = SYR } }
+                2046 = {
+                add_building_construction = {
+                    type = radar_station
+                    level = 1
+                    instant_build = no
+                }
+            }
+            }
+        }
+        ai_will_do = { factor = 0.55 }
+    }
+}
