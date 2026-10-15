@@ -143,7 +143,7 @@ They are conservative technical mappings, not a balance test.
   entry in its fallback `default` pool. The prior user log reported
   failed operative portrait generation for Syria.
 - Added male and female operative fallbacks using the generic
-  `gfx/leaders/operative_unknown.dds` asset name used by HOI4
+  `gfx/leaders/leader_unknown.dds` asset name used by HOI4
   portrait mods. This is a generic contingency portrait, **not a
   country-specific historical operative portrait**.
 - Added a source preflight check; exact rendering and DLC behavior
