@@ -103,9 +103,48 @@ CWICR_SYR_private_contractors_category = {
         }
         remove_effect = {
             add_ideas = CWICR_SYR_PMC_regulated_idea
+            # Form a small legal domestic contractor brigade template from
+            # standard infantry, not the old 'pmc' subunit (active = no).
+            division_template = {
+                name = "Syrian Contract Security Brigade"
+                priority = 2
+                is_locked = yes
+                regiments = {
+                    infantry = { x = 0 y = 0 }
+                    infantry = { x = 0 y = 1 }
+                    infantry = { x = 0 y = 2 }
+                }
+            }
             set_country_flag = CWICR_SYR_PMC_legal_framework
         }
         ai_will_do = { factor = 0.35 }
+    }
+
+    # Actually recruits ONE Syrian contractor formation. Paid up-front and
+    # spawned understrength and entirely without free infantry equipment.
+    CWICR_SYR_PMC_recruit_home_brigade = {
+        icon = generic_political_reform
+        allowed = { original_tag = SYR }
+        visible = { tag = SYR }
+        available = {
+            date > 1975.1.1
+            has_country_flag = CWICR_SYR_PMC_legal_framework
+            check_variable = { var = currentMoney value = 20 compare = greater_than_or_equals }
+        }
+        cost = 135
+        days_remove = 90
+        fire_only_once = yes
+        complete_effect = { subtract_from_variable = { currentMoney = 20 } }
+        remove_effect = {
+            capital_scope = {
+                create_unit = {
+                    division = "name = \"1st Syrian Contract Security Brigade\" division_template = \"Syrian Contract Security Brigade\" start_experience_factor = 0.15 start_manpower_factor = 0.50 start_equipment_factor = 0.0"
+                    owner = SYR
+                }
+            }
+            set_country_flag = CWICR_SYR_PMC_home_brigade_recruited
+        }
+        ai_will_do = { factor = 0.25 }
     }
 
     # Requires host-country CONSENT; financial cost paid even if rejected.
