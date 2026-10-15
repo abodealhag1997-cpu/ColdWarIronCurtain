@@ -25,4 +25,9 @@ opinion_modifiers = {
     CWICR_SYR_science_partners = { value = 14 months = 30 }
     CWICR_SYR_balanced_outreach = { value = 12 months = 24 }
     CWICR_SYR_bloc_suspicion = { value = -7 months = 24 }
+
+    CWICR_SYR_observation_cooperation = { value = 10 months = 36 }
+    CWICR_SYR_observation_refusal = { value = -12 months = 24 }
+    CWICR_SYR_tripartite_water_partners = { value = 12 months = 36 }
+    CWICR_SYR_relief_partners = { value = 10 months = 24 }
 }
