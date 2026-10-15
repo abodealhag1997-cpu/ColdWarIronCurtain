@@ -1,0 +1,18 @@
+# CWIC Reworked: Syrian state-capacity projects. Separate from original focus-tree rewards.
+CWICR_SYR_state_reform_category = {
+    icon = generic
+    picture = GFX_decision_cat_generic_mefo_bills
+    priority = 220
+    allowed = { original_tag = SYR }
+    visible = { tag = SYR }
+    visible_when_empty = no
+}
+
+CWICR_SYR_defence_reform_category = {
+    icon = generic
+    picture = GFX_decision_cat_generic_mefo_bills
+    priority = 230
+    allowed = { original_tag = SYR }
+    visible = { tag = SYR }
+    visible_when_empty = no
+}
