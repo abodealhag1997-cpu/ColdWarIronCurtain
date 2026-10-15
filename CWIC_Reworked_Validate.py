@@ -52,7 +52,7 @@ def strip_strings_and_comments(source: str) -> str:
         if in_string:
             if escaping:
                 escaping = False
-            elif ch == "\":
+            elif ch == "\\":
                 escaping = True
             elif ch == '"':
                 in_string = False
@@ -127,9 +127,9 @@ roster = [
     "SYR_afif_albizri",
 ]
 if not re.search(r"(?m)^load_focus_tree = 50s_SYR\s*$", history):
-    fail("1949 Syrian bookmark must explicitly load the 1950s tree")
+    fail("1949 Syrian history must explicitly load the 1950s focus tree")
 if not re.search(r"(?m)^\s*1960\.1\.1\s*=\s*\{\s*\n\s*load_focus_tree = 60s_SYR", history):
-    fail("1960 Syrian bookmark must explicitly switch to the 1960s tree")
+    fail("1960 Syrian history must explicitly load the 1960s focus tree")
 
 for token in roster:
     if not re.search(r"(?m)^\s*" + re.escape(token) + r"\s*=\s*\{", characters):
@@ -150,7 +150,7 @@ for trait in (
     if not re.search(r"\b" + re.escape(trait) + r"\s*=\s*\{", traits):
         fail(f"Custom staff trait missing: {trait}")
 
-# Ensure the new Syrian policy content is complete and cross-referenced.
+# Ensure Syrian reform decisions, national spirits and localisation refer to each other.
 policy_categories = masked["common/decisions/categories/CWICR_SYR_Categories.txt"]
 policy_decisions = masked["common/decisions/CWICR_SYR_State_Reforms.txt"]
 policy_ideas = masked["common/ideas/CWICR_SYR_State_Reforms.txt"]
@@ -158,7 +158,7 @@ policy_l10n = read("localisation/english/CWIC_Reworked_l_english.yml")
 
 for category in ("CWICR_SYR_state_reform_category", "CWICR_SYR_defence_reform_category"):
     if not re.search(r"(?m)^\s*" + category + r"\s*=\s*\{", policy_categories):
-        fail("Syrian policy decision category missing: " + category)
+        fail("Syrian policy category missing: " + category)
 for decision in ("CWICR_SYR_budget_commission", "CWICR_SYR_irrigation_cooperatives",
                  "CWICR_SYR_officer_training", "CWICR_SYR_intelligence_review"):
     spirit = decision + "_idea"
