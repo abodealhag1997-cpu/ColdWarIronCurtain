@@ -278,6 +278,55 @@ deterrent over the 1949–1991 time frame. Full engineering order and
 acceptance criteria are recorded in
 [`CWIC_REWORKED_SYRIA_ROADMAP.md`](CWIC_REWORKED_SYRIA_ROADMAP.md).
 
+## Syrian decisions with international consequences (new module)
+
+Added an exclusive `CWICR_SYR_regional_initiatives_category` under
+`common/decisions/categories`, using no full-sized background image so
+the category should avoid additional decorative text clutter.
+
+Five one-use Syrian foreign-policy initiatives now dispatch independent
+response events to non-Syrian countries:
+
+1. **Levantine transit corridor (1950+):** Lebanon can accept or reject
+   an infrastructure/customs proposal. Acceptance applies a modest
+   infrastructure-construction bonus and consumer-goods cost **to
+   both Lebanon and Syria**, plus temporary bilateral opinion changes.
+2. **Euphrates water dialogue (1961+):** Iraq may accept a technical
+   commission or reject it, with different Syrian/Iraqi diplomatic
+   effects and modest administrative ideas on acceptance. This does
+   **not** simulate actual river allocation or annex Iraqi resources.
+3. **Jordanian border commission (1950+):** Jordan decides whether to
+   establish liaison talks, with bilateral reputation and stability
+   consequences.
+4. **Egyptian technical exchange (1952+):** once Syria has funded a
+   budget commission, Egypt may join a reciprocal, small one-use
+   radio research bonus, or decline.
+5. **Two-bloc outreach (1955+):** Washington and Moscow independently
+   decide whether to entertain Syrian consultations. Acceptance
+   influences their opinions of Syria, while the rival bloc may
+   become suspicious. A neutral news event tells the world about the
+   initiative without inventing a US or Soviet commitment.
+
+Across these initiatives there are **seven** triggered foreign/news
+events, eight temporary opinion modifier types, two small
+bilateral national spirits and **51 English localisation keys**.
+Foreign AI choices are weighted rather than guaranteed; neither
+Syria nor another country receives automatic territory, puppet
+governments, nuclear weapons or free armies.
+
+These decisions use the same political-power cost system as the
+rest of CWIC and are available to **Syria only**. The receiving states
+participate as decision responders, not as decision initiators.
+Source checks confirmed all event IDs, national spirits, opinion
+identifiers, focus-independent dates and text keys resolve. This is
+**source validation only**, not tested game balance or UI rendering.
+
+The user's screenshot of the pre-existing Economic Decisions category
+shows busy text overlapping the category artwork. This visual issue
+belongs to the legacy economic GUI and is not yet proven repaired.
+Our new Syria decision category intentionally omits a large picture;
+we should audit the old economic category artwork and GUI separately.
+
 ## Static checks done
 
 - Balanced `{}` checked in the modified `idea_tags`, character,
