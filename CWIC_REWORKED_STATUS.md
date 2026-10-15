@@ -373,3 +373,33 @@ release yet.
 The original `development-branch` and Steam Workshop subscription
 remain unchanged. Each modification is committed separately on the
 `cwic-reworked` branch; Git history permits any patch to be reverted.
+
+## Second Syria-led international initiatives (source-level changes)
+
+- **Golan ceasefire observation, post-1967:** Syria must first file its
+  UN mediation dossier and not be at war with Israel. Israel may accept
+  or refuse bilateral observation contacts. Consent triggers limited
+  staff costs, shared stability benefits, temporary opinions in Syria,
+  Israel, USA and USSR, and a public event. No formal UN mandate,
+  territorial change or ceasefire guarantee is created.
+- **Euphrates three-government consultation, from 1965:** Syria must
+  first secure Iraqi acceptance of bilateral water talks. Turkey can
+  independently join or reject a technical conference. Acceptance
+  creates a small shared planning benefit and consumer-goods cost in
+  Syria, Iraq and Turkey; no river resources change hands.
+- **Regional civilian relief, from 1975:** Syria must already fund its
+  displaced-family services. Lebanon and Jordan independently decide
+  on relief administration; each consenting state receives a modest
+  stability/cost trade-off. A world news event announces the invitation
+  but does not pretend either government already accepted.
+
+All eight Syria-exclusive foreign initiatives are in
+`common/decisions/CWICR_SYR_Regional_Initiatives.txt`; 15 independent
+foreign/news events reside in `events/CWICR_SYR_Regional_Initiatives.txt`.
+Associated effects and descriptions are in the existing regional
+ideas, opinion modifiers and localisation files. The source validator
+now checks all event references, localisation keys, the recipient
+countries' ability to respond, and the absence of instant annexations
+or free weapons. Runtime event routing and UI behaviour are **not yet
+verified**. The pre-existing global Economic Decisions text overlap
+shown in the user's screenshot is a separate unresolved UI issue.
