@@ -192,7 +192,7 @@ for forbidden in ("annex_country =", "transfer_state =", "add_nukes =",
 # the licencing decision has created its dedicated small infantry template.
 if src["security"].count("create_unit = {") != 1:
     failures.append("Expected exactly one paid Syrian contractor-unit recruitment.")
-if "division_template = \"Syrian Contract Security Brigade\"" not in src["security"]:
+if 'name = "Syrian Contract Security Brigade"' not in src["security"]:
     failures.append("Contract security brigade template is not defined.")
 if 'start_equipment_factor = 0.0' not in src["security"]:
     failures.append("Contractor brigade incorrectly receives free equipment.")
