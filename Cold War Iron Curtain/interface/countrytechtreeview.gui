@@ -12199,16 +12199,10 @@ guiTypes = {
 				position = { x = 1290 y = 0 }
 				quadTextureSprite = "GFX_industry_folder_tab"
 				frame = 1
+				text = "SYR"
+				buttonFont = "hoi_16mbs"
 				pdx_tooltip = "CWICR_SYR_TECH_TAB"
 				clicksound = click_default
-			}
-			instantTextboxType = {
-				name = "cwicr_syr_tab_label"
-				text = "SYR"
-				font = "hoi_16mbs"
-				position = { x=1309 y=4 }
-				maxWidth = 50
-				maxHeight = 22
 			}
 
 			buttonType = {
