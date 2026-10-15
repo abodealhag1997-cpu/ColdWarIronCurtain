@@ -720,12 +720,8 @@ focus_tree = {
 			focus = SYR_modernairbases
 		}
 		completion_reward = {
-			add_doctrine_cost_reduction = {
-				name = air_doc_bonus
-				cost_reduction = 0.1
-				uses = 1
-				category = cat_air_doctrine
-			}
+			# Reworked grand doctrines use XP rather than legacy doctrine tech discounts.
+			add_air_experience = 10
 		}
 	}
 	#Focus for Land doctrine evaluation
@@ -748,12 +744,8 @@ focus_tree = {
 			focus = SYR_fortifythegolan
 		}
 		completion_reward = {
-			add_doctrine_cost_reduction = {
-				name = land_doc_bonus
-				cost_reduction = 0.1
-				uses = 1
-				category = land_doctrine
-			}
+			# Reworked grand doctrines use XP rather than legacy doctrine tech discounts.
+			add_army_experience = 10
 		}
 	}
 	#Focus for Naval doctrine evaluation
@@ -776,12 +768,8 @@ focus_tree = {
 			focus = SYR_coastaldefence
 		}
 		completion_reward = {
-			add_doctrine_cost_reduction = {
-				name = nav_doctrine_bonus
-				cost_reduction = 0.1
-				uses = 1
-				category = naval_doctrine
-			}
+			# Reworked grand doctrines use XP rather than legacy doctrine tech discounts.
+			add_navy_experience = 10
 		}
 	}
 	#Focus for Acquire modern equipment
