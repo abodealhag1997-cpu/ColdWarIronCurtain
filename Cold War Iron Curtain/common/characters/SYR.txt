@@ -273,6 +273,13 @@ characters={
 			logistics_skill=2
 			legacy_id=-1
 		}
+	
+		advisor = {
+			slot = army_chief
+			idea_token = CWIC_SYR_Aram_Chief
+			traits = { cwic_syr_defensive_staff }
+			cost = 100
+		}
 	}
 	SYR_abdel_hamid_alsarraj={
 		name="Abdel Hamid al-Sarraj"
@@ -308,6 +315,14 @@ characters={
 			logistics_skill=1
 			legacy_id=-1
 		}
+	
+		advisor = {
+			slot = high_command
+			idea_token = CWIC_SYR_Sami_High_Command
+			traits = { cwic_syr_organisation_staff }
+			cost = 100
+			ledger = army
+		}
 	}
 	SYR_afif_albizri={
 		name="Afif al-Bizri"
@@ -324,6 +339,14 @@ characters={
 			logistics_skill=1
 			legacy_id=-1
 		}
+	
+		advisor = {
+			slot = theorist
+			idea_token = CWIC_SYR_Afif_Theorist
+			traits = { military_theorist }
+			cost = 100
+			ledger = army
+		}
 	}
 	SYR_fawzi_selu={
 		name="Fawzi Selu"
@@ -339,6 +362,13 @@ characters={
 			planning_skill=1
 			logistics_skill=1
 			legacy_id=-1
+		}
+	
+		advisor = {
+			slot = army_chief
+			idea_token = CWIC_SYR_Fawzi_Chief
+			traits = { cwic_syr_reform_staff }
+			cost = 100
 		}
 	}
 	SYR_husni_beck_albahra={
@@ -374,6 +404,14 @@ characters={
 			planning_skill=1
 			logistics_skill=1
 			legacy_id=-1
+		}
+	
+		advisor = {
+			slot = high_command
+			idea_token = CWIC_SYR_Adib_High_Command
+			traits = { cwic_syr_offensive_staff }
+			cost = 100
+			ledger = army
 		}
 	}
 	SYR_luay_alatassi={
