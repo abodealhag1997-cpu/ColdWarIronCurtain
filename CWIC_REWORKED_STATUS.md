@@ -135,6 +135,20 @@ They are conservative technical mappings, not a balance test.
   model the Energia launcher historically used by Buran. A full Energia
   launcher project is still future work.
 
+### Intelligence operative portrait fallback
+
+- `portraits/027_lar_portraits.txt` is deliberately empty upstream to
+  prevent DLC-ownership-dependent multiplayer portrait pools.
+- `portraits/00_portraits.txt` originally had no `operative = {`
+  entry in its fallback `default` pool. The prior user log reported
+  failed operative portrait generation for Syria.
+- Added male and female operative fallbacks using the generic
+  `gfx/leaders/operative_unknown.dds` asset name used by HOI4
+  portrait mods. This is a generic contingency portrait, **not a
+  country-specific historical operative portrait**.
+- Added a source preflight check; exact rendering and DLC behavior
+  still need in-game verification.
+
 ## Static checks done
 
 - Balanced `{}` checked in the modified `idea_tags`, character,
