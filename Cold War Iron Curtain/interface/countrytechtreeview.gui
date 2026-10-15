@@ -14381,76 +14381,9 @@ guiTypes = {
 		}
 	}
 
-	containerWindowType = {
-		name = "techtree_rocket_folder_item"
-		position = { x=-55 y=0 }
-		size = { width = 182 height = 84 }
-		clipping = no
+	# CWIC Reworked: removed incomplete duplicate rocket widget; full 3-slot version retained.
 
-		background = {
-			name = "Background"
-			quadTextureSprite ="GFX_technology_unavailable_item_bg"
-		}
 
-		instantTextBoxType = {
-			name = "Name"
-			position = { x = -38 y = 65 }
-			textureFile = ""
-			font = "bombardier_20_caps"
-			borderSize = {x = 0 y = 0}
-			text = ""
-			maxWidth = 260
-			maxHeight = 20
-			fixedsize = yes
-			format = center
-		}
-		iconType = {
-			name = "Icon"
-			position = { x=1 y=1 }
-			spriteType = "GFX_technology_medium"
-			centerposition = no
-			alwaystransparent = yes
-		}
-		iconType = {
-			name = "bonus_icon"
-			position = { x = 110 y = -24 }
-			spriteType = "GFX_tech_bonus"
-		}
-		instantTextBoxType = {
-			name = "bonus"
-			position = { x = 129 y = -22 }
-			textureFile = ""
-			font = "hoi_16mbs"
-			borderSize = {x = 4 y = 4}
-			text = "lol boat"
-			maxWidth = 50
-			maxHeight = 20
-			format = right
-		}
-		containerWindowType = {
-			name = "sub_technology_slot_0"
-			position = { x=141 y=1 }
-			size = { width = 35 height = 26 }
-			clipping = no
-
-			background = {
-				name = "Background"
-				spriteType ="GFX_subtechnology_unavailable_item_bg"
-			}
-
-			iconType = {
-				name = "picture"
-				position = { x=1 y=2 }
-				spriteType = "GFX_subtech_td"
-				alwaystransparent = yes
-			}
-		}
-		iconType = {
-			name = "can_assign_design_team_icon"
-			position = { x=0 y=5000 }
-			spriteType = "GFX_design_team_icon"
-		}
-	}
 
 	containerWindowType = {
 		name = "techtree_xor_item"
