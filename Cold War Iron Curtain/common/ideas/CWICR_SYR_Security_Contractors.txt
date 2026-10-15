@@ -1,0 +1,73 @@
+# CWIC Reworked: institutions are expensive. Values are alternate-history
+# gameplay progression, NOT real historical parity with the US CIA.
+ideas = {
+    country = {
+        CWICR_SYR_INT_directorate_idea = {
+            allowed = { always = no }
+            removal_cost = -1
+            picture = generic_research_bonus
+            modifier = {
+                operative_slot = 1
+                decryption_factor = 0.06
+                encryption_factor = 0.03
+                consumer_goods_factor = 0.02
+                political_power_factor = -0.025
+            }
+        }
+        CWICR_SYR_INT_regional_network_idea = {
+            allowed = { always = no }
+            removal_cost = -1
+            picture = generic_research_bonus
+            modifier = {
+                operative_slot = 1
+                decryption_factor = 0.08
+                encryption_factor = 0.06
+                consumer_goods_factor = 0.035
+                stability_factor = -0.01
+                political_power_factor = -0.035
+            }
+        }
+        CWICR_SYR_INT_advanced_analysis_idea = {
+            allowed = { always = no }
+            removal_cost = -1
+            picture = generic_research_bonus
+            modifier = {
+                operative_slot = 1
+                decryption_factor = 0.07
+                encryption_factor = 0.07
+                consumer_goods_factor = 0.04
+                political_power_factor = -0.04
+            }
+        }
+        CWICR_SYR_PMC_regulated_idea = {
+            allowed = { always = no }
+            removal_cost = -1
+            picture = generic_manpower_bonus
+            modifier = {
+                army_org_factor = 0.01
+                consumer_goods_factor = 0.015
+                political_power_factor = -0.015
+            }
+        }
+        CWICR_SYR_PMC_host_advisers_idea = {
+            allowed = { always = no }
+            removal_cost = -1
+            picture = generic_manpower_bonus
+            modifier = {
+                army_org_factor = 0.015
+                supply_consumption_factor = -0.01
+                consumer_goods_factor = 0.015
+            }
+        }
+        CWICR_SYR_PMC_export_office_idea = {
+            allowed = { always = no }
+            removal_cost = -1
+            picture = generic_research_bonus
+            modifier = {
+                political_power_factor = 0.01
+                consumer_goods_factor = -0.005
+                stability_factor = -0.005
+            }
+        }
+    }
+}
