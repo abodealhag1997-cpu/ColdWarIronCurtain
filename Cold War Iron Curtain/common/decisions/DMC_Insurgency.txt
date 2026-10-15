@@ -158,7 +158,7 @@ DMC_Insurgency_Decisions = {
 	}
 
 	
-	bomb_insurgents = {
+	DOM_bomb_insurgents = {
 
 		icon = generic_civil_support
 		visible = {
