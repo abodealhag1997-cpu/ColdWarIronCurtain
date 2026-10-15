@@ -195,3 +195,177 @@ news_event = {
     fire_only_once = yes
     option = { name = CWICR_SYR_REG.7.a }
 }
+
+
+# CWIC Reworked: a post-1967 Golan observation proposal.
+# Recipient consent is required. This is NOT a UN Security Council vote.
+country_event = {
+    id = CWICR_SYR_REG.8
+    title = CWICR_SYR_REG.8.t
+    desc = CWICR_SYR_REG.8.d
+    picture = GFX_Syrian_parliament
+    is_triggered_only = yes
+    fire_only_once = yes
+
+    option = {
+        name = CWICR_SYR_REG.8.a
+        ai_chance = { factor = 20 }
+        add_political_power = -25
+        add_ideas = CWICR_SYR_observation_liaison_idea
+        add_opinion_modifier = { target = SYR modifier = CWICR_SYR_observation_cooperation }
+        SYR = {
+            add_ideas = CWICR_SYR_observation_liaison_idea
+            add_opinion_modifier = { target = ISR modifier = CWICR_SYR_observation_cooperation }
+            set_country_flag = CWICR_SYR_ISR_observation_accepted
+        }
+        USA = { add_opinion_modifier = { target = SYR modifier = CWICR_SYR_observation_cooperation } }
+        SOV = { add_opinion_modifier = { target = SYR modifier = CWICR_SYR_observation_cooperation } }
+        news_event = { id = CWICR_SYR_REG.9 days = 1 }
+    }
+    option = {
+        name = CWICR_SYR_REG.8.b
+        ai_chance = { factor = 80 }
+        add_opinion_modifier = { target = SYR modifier = CWICR_SYR_observation_refusal }
+        SYR = {
+            add_stability = -0.005
+            set_country_flag = CWICR_SYR_ISR_observation_refused
+            add_opinion_modifier = { target = ISR modifier = CWICR_SYR_observation_refusal }
+        }
+        news_event = { id = CWICR_SYR_REG.10 days = 1 }
+    }
+}
+
+news_event = {
+    id = CWICR_SYR_REG.9
+    title = CWICR_SYR_REG.9.t
+    desc = CWICR_SYR_REG.9.d
+    picture = GFX_Syrian_parliament
+    is_triggered_only = yes
+    fire_only_once = yes
+    option = { name = CWICR_SYR_REG.9.a }
+}
+
+news_event = {
+    id = CWICR_SYR_REG.10
+    title = CWICR_SYR_REG.10.t
+    desc = CWICR_SYR_REG.10.d
+    picture = GFX_Syrian_parliament
+    is_triggered_only = yes
+    fire_only_once = yes
+    option = { name = CWICR_SYR_REG.10.a }
+}
+
+# Türkiye may accept a technical water conference with Syria and Iraq.
+# No guarantees about water allocation or control of hydroelectric assets.
+country_event = {
+    id = CWICR_SYR_REG.11
+    title = CWICR_SYR_REG.11.t
+    desc = CWICR_SYR_REG.11.d
+    picture = GFX_Syrian_parliament
+    is_triggered_only = yes
+    fire_only_once = yes
+
+    option = {
+        name = CWICR_SYR_REG.11.a
+        ai_chance = { factor = 45 }
+        add_political_power = -20
+        add_ideas = CWICR_SYR_tripartite_water_idea
+        add_opinion_modifier = { target = SYR modifier = CWICR_SYR_tripartite_water_partners }
+        SYR = {
+            add_ideas = CWICR_SYR_tripartite_water_idea
+            set_country_flag = CWICR_SYR_TUR_water_accepted
+            add_opinion_modifier = { target = TUR modifier = CWICR_SYR_tripartite_water_partners }
+        }
+        IRQ = {
+            add_ideas = CWICR_SYR_tripartite_water_idea
+            add_opinion_modifier = { target = TUR modifier = CWICR_SYR_tripartite_water_partners }
+        }
+        news_event = { id = CWICR_SYR_REG.15 days = 1 }
+    }
+
+    option = {
+        name = CWICR_SYR_REG.11.b
+        ai_chance = { factor = 55 }
+        add_opinion_modifier = { target = SYR modifier = CWICR_SYR_water_dispute }
+        SYR = {
+            set_country_flag = CWICR_SYR_TUR_water_refused
+            add_opinion_modifier = { target = TUR modifier = CWICR_SYR_water_dispute }
+        }
+    }
+}
+
+# Lebanese and Jordanian governments decide independently whether to take
+# part in an administrative relief effort. The relief idea has a real cost.
+country_event = {
+    id = CWICR_SYR_REG.12
+    title = CWICR_SYR_REG.12.t
+    desc = CWICR_SYR_REG.12.d
+    picture = GFX_Syrian_parliament
+    is_triggered_only = yes
+    fire_only_once = yes
+
+    option = {
+        name = CWICR_SYR_REG.12.a
+        ai_chance = { factor = 60 }
+        add_political_power = -15
+        add_ideas = CWICR_SYR_regional_relief_idea
+        add_opinion_modifier = { target = SYR modifier = CWICR_SYR_relief_partners }
+        SYR = {
+            add_ideas = CWICR_SYR_regional_relief_idea
+            set_country_flag = CWICR_SYR_LEB_relief_accepted
+            add_opinion_modifier = { target = LEB modifier = CWICR_SYR_relief_partners }
+        }
+    }
+    option = {
+        name = CWICR_SYR_REG.12.b
+        ai_chance = { factor = 40 }
+        SYR = { set_country_flag = CWICR_SYR_LEB_relief_refused }
+    }
+}
+
+country_event = {
+    id = CWICR_SYR_REG.13
+    title = CWICR_SYR_REG.13.t
+    desc = CWICR_SYR_REG.13.d
+    picture = GFX_Syrian_parliament
+    is_triggered_only = yes
+    fire_only_once = yes
+
+    option = {
+        name = CWICR_SYR_REG.13.a
+        ai_chance = { factor = 65 }
+        add_political_power = -15
+        add_ideas = CWICR_SYR_regional_relief_idea
+        add_opinion_modifier = { target = SYR modifier = CWICR_SYR_relief_partners }
+        SYR = {
+            add_ideas = CWICR_SYR_regional_relief_idea
+            set_country_flag = CWICR_SYR_JOR_relief_accepted
+            add_opinion_modifier = { target = JOR modifier = CWICR_SYR_relief_partners }
+        }
+    }
+    option = {
+        name = CWICR_SYR_REG.13.b
+        ai_chance = { factor = 35 }
+        SYR = { set_country_flag = CWICR_SYR_JOR_relief_refused }
+    }
+}
+
+news_event = {
+    id = CWICR_SYR_REG.14
+    title = CWICR_SYR_REG.14.t
+    desc = CWICR_SYR_REG.14.d
+    picture = GFX_Syrian_parliament
+    is_triggered_only = yes
+    fire_only_once = yes
+    option = { name = CWICR_SYR_REG.14.a }
+}
+
+news_event = {
+    id = CWICR_SYR_REG.15
+    title = CWICR_SYR_REG.15.t
+    desc = CWICR_SYR_REG.15.d
+    picture = GFX_Syrian_parliament
+    is_triggered_only = yes
+    fire_only_once = yes
+    option = { name = CWICR_SYR_REG.15.a }
+}
