@@ -3,8 +3,8 @@ default = {
 	# The DLC operative pool file was intentionally emptied for MP consistency.
 	# Without an operative pool, recruited agents can fail portrait generation.
 	operative = {
-		male = { "gfx/leaders/operative_unknown.dds" }
-		female = { "gfx/leaders/operative_unknown.dds" }
+		male = { "gfx/leaders/leader_unknown.dds" }
+		female = { "gfx/leaders/leader_unknown.dds" }
 	}
 	#navy = {
 		#male = {
