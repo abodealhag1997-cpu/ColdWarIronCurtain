@@ -46,9 +46,14 @@ influence systems, historical character roster, and existing Syria events.
 - [ ] Trade balances, import dependency, external financial support,
   debt, sanctions, corruption enforcement and investment,
   including creditor response and inflationary risk.
-- [ ] Regional development of Damascus, Aleppo, Homs, Hama, Latakia,
-  Jazira, Golan and Euphrates districts using actual game state IDs,
-  not imaginary state references.
+- [x] Initial Syria-only city/state construction decisions use verified
+  map IDs: Damascus (554), Aleppo (677), Homs (893), Hama (895),
+  Latakia (809), Deir ez-Zor (680), Al-Hasakah (777) and Rif Dimashq (2046).
+  Each has political and existing CWIC treasury costs; seven are linked to
+  Syrian research. Projects enqueue buildings after a preparation period.
+- [ ] Add Golan/Quneitra projects only when territorial control and
+  the 1967 occupation chronology are modelled reliably, and extend urban
+  capacity, building slots and postwar infrastructure maintenance.
 
 ## 3. Military, security and intelligence
 
@@ -63,12 +68,22 @@ influence systems, historical character roster, and existing Syria events.
   actual promotion dates and training schools; validate portrait paths.
 - [ ] Military procurement based on budget, foreign dependence,
   spare parts, logistics, doctrinal fit and training quality.
-- [ ] Intelligence-service jurisdiction and oversight, faction
-  pressures, internal security and foreign counterintelligence;
-  avoid an unrestricted bonus to surveillance.
-- [ ] Optional private military/security contractors subject to
-  financial costs, political scrutiny, command reliability, legality
-  and host-government consent. Not free extra battalions.
+- [x] First-pass Syrian strategic intelligence directorate: three
+  expensive tiers, at most three additional cumulative operative slots,
+  bounded intelligence bonuses and strong continuing economic costs.
+  The two great powers can independently react to the external network.
+  This is an alternate-history *gameplay aspiration*, not verified parity
+  with the real-world CIA.
+- [ ] Extend intelligence with optional rival agencies, internal
+  oversight, faction pressures, counterintelligence events and calibrated
+  comparisons against USA/SOV capabilities after runtime testing.
+- [x] Licensed Syrian security contractors: treasury-funded legal
+  framework, one paid under-equipped contractor infantry brigade,
+  optional temporary missions to Lebanon and Iraq only after acceptance.
+  The old disabled `pmc` battalion type is deliberately NOT used.
+- [ ] Extend mercenary contracting with upkeep, reliability, doctrine,
+  contingent deployment rules, cancellation, and adequate AI controls;
+  test the contractor template and brigade spawn in-game.
 
 ## 4. International politics, United Nations and regional crises
 
@@ -133,7 +148,9 @@ influence systems, historical character roster, and existing Syria events.
 - [x] Dedicated Syrian technology tab added separately from the
   global space research removal; nine research technologies.
 - [x] Static Python preflight and GitHub Actions workflow authored.
-- [ ] Confirm CI executes and resolve failures.
+- [x] GitHub Actions source validations have completed successfully in
+  previous revisions; the expanded city/security/mercenary audit has now
+  been attached to CI. Confirm the latest run separately.
 - [ ] Audit GUI overlap and blank research tiles across multiple
   major/minor countries and different DLC configurations.
 - [ ] Verify localization in English, ensure all portraits / sprite
