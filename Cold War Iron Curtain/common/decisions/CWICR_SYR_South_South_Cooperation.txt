@@ -1,0 +1,27 @@
+# CWIC Reworked - alternate-history Syrian overture to the emerging non-aligned world.
+# Belgrade 1961 marks the earliest plausible start; no claim of historic treaty.
+# Only Syria can initiate. Yugoslavia and India decide independently.
+CWICR_SYR_regional_initiatives_category = {
+    CWICR_SYR_south_south_science_invitations = {
+        icon = generic_industry
+        allowed = { original_tag = SYR }
+        visible = { tag = SYR }
+        available = {
+            date > 1961.9.1
+            exists = YUG
+            exists = RAJ
+            has_idea = CWICR_SYR_budget_commission_idea
+            NOT = { has_war_with = YUG }
+            NOT = { has_war_with = RAJ }
+        }
+        cost = 135
+        fire_only_once = yes
+        complete_effect = {
+            set_country_flag = CWICR_SYR_SSC_invitations_issued
+            YUG = { country_event = { id = CWICR_SYR_SSC.1 days = 2 } }
+            RAJ = { country_event = { id = CWICR_SYR_SSC.2 days = 2 } }
+            country_event = { id = CWICR_SYR_SSC.3 days = 9 }
+        }
+        ai_will_do = { factor = 0.5 }
+    }
+}
