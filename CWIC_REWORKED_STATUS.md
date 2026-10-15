@@ -327,6 +327,70 @@ belongs to the legacy economic GUI and is not yet proven repaired.
 Our new Syria decision category intentionally omits a large picture;
 we should audit the old economic category artwork and GUI separately.
 
+## October 2026 — new source-level development batch
+
+**A. South-South scientific diplomacy (1961+)**
+- Added the Syrian-only `CWICR_SYR_south_south_science_invitations`
+  decision under the existing regional-international decisions category.
+  It costs 135 political power and requires a prior Syrian budget
+  commission, Yugoslavia and India's continued existence, and peace
+  with both recipient states.
+- YUG and RAJ receive separate invitation events with independent
+  AI acceptance/refusal choices. A scheduled Syrian outcome event
+  waits nine days for both replies; a partnership requires **both**
+  countries to agree. Failure imposes lost political capital and a
+  small domestic stability cost, with no research reward.
+- If both agree, all three countries receive a modest research-speed
+  idea (+0.8%) counterbalanced by a consumer-goods burden (+1.2%)
+  and the recipients paid 20 political power apiece. A **major
+  international news event** broadcasts the agreement.
+- This is explicitly an *alternate-history* scientific outreach after
+  1961, not an assertion that a formal three-state treaty existed.
+  No nuclear technology, free equipment, military alliance or
+  industrial buildings are granted.
+
+**B. World news delivery correction**
+- Six Syrian international `news_event` definitions formerly lacked
+  `major = yes` and had `fire_only_once = yes`, which could
+  suppress delivery beyond a single player country.
+  All six now use `major = yes` with the global-suppressing
+  `fire_only_once` removed. This changes news visibility, not
+  geopolitical leverage by itself.
+- Added `CWIC_Reworked_World_Audit.py` and integrated it into the
+  GitHub Actions static checks. It covers international event
+  references, response prerequisites, translations, news broadcast
+  flags, and finance projects.
+
+**C. Treasury-linked Syrian development**
+- Three additional Syria-exclusive, **one-use** initiatives use the
+  actual CWIC `currentMoney` variable rather than minting free funds:
+  industrial credit (12 treasury units + 80 political power),
+  rural water works (8 treasury units + 70 political power), and
+  supervised defence procurement (10 treasury units + 95 political power).
+- Each requires a funded Syrian budget commission and further
+  development prerequisites. Successful projects give *temporary*
+  national ideas for approximately 2–3 years, combining small
+  economic/industrial benefits with consumer-goods or political
+  administration costs. These are not perpetual compounding bonuses.
+- The currentMoney scale is inherited from CWIC; dollar-equivalent
+  balance and AI affordability **have not been runtime-tested**.
+
+**D. Intel portrait reference correctness**
+- The previously used `gfx/leaders/operative_unknown.dds` was not
+  present in the project repository. The fallback now references
+  the real `gfx/leaders/leader_unknown.dds` file.
+  Static validation now requires the referenced DDS to exist.
+  Visual quality and multiplayer/DLC sync still need runtime checks.
+
+**Validation limits:** each newly added scripted decision, event and
+idea file passed structural brace checks, and event IDs, national
+spirits, localisation and treasury payments were cross-referenced.
+These are *text/source audits only*. No HOI4 executable gameplay
+test has run on this GitHub branch, and CI results have not been
+confirmed in this environment. Existing research, Officer Corps
+layout, the intentional July 2026 space-tab removal, and all
+historical-coup timelines still need the integrated test plan.
+
 ## Static checks done
 
 - Balanced `{}` checked in the modified `idea_tags`, character,
