@@ -402,22 +402,8 @@ technology_folders = {
 	industry_folder = {
 		ledger = civilian
 	}
-	old_land_doctrine_folder = {
-		ledger = army
-		doctrine = yes
-	}
-	old_naval_doctrine_folder = {
-		ledger = navy
-		doctrine = yes
-	}
-	old_air_doctrine_folder = {
-		ledger = air
-		doctrine = yes
-	}
-	special_forces_doctrine_folder = {
-		ledger = hidden #For now
-		doctrine = yes
-	}
+	# CWIC Reworked: obsolete technology-era doctrine folders removed.
+	# HOI4 1.19 doctrines use common/doctrines rather than empty research tabs.
 	electronics_folder = {
 		ledger = civilian
 	}
