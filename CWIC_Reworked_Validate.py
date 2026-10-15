@@ -52,7 +52,7 @@ def strip_strings_and_comments(source: str) -> str:
         if in_string:
             if escaping:
                 escaping = False
-            elif ch == "\\":
+            elif ch == "\":
                 escaping = True
             elif ch == '"':
                 in_string = False
@@ -92,6 +92,9 @@ CHECK_BRACES = [
     "common/characters/SYR.txt",
     "common/country_leader/zzz_cwic_reworked_syr_military_staff.txt",
     "common/scripted_triggers/zzz_cwic_reworked_sf_doctrine_trigger.txt",
+    "common/decisions/categories/CWICR_SYR_Categories.txt",
+    "common/decisions/CWICR_SYR_State_Reforms.txt",
+    "common/ideas/CWICR_SYR_State_Reforms.txt",
     "common/national_focus/50s_SYR.txt",
     "common/national_focus/60s_SYR.txt",
     "history/countries/SYR - Syria.txt",
@@ -123,6 +126,11 @@ roster = [
     "SYR_adib_shishakli",
     "SYR_afif_albizri",
 ]
+if not re.search(r"(?m)^load_focus_tree = 50s_SYR\s*$", history):
+    fail("1949 Syrian bookmark must explicitly load the 1950s tree")
+if not re.search(r"(?m)^\s*1960\.1\.1\s*=\s*\{\s*\n\s*load_focus_tree = 60s_SYR", history):
+    fail("1960 Syrian bookmark must explicitly switch to the 1960s tree")
+
 for token in roster:
     if not re.search(r"(?m)^\s*" + re.escape(token) + r"\s*=\s*\{", characters):
         fail(f"Missing Syrian character definition: {token}")
@@ -141,6 +149,27 @@ for trait in (
 ):
     if not re.search(r"\b" + re.escape(trait) + r"\s*=\s*\{", traits):
         fail(f"Custom staff trait missing: {trait}")
+
+# Ensure the new Syrian policy content is complete and cross-referenced.
+policy_categories = masked["common/decisions/categories/CWICR_SYR_Categories.txt"]
+policy_decisions = masked["common/decisions/CWICR_SYR_State_Reforms.txt"]
+policy_ideas = masked["common/ideas/CWICR_SYR_State_Reforms.txt"]
+policy_l10n = read("localisation/english/CWIC_Reworked_l_english.yml")
+
+for category in ("CWICR_SYR_state_reform_category", "CWICR_SYR_defence_reform_category"):
+    if not re.search(r"(?m)^\s*" + category + r"\s*=\s*\{", policy_categories):
+        fail("Syrian policy decision category missing: " + category)
+for decision in ("CWICR_SYR_budget_commission", "CWICR_SYR_irrigation_cooperatives",
+                 "CWICR_SYR_officer_training", "CWICR_SYR_intelligence_review"):
+    spirit = decision + "_idea"
+    if not re.search(r"(?m)^\s*" + decision + r"\s*=\s*\{", policy_decisions):
+        fail("Syrian policy decision missing: " + decision)
+    if not re.search(r"(?m)^\s*" + spirit + r"\s*=\s*\{", policy_ideas):
+        fail("Syrian policy idea missing: " + spirit)
+    if not re.search(r"(?m)^\s*" + re.escape(decision) + r":0", policy_l10n):
+        fail("Syrian decision localisation missing: " + decision)
+    if not re.search(r"(?m)^\s*" + re.escape(spirit) + r":0", policy_l10n):
+        fail("Syrian idea localisation missing: " + spirit)
 
 focus_ids: dict[str, str] = {}
 focus_refs: list[tuple[str, str]] = []
@@ -180,6 +209,16 @@ for removed in ("interface/countryofficercorpview.gui",
                 "interface/countrydoctrinetreeview.gui"):
     if (MOD / removed).exists():
         fail(f"Obsolete custom GUI override is active: {removed}")
+
+for country_file, unsupported in (
+    ("common/national_focus/BRA_50s.txt", "radio"),
+    ("common/national_focus/DOM_49.txt", "screen_hull_light"),
+    ("common/national_focus/HUN_60s_Kadar.txt", "electronic_mechanical_engineering"),
+    ("common/national_focus/HUN_60s_Kadar.txt", "air_techs"),
+):
+    body = strip_strings_and_comments(read(country_file))
+    if re.search(r"(?m)^\s*category\s*=\s*" + unsupported + r"\s*$", body):
+        fail(f"Outdated research category {unsupported} in {country_file}")
 
 # HOI4 1.19 owns the updated doctrine folder map (including special forces).
 # A CWIC-era copy containing only land/naval/air would hide the new SF folder.
