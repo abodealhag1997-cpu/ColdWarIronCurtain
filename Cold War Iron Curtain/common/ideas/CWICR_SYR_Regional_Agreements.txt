@@ -1,0 +1,24 @@
+# CWIC Reworked: these ideas can be applied to Syria AND a consenting partner.
+# Their shared cost/benefit reflects modest cooperative administration.
+ideas = {
+    country = {
+        CWICR_SYR_transit_agreement_idea = {
+            allowed = { always = no }
+            removal_cost = -1
+            picture = generic_research_bonus
+            modifier = {
+                production_speed_infrastructure_factor = 0.02
+                consumer_goods_factor = 0.01
+            }
+        }
+        CWICR_SYR_water_commission_idea = {
+            allowed = { always = no }
+            removal_cost = -1
+            picture = generic_research_bonus
+            modifier = {
+                production_speed_infrastructure_factor = 0.015
+                consumer_goods_factor = 0.01
+            }
+        }
+    }
+}
