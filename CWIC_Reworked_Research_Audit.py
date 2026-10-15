@@ -53,6 +53,8 @@ expected_folders = {
     "industry_folder",
     "rocket_folder",
     "wmd_folder",
+    # CWIC Reworked: Syrian-only research tab, nine technology placements.
+    "cwicr_syr_research_folder",
 }
 
 tags = without_comments(read(tags_file))
