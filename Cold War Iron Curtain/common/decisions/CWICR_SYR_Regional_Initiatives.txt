@@ -1,0 +1,95 @@
+# CWIC Reworked | Syrian foreign policy initiatives, 1949-1991.
+# Only Syria can use these decisions. Recipient states are free to refuse.
+# No annexations, fabricated UN resolutions, puppet governments or free divisions.
+CWICR_SYR_regional_initiatives_category = {
+
+    CWICR_SYR_levante_trade_corridor = {
+        icon = generic_construction
+        allowed = { original_tag = SYR }
+        visible = { tag = SYR }
+        available = {
+            exists = LEB
+            date > 1949.12.31
+            NOT = { has_war_with = LEB }
+        }
+        cost = 90
+        fire_only_once = yes
+        complete_effect = {
+            LEB = { country_event = { id = CWICR_SYR_REG.1 days = 2 } }
+        }
+        ai_will_do = { factor = 0.8 }
+    }
+
+    CWICR_SYR_euphrates_water_dialogue = {
+        icon = generic_construction
+        allowed = { original_tag = SYR }
+        visible = { tag = SYR }
+        available = {
+            exists = IRQ
+            date > 1960.12.31
+            NOT = { has_war_with = IRQ }
+        }
+        cost = 95
+        fire_only_once = yes
+        complete_effect = {
+            IRQ = { country_event = { id = CWICR_SYR_REG.2 days = 2 } }
+        }
+        ai_will_do = { factor = 0.75 }
+    }
+
+    CWICR_SYR_jordan_border_commission = {
+        icon = generic_political_reform
+        allowed = { original_tag = SYR }
+        visible = { tag = SYR }
+        available = {
+            exists = JOR
+            date > 1950.1.1
+            NOT = { has_war_with = JOR }
+        }
+        cost = 80
+        fire_only_once = yes
+        complete_effect = {
+            JOR = { country_event = { id = CWICR_SYR_REG.3 days = 2 } }
+        }
+        ai_will_do = { factor = 0.65 }
+    }
+
+    CWICR_SYR_egypt_technical_exchange = {
+        icon = generic_industry
+        allowed = { original_tag = SYR }
+        visible = { tag = SYR }
+        available = {
+            exists = EGY
+            date > 1952.1.1
+            has_idea = CWICR_SYR_budget_commission_idea
+            NOT = { has_war_with = EGY }
+        }
+        cost = 100
+        fire_only_once = yes
+        complete_effect = {
+            EGY = { country_event = { id = CWICR_SYR_REG.4 days = 2 } }
+        }
+        ai_will_do = { factor = 0.65 }
+    }
+
+    CWICR_SYR_two_bloc_non_alignment_dialogue = {
+        icon = generic_political_reform
+        allowed = { original_tag = SYR }
+        visible = { tag = SYR }
+        available = {
+            exists = USA
+            exists = SOV
+            date > 1955.1.1
+            NOT = { has_war_with = USA }
+            NOT = { has_war_with = SOV }
+        }
+        cost = 135
+        fire_only_once = yes
+        complete_effect = {
+            USA = { country_event = { id = CWICR_SYR_REG.5 days = 2 } }
+            SOV = { country_event = { id = CWICR_SYR_REG.6 days = 2 } }
+            news_event = { id = CWICR_SYR_REG.7 days = 3 }
+        }
+        ai_will_do = { factor = 0.35 }
+    }
+}
