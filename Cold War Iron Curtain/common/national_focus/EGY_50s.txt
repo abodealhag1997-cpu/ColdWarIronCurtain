@@ -2452,7 +2452,7 @@ focus_tree = {
 				name = "Farouk bin Fuad"
 				picture = "gfx/leaders/EGY/Farouk_I_50s.dds"
 				traits = {
-					incompetent
+					inflexible_strategist
 				}
 				skill = 1
 				attack_skill = 1
