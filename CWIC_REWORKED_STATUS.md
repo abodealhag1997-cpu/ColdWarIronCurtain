@@ -102,6 +102,11 @@ and source references were performed.
 - All new policy category IDs, decision IDs, idea IDs, source focus
   prerequisites and localisation keys were checked against their
   definitions by source inspection, with balanced Clausewitz braces.
+- Converted four Syrian historical doctrine-evaluation rewards, which
+  used legacy tech-doctrine discounts, to small military XP rewards
+  compatible with the new HOI4 doctrine model: 10 air XP, 10 army XP,
+  10 navy XP in the 1950s; 20 army XP from the 1960s Soviet Doctrine
+  focus. These values need gameplay balance review.
 
 ### Remaining technology bonus fixes
 
