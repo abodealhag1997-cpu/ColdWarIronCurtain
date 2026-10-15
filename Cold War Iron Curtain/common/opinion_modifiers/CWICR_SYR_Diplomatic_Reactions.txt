@@ -16,4 +16,13 @@ opinion_modifiers = {
         value = -30
         months = 60
     }
+    # Temporary bilateral impressions; each side receives a modifier.
+    CWICR_SYR_transit_partners = { value = 15 months = 36 }
+    CWICR_SYR_diplomatic_refusal = { value = -8 months = 18 }
+    CWICR_SYR_water_partners = { value = 12 months = 36 }
+    CWICR_SYR_water_dispute = { value = -18 months = 24 }
+    CWICR_SYR_border_partners = { value = 10 months = 24 }
+    CWICR_SYR_science_partners = { value = 14 months = 30 }
+    CWICR_SYR_balanced_outreach = { value = 12 months = 24 }
+    CWICR_SYR_bloc_suspicion = { value = -7 months = 24 }
 }
