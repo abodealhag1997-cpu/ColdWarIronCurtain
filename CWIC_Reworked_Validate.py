@@ -95,6 +95,7 @@ CHECK_BRACES = [
     "common/decisions/categories/CWICR_SYR_Categories.txt",
     "common/decisions/CWICR_SYR_State_Reforms.txt",
     "common/ideas/CWICR_SYR_State_Reforms.txt",
+    "common/technologies/CWICR_SYR_Research.txt",
     "common/special_projects/projects/cwic_space_special_projects.txt",
     "common/national_focus/50s_SYR.txt",
     "common/national_focus/60s_SYR.txt",
@@ -171,6 +172,48 @@ for decision in ("CWICR_SYR_budget_commission", "CWICR_SYR_irrigation_cooperativ
         fail("Syrian decision localisation missing: " + decision)
     if not re.search(r"(?m)^\s*" + re.escape(spirit) + r":0", policy_l10n):
         fail("Syrian idea localisation missing: " + spirit)
+
+# Syrian technology tab: unique identifiers, game-defined tech categories,
+# nine sprites, three visible roots, UI templates and localisation.
+syrian_techs = [
+    "CWICR_SYR_hydrology_1949", "CWICR_SYR_irrigation_1957",
+    "CWICR_SYR_euphrates_1970", "CWICR_SYR_vocational_1949",
+    "CWICR_SYR_industry_1958", "CWICR_SYR_machine_tools_1968",
+    "CWICR_SYR_signal_corps_1950", "CWICR_SYR_staff_college_1962",
+    "CWICR_SYR_air_defence_network_1972",
+]
+syrian_tech = masked["common/technologies/CWICR_SYR_Research.txt"]
+technology_categories = read("common/technology_tags/00_technology.txt")
+technology_gui = read("interface/countrytechtreeview.gui")
+technology_gfx = read("interface/CWICR_SYR_Research.gfx")
+technology_loc = read("localisation/english/CWICR_SYR_Research_l_english.yml")
+for tech in syrian_techs:
+    if len(re.findall(r"(?m)^\s*" + tech + r"\s*=\s*\{", syrian_tech)) != 1:
+        fail("Syrian applied technology missing or duplicated: " + tech)
+    if ('name = "GFX_' + tech + '_medium"') not in technology_gfx:
+        fail("Syrian technology icon missing: " + tech)
+    for key in (tech, tech + "_desc"):
+        if not re.search(r"(?m)^\s*" + key + r":0\s+\"", technology_loc):
+            fail("Syrian technology localization missing: " + key)
+for first in ("CWICR_SYR_hydrology_1949", "CWICR_SYR_vocational_1949",
+              "CWICR_SYR_signal_corps_1950"):
+    if ('name = "' + first + '_tree"') not in technology_gui:
+        fail("Syrian technology root gridbox absent in research GUI: " + first)
+if syrian_tech.count("allow_branch = { original_tag = SYR }") != 3:
+    fail("Expected three Syrian-only research branch gates")
+if syrian_tech.count("allow = { original_tag = SYR }") != 9:
+    fail("Expected every Syrian research technology to be tag-gated")
+for key in ("cwicr_syr_research_folder", "cwicr_syr_research_folder_tab",
+            "techtree_cwicr_syr_research_folder_item"):
+    if key not in technology_gui:
+        fail("Custom Syrian research interface element missing: " + key)
+if not re.search(r"cwicr_syr_research_folder\s*=\s*\{\s*available\s*=\s*\{\s*original_tag\s*=\s*SYR", technology_categories):
+    fail("Syrian research folder not gated by original_tag")
+for label in ("CWICR_SYR_RESEARCH_TITLE", "CWICR_SYR_HYDRO_HEADING",
+              "CWICR_SYR_INDUSTRY_HEADING", "CWICR_SYR_DEFENCE_HEADING",
+              "CWICR_SYR_TECH_TAB"):
+    if not re.search(r"(?m)^\s*" + label + r":0\s+\"", technology_loc):
+        fail("Syrian research interface localization missing: " + label)
 
 # New doctrine focus rewards are XP, not removed legacy doctrine tech discounts.
 expected_doctrine_xp = (
