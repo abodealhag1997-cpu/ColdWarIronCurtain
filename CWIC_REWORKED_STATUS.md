@@ -531,3 +531,56 @@ fix; exact layout must be checked during the final in-game test.
 The Python source checker now warns if those large category banners
 are inadvertently restored.
 
+## Syria cities, strategic intelligence and contractors (new integration)
+
+The following implementation is committed, but its exact in-game operation
+still requires a new 1949/1960 campaign and DLC compatibility smoke test:
+
+- **Eight Syrian state-level investments** in
+  `common/decisions/CWICR_SYR_City_Construction.txt`: Damascus
+  (554, office park), Aleppo (677, civilian industry), Homs
+  (893, arms factory), Hama (895, agri-industry), Latakia
+  (809, dockyard), Deir ez-Zor (680, water infrastructure),
+  Al-Hasakah (777, agri-industry) and Rif Dimashq (2046, radar).
+  These are *game states*, not separate city-building UI assets.
+  All require Syrian ownership/control and CWIC treasury plus political
+  expenditure. Preparation takes 120 days. Buildings then join the
+  construction queue, so deployment and build slots still matter.
+  Several decisions require the corresponding new Syria research.
+- **Three-tier strategic intelligence path** in
+  `CWICR_SYR_Intelligence_and_Contractors.txt`: the central directorate,
+  foreign station network and satellite-analysis service require
+  progressively later techs, large political/treasury costs and long
+  preparation times. Three cumulative spirits use the documented
+  `operative_slot = 1` modifier, offset by escalating consumer-goods
+  and political-power burdens. CIA-level parity is NOT asserted:
+  operatives, agency upgrades and foreign intel outcomes remain subject
+  to the underlying HOI4 systems.
+- **World-facing reactions:** the United States and Soviet Union
+  independently choose concern or guarded security dialogue upon
+  the second intelligence tier. A separate one-time news event covers
+  the publicly acknowledged expansion. Opinion changes are temporary.
+- **Licensed Syrian private military contractors:** first register
+  a legal framework. This creates a separate template of three regular
+  infantry battalions (avoiding the old `pmc` unit type in CWIC,
+  currently marked `active = no`). A subsequent paid one-time decision
+  recruits one *understrength* Syrian Contract Security Brigade at the
+  national capital with `start_equipment_factor = 0.0`, making normal
+  military equipment supply necessary.
+- **Host consent is mandatory:** Lebanon or Iraq may independently
+  reject training/advisory contracts. If accepted, both countries
+  receive bounded temporary ideas; otherwise no foreign unit spawns.
+  A contract does not imply annexation, coercive basing rights or
+  automatically deployed Syrian units.
+- **Static safeguards:** `CWIC_Reworked_Security_Cities_Audit.py`
+  checks map states, building types, Syria-only categories,
+  localisation keys, advisor research dependencies, foreign response
+  event IDs and the contractor brigade template. The GitHub Actions
+  source-validation workflow now includes this audit.
+
+**Still unresolved:** user-reported Officer Corps and research layout
+overlaps across screen resolutions/DLC; remaining empty tabs beyond
+the intentionally removed 53-technology legacy space branch; future
+budget/AI balancing; actual division template spawning; and full
+interactive 1.19.3 compatibility. Treat this as an integration build,
+not a release certified by an HOI4 run.
